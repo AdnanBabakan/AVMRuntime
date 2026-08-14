@@ -1,0 +1,38 @@
+= Opcodes
+Adnan Babakan <adnanbabakan.personal@hotmail.com>
+v1.0 2026-08-14
+:doctype: book
+:description: This document includes the available opcodes, their usage and other necessary info relating to them.
+:url-repo: https://github.com/AdnanBabakan/AVMRuntime
+
+Opcodes are used to instruct the VM to perform a certain job.
+
+== Arithmetic
+
+.Integer Arithmetic
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| IADD | | DST R1 R2 | DST = R1 + R2 | Adds two integers and stores the result in a register.
+| ISUB | | DST R1 R2 | DST = R1 - R2 | Subtracts two integers and stores the result in a register.
+| IMUL | | DST R1 R2 | DST = R1 * R2 | Multiplies (signed) two integers and stores the result in a register.
+| IMULU | | DST R1 R2 | DST = R1 * R2 | Multiplies (unsigned) two integers and stores the result in a register.
+| IDIV | | DST R1 R2 | DST = R1 / R2 | Divides (signed) two integers and stores the result in a register.
+| IDIVU | | DST R1 R2 | DST = R1 / R2 | Divides (unsigned) two integers and stores the result in a register.
+| IMOD | | DST R1 R2 | DST = R1 % R2 | Stores the (signed) modulus of two integers in a register.
+| IMODU | | DST R1 R2 | DST = R1 % R2 | Stores the (unsigned) modulus of two integers in a register.
+| INEG | | DST R1 | DST = -R1 | Stores the negated value of an integer in a register.
+|===
+
+.Float Arithmetic
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| FADD | | DST R1 R2 | DST = R1 + R2 | Adds two floats and stores the result in a register.
+| FSUB | | DST R1 R2 | DST = R1 - R2 | Subtracts two floats and stores the result in a register.
+| FMUL | | DST R1 R2 | DST = R1 * R2 | Multiplies two floats and stores the result in a register.
+| FDIV | | DST R1 R2 | DST = R1 / R2 | Divides two floats and stores the result in a register.
+| FMOD | | DST R1 R2 | DST = R1 % R2 | Stores the modulus of two floats in a register.
+| FNEG | | DST R1 | DST = -R1 | Stores the negated value of a float in a register.
+| FSQRT | | DST R1 | DST = -R1 | Stores the square root value of a float in a register.
+|===
