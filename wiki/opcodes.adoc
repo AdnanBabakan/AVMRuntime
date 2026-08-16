@@ -7,8 +7,6 @@ v1.0 2026-08-14
 
 Opcodes are used to instruct the VM to perform a certain job.
 
-== Arithmetic
-
 .Integer Arithmetic
 |===
 | Opcode | Binary | Operands | Semantic | Description
@@ -35,4 +33,82 @@ Opcodes are used to instruct the VM to perform a certain job.
 | FMOD | | DST R1 R2 | DST = R1 % R2 | Stores the modulus of two floats in a register.
 | FNEG | | DST R1 | DST = -R1 | Stores the negated value of a float in a register.
 | FSQRT | | DST R1 | DST = -R1 | Stores the square root value of a float in a register.
+|===
+
+.Bitwise
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| AND | | DST R1 R2 | DST = R1 && R2 | Stores the logical AND result of two operands in a register.
+| OR | | DST R1 R2 | DST = R1 \|\| R2 | Stores the logical OR result of two operands in a register.
+| XOR | | DST R1 R2 | DST = R1 ^ R2 | Stores the logical XOR result of two operands in a register.
+| NOT | | DST R1 | DST = ~R2 | Stores the logical NOT result of an operand in a register.
+| LLS | | DST R1 R2 | DST = R1 << R2 | Logically shifts R1 by R2 bits to the left and stores the result in a register.
+| LRS | | DST R1 R2 | DST = R1 >> R2 | Logically (unsigned) shifts R1 by R2 bits to the right and stores the result in a register.
+| ARS | | DST R1 R2 | DST = R1 >>> R2 | Arithmetically (signed) shifts R1 by R2 bits to the right and stores the result in a register.
+|===
+
+.Logical (Comparison)
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| EQ | | DST R1 R2 | DST = R1 == R2 | Stores the boolean value resulted from the equality test of two operands in a register.
+| NE | | DST R1 R2 | DST = R1 != R2 | Stores the boolean value resulted from the inequality test of two operands in a register.
+| LT | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the signed less-than test of two operands in a register.
+| LTU | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the unsigned less-than test of two operands in a register.
+| LE | | DST R1 R2 | DST = R1 \<\= R2 | Stores the boolean value resulted from the signed less-than-or-equal test of two operands in a register. The data type of operands are inferred from the tagged values.
+| LEU | | DST R1 R2 | DST = R1 \<\= R2 | Stores the boolean value resulted from the unsigned less-than-or-equal test of two operands in a register. The data type of operands are inferred from the tagged values.
+| ILT | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the signed less-than test of two integer operands.
+| ILTU | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the unsigned less-than test of two integer operands.
+| ILE | | DST R1 R2 | DST = R1 \<\= R2 | Stores the boolean value resulted from the signed less-than-or-equal test of two integer operands.
+| ILEU | | DST R1 R2 | DST = R1 \<\= R2 | Stores the boolean value resulted from the unsigned less-than-or-equal test of two integer operands.
+| FEQ | | DST R1 R2 | DST = R1 == R2 | Stores the boolean value resulted from the equality test of two float operands in a register.
+| FNE | | DST R1 R2 | DST = R1 == R2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
+| FLT | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the less-than test of two float operands.
+| FLE | | DST R1 R2 | DST = R1 \<\= R2 | Stores the boolean value resulted from the less-than-or-equal test of two float operands.
+|===
+
+.Control Flow
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| JMP | | OFFSET | - | Unconditionally jumps to a given offset.
+| JMPR | | R1 | - | Unconditionally jumps to the offset stored in a register.
+| JMPT | | R1 OFFSET | - | Jumps to the given offset if R1 is true (1).
+| JMPF | | R1 OFFSET | - | Jumps to the given offset if R1 is false (0).
+| JMPTR | | R1 R2 | - | Jumps to the offset stored in register R2 if R1 is true (1).
+| JMPFR | | R1 R2 | - | Jumps to the offset stored in register R2 if R1 is false (0).
+|===
+
+.Functions and Calls
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| CALL | | DST FUNC BR | DST = FUNC([BR + (64 * 0)], [BR + (64 * 1)], [BR + (64 * 2)], ...) | Push the return address, jump to the FUNC function using the arguments starting from the base register (BR) moving forward until the required counts of arguments is satisfied for the given function. Then stores the returned value of the function in the DST register.
+RET | | RET | R1 | - | Store the value of R1 in the FRR (function return register). Pop the return address and jump to it.
+|===
+
+.Data movement
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| COP | | DST R1 | DST = R1 | Copy the value of R1 register into DST register.
+| LOAD | | DST MEMADDRR | DST = memory[address] | Copy the value from the memory address into DST register.
+| LOADI | | DST IMM | DST = [immediate] | Copy the immediate value into DST register.
+| LOADC | | DST CONST | DST = #CONST | Copy the value from a constant in the constants pool into DST register.
+| STR | | MEMADDRR R1 | memory[address] = R1 | Copy the value from R1 register into the memory address.
+| STRI | | MEMADDR IMM | memory[address] = [immediate] | Copy the immediate value into the memory address.
+| STRC | | MEMADDR CONST | memory[address] = #CONST | Copy the value from a constant in the constants pool into the memory address.
+|===
+
+.Types and Tags
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| EXTAG | | DST R1 | | Extract the tag bits of R1 and store it into DST register.
+| ISINT | | DST R1 | | Set DST to true (1) if R1 is an integer (immediate).
+| ISFLT | | DST R1 | | Set DST to true (1) if R1 is a float (immediate).
+| ISPTR | | DST R1 | | Set DST to true (1) if R1 is a pointer.
+| I2F | | DST R1 | | Convert R1 (int) to float and store it in DST register.
+| F2I | | DST R1 | | Convert R1 (float) to int and store it in DST register.
 |===
