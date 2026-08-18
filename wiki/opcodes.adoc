@@ -7,7 +7,7 @@ v1.0 2026-08-14
 
 Opcodes are used to instruct the VM to perform a certain job.
 
-.Integer Arithmetic
+.Basic Integer Arithmetic
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
@@ -22,7 +22,7 @@ Opcodes are used to instruct the VM to perform a certain job.
 | INEG | | DST R1 | DST = -R1 | Stores the negated value of an integer in a register.
 |===
 
-.Float Arithmetic
+.Basic Float Arithmetic
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
@@ -32,7 +32,32 @@ Opcodes are used to instruct the VM to perform a certain job.
 | FDIV | | DST R1 R2 | DST = R1 / R2 | Divides two floats and stores the result in a register.
 | FMOD | | DST R1 R2 | DST = R1 % R2 | Stores the modulus of two floats in a register.
 | FNEG | | DST R1 | DST = -R1 | Stores the negated value of a float in a register.
+|===
+
+.Advanced Integer Arithmetic
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| IMIN | | DST R1 R2 | DST = R1 < R2 ? R1 : R2 | Copies the value of the lesser value between R1 and R2 into DST for integers.
+| IMAX | | DST R1 R2 | DST = R1 > R2 ? R1 : R2 | Copies the value of the larger value between R1 and R2 into DST for integers.
+| IABS | | DST R1 | DST = \|R1\| | Copies the absolute value of R1 into DST for integers.
+| IINC | | R1 | R1 = R1 + 1 | Increases the value of R1 by one and stores it back.
+| IDEC | | R1 | R1 = R1 - 1 | Decreases the value of R1 by one and stores it back.
+|===
+
+.Advanced Float Arithmetic
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
 | FSQRT | | DST R1 | DST = sqrt(R1) | Stores the square root value of a float in a register.
+| FMIN | | DST R1 R2 | DST = R1 < R2 ? R1 : R2 | Copies the value of the lesser value between R1 and R2 into DST for floats.
+| FMAX | | DST R1 R2 | DST = R1 > R2 ? R1 : R2 | Copies the value of the larger value between R1 and R2 into DST for floats.
+| FABS | | DST R1 | DST = \|R1\| | Copies the absolute value of R1 into DST for floats.
+| FCEIL | | DST R1 | DST = ceil(R1) | Copies the ceiling value of R1 into DST for floats.
+| FFLOOR | | DST R1 | DST = floor(R1) | Copies the floor value of R1 into DST for floats.
+| FTRUNC | | DST R1 | DST = truncate(R1) | Copies the truncated value of R1 into DST for floats.
+| FROUND | | DST R1 | DST = round(R1, 0.5) | Copies the rounded value of R1 by a 0.5 fractional threshold into DST for floats.
+| FROUNDX | | DST R1 THRESHOLD | DST = round(R1, THRESHOLD) | Copies the rounded value of R1 by the provided fractional threshold into DST for floats.
 |===
 
 .Bitwise
@@ -52,12 +77,10 @@ Opcodes are used to instruct the VM to perform a certain job.
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
-| EQ | | DST R1 R2 | DST = R1 == R2 | Stores the boolean value resulted from the equality test of two operands in a register.
-| NE | | DST R1 R2 | DST = R1 != R2 | Stores the boolean value resulted from the inequality test of two operands in a register.
-| LT | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the signed less-than test of two operands in a register.
-| LTU | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the unsigned less-than test of two operands in a register.
-| LE | | DST R1 R2 | DST = R1 \<= R2 | Stores the boolean value resulted from the signed less-than-or-equal test of two operands in a register. The data type of operands are inferred from the tagged values.
-| LEU | | DST R1 R2 | DST = R1 \<= R2 | Stores the boolean value resulted from the unsigned less-than-or-equal test of two operands in a register. The data type of operands are inferred from the tagged values.
+| VEQ | | DST R1 R2 | DST = R1 == R2 | Stores the boolean value resulted from the equality test on the value bits of two operands in a register.
+| VNE | | DST R1 R2 | DST = R1 != R2 | Stores the boolean value resulted from the inequality test on the value bits of two operands in a register.
+| IEQ | | DST R1 R2 | DST = R1 == R2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
+| INE | | DST R1 R2 | DST = R1 != R2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
 | ILT | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the signed less-than test of two integer operands.
 | ILTU | | DST R1 R2 | DST = R1 < R2 | Stores the boolean value resulted from the unsigned less-than test of two integer operands.
 | ILE | | DST R1 R2 | DST = R1 \<= R2 | Stores the boolean value resulted from the signed less-than-or-equal test of two integer operands.
@@ -92,25 +115,21 @@ Opcodes are used to instruct the VM to perform a certain job.
 | RET | | R1 | - | Return the value of R1 then pop the return address and jump to it.
 |===
 
-.Data movement
+.Data Operations
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
 | COP | | DST R1 | DST = R1 | Copy the value of R1 register into DST register.
 | COPIF | | DST COND R1 R2 | DST = COND ? R1 : R2 | Conditionally sets DST equal to R1 if COND is true (1) or R2 if otherwise.
 | SWAP | | R1 R2 | temp = R1; R1 = R2; R2 = temp; | Swaps the values of the R1 and the R2 registers.
-| MIN | | DST R1 R2 | DST = R1 < R2 ? R1 : R2 | Copies the value of the lesser value between R1 and R2 into DST.
-| MAX | | DST R1 R2 | DST = R1 > R2 ? R1 : R2 | Copies the value of the larger value between R1 and R2 into DST.
-| ABS | | DST R1 | DST = \|R1\| | Copies the absolute value of R1 into DST.
-| CEIL | | DST R1 | DST = ceil(R1) | Copies the ceiling value of R1 into DST.
-| FLOOR | | DST R1 | DST = floor(R1) | Copies the floor value of R1 into DST.
 | LOAD | | DST MEMADDRR | DST = memory[address] | Copy the value from the memory address into DST register.
 | LOADI | | DST IMM | DST = [immediate] | Copy the immediate value into DST register.
 | LOADC | | DST CONST | DST = #CONST | Copy the value from a constant in the constants pool into DST register.
-| LOADR | | DST MEMADDR OFFSET | DST = memory[address + offset] | Copy the value from the memory address plus the offset into the DST register.
+| LOADO | | DST MEMADDR OFFSET | DST = memory[address + offset] | Copy the value from the memory address plus the offset into the DST register.
 | STR | | MEMADDRR R1 | memory[address] = R1 | Copy the value from R1 register into the memory address.
 | STRI | | MEMADDR IMM | memory[address] = [immediate] | Copy the immediate value into the memory address.
 | STRC | | MEMADDR CONST | memory[address] = #CONST | Copy the value from a constant in the constants pool into the memory address.
+| STRO | | MEMADDR OFFSET R1 | memory[address + offset] = R1 | Copy the value from R1 register into the memory address by an offset.
 |===
 
 .Types and Tags
@@ -121,8 +140,10 @@ Opcodes are used to instruct the VM to perform a certain job.
 | ISINT | | DST R1 | | Set DST to true (1) if R1 is an integer (immediate).
 | ISFLT | | DST R1 | | Set DST to true (1) if R1 is a float (immediate).
 | ISPTR | | DST R1 | | Set DST to true (1) if R1 is a pointer.
+| ISBOOL | | DST R1 | | Set DST to true (1) if R1 is a boolean.
+| ISNULL | | DST R1 | | Set DST to true (1) if R1 is a null value.
 | I2F | | DST R1 | | Convert R1 (int) to float and store it in DST register.
 | F2I | | DST R1 | | Convert R1 (float) to int and store it in DST register.
-| I2P | | DST R1 | | Convert R1 (integer) to a pointer to the integer and store it in DST.
-| P2I | | DST R1 | | Convert R1 (pointer to integer) to an immediate integer and store it in DST.
+| I2P | | DST R1 | | Convert R1 (integer) to a pointer store it in DST.
+| P2I | | DST R1 | | Convert R1 (pointer) to an integer and store it in DST.
 |===
