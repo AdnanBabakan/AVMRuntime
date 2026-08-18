@@ -125,7 +125,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 | COPIF | | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
 | SWAP | | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
 | LOAD | | Rx $ADDR | Rx = memory[$ADDR] | Copy the value from the memory at the address of $ADDR into the Rx register.
-| LOADO | | Rx $ADDR $OFFSET | DST = memory[$ADDR + $OFFSET] | Copy the value from the memory at the address of $ADDR plus the $OFFSET offset into the Rx register.
+| LOADO | | Rx $ADDR $OFFSET | Rx = memory[$ADDR + $OFFSET] | Copy the value from the memory at the address of $ADDR plus the $OFFSET offset into the Rx register.
 | STR | | $ADDR $1 | memory[$ADDR] = $1 | Copy the value of $1 into the memory at the address of $ADDR.
 | STRO | | $ADDR $1 $OFFSET | memory[$ADDR + $OFFSET] = $1 | Copy the value of $1 into the memory at the address of $ADDR by an offset $OFFSET.
 |===
