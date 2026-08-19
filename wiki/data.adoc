@@ -1,0 +1,96 @@
+= Data
+Adnan Babakan <adnanbabakan.personal@hotmail.com>
+v1.0 2026-08-19
+:doctype: book
+:description: This document includes information about the data and their corresponding headers, types and additional info needed regarding data handling in this VM.
+:url-repo: https://github.com/AdnanBabakan/AVMRuntime
+
+Data types are used to determine how a value is treated in the VM.
+
+== Header
+
+Each data in AVM comes along with a header including metadata needed to handle the value properly. A header is a 128-bit long data regardless of the size of the value itself.
+
+The table below represents the structure of a header and its content:
+
+.Header
+|===
+| Type Tag | Array Element Type Tag | Array Length | GC Reserved | Reserved
+| 8 bits | 8 bits | 64 bits | 32 bits | 16 bits
+|===
+
+== Types
+
+.Integer
+|===
+| Symbol | HEX | Description | Width
+
+4+^| Signed
+| I8 | 0x03 | Signed 8-bit integer | 1 byte (8 bits)
+| I16 | 0x04 | Signed 16-bit integer | 2 bytes (16 bits)
+| I32 | 0x05 | Signed 32-bit integer | 4 bytes (32 bits)
+| I64 | 0x06 | Signed 64-bit integer | 8 bytes (64 bits)
+| I128 | 0x07 | Signed 128-bit integer | 16 bytes (128 bits)
+
+4+^| Unsigned
+| I8U | 0x08 | Unsigned 8-bit integer | 1 byte (8 bits)
+| I16U | 0x09 | Unsigned 16-bit integer | 2 bytes (16 bits)
+| I32U | 0x0A | Unsigned 32-bit integer | 4 bytes (32 bits)
+| I64U | 0x0B | Unsigned 64-bit integer | 8 bytes (64 bits)
+| I128U | 0x0C | Unsigned 128-bit integer | 16 bytes (128 bits)
+|===
+
+.Float
+|===
+| Symbol | HEX | Description | Width
+
+| F8 | 0x0D | Signed 8-bit floating point number | 1 byte (8 bits)
+| F16 | 0x0E | Signed 16-bit floating point number | 2 bytes (16 bits)
+| F32 | 0x0F | Signed 32-bit floating point number | 4 bytes (32 bits)
+| F64 | 0x10 | Signed 64-bit floating point number | 8 bytes (64 bits)
+| F128 | 0x11 | Signed 128-bit floating point number | 16 bytes (128 bits)
+|===
+
+.Vector
+|===
+| Symbol | HEX | Description | Width
+
+| V16L8 | 0x12 | 16-bit vector with 8-bit lanes (2 lanes) | 2 bytes (16 bits)
+| V32L8 | 0x13 | 32-bit vector with 8-bit lanes (4 lanes) | 4 bytes (32 bits)
+| V32L16 | 0x14 | 32-bit vector with 16-bit lanes (2 lanes) | 4 bytes (32 bits)
+| V64L8 | 0x15 | 64-bit vector with 8-bit lanes (8 lanes) | 8 bytes (64 bits)
+| V64L16 | 0x16 | 64-bit vector with 16-bit lanes (4 lanes) | 8 bytes (64 bits)
+| V64L32 | 0x17 | 64-bit vector with 32-bit lanes (2 lanes) | 8 bytes (64 bits)
+| V128L8 | 0x18 | 128-bit vector with 8-bit lanes (16 lanes) | 16 bytes (128 bits)
+| V128L16 | 0x19 | 128-bit vector with 16-bit lanes (8 lanes) | 16 bytes (128 bits)
+| V128L32 | 0x1A | 128-bit vector with 32-bit lanes (4 lanes) | 16 bytes (128 bits)
+| V128L64 | 0x1B | 128-bit vector with 64-bit lanes (2 lanes) | 16 bytes (128 bits)
+|===
+
+.Array
+|===
+| Symbol | HEX | Description | Width
+
+| ARR | 0x1C | An array with variable size. | Variable
+|===
+
+.Boolean
+|===
+| Symbol | HEX | Description | Width
+
+| BOOL | 0x02 | 1-bit boolean representation | 1 byte (8 bits)
+|===
+
+.Pointer
+|===
+| Symbol | HEX | Description | Width
+
+| POI | 0x01 | 48-bit pointer referencing a memory address | 8 bytes (64 bits)
+|===
+
+.Specials
+|===
+| Symbol | HEX | Description | Width
+
+| NULL | 0x00 | A null value | 1 byte (8 bits)
+|===
