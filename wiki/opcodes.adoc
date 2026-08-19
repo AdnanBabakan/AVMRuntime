@@ -57,7 +57,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Floor of Float | FFLOOR | | Rx $1 | Rx = floor($1) | Copies the floor value of $1 into Rx for floats.
 | Truncate Float | FTRUNC | | Rx $1 | Rx = truncate($1) | Copies the truncated value of $1 into Rx for floats.
 | Float Rounding | FROUND | | Rx $1 | Rx = round($1, 0.5) | Copies the rounded value of $1 by a 0.5 fractional threshold into Rx for floats.
-| Float Rounding (Arbitrary Threshold) | FROUNDX | | Rx $1 $2 | Rx = round($1, $2) | Copies the rounded value of $1 by $2 as the fractional threshold into Rx for floats.
+| Float Rounding (arbitrary threshold) | FROUNDX | | Rx $1 $2 | Rx = round($1, $2) | Copies the rounded value of $1 by $2 as the fractional threshold into Rx for floats.
 |===
 
 .Bitwise
@@ -103,6 +103,10 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Float Inequality | FNE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
 | Float Less-than | FLT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two float operands.
 | Float Less-than-or-equal | FLE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two float operands.
+
+6+^| *Booleans*
+| Boolean Equality | BOOLEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test of two boolean operands in a register.
+| Boolean Inequality | BOOLNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test of two boolean operands in a register.
 |===
 
 .Control Flow
@@ -188,26 +192,62 @@ Opcodes are used to instruct the VM to perform a certain action.
 6+^| *Lanes*
 | Set Vector Lane | SETLANE | | $VECTOR $LANE $1 | | Set the value of the $LANE lane of the $VECTOR vector to $1.
 | Get Vector Lane | GETLANE | | Rx $VECTOR $LANE | | Copies the value of the $LANE lane of the $VECTOR vector into the Rx register.
+| Inline Set Vector Lanes | SETLANEIN | | $VECTOR [$1 $2 $3 ...] | | Sets the lanes of the $VECTOR vector equal to the passed values (starting from $1 towards the end) respectively.
+| Vector Broadcast | VBC | | $VECTOR $1 | | Sets all the lanes of the $VECTOR vector equal to $1.
+| Vector Left Rotation | VLRO | | $VECTOR $1 | | Rotates the vector to the left $1 times.
+| Vector Right Rotation | VRRO | | $VECTOR $1 | | Rotates the vector to the right $1 times.
+| Vector Shuffle | VSHUF | | $VECTOR | | Shuffles the vector.
 
-6+^| *Basic Integer Operations*
+6+^| *Integer Operations*
 | Vector Integer Addition | VIADD | | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as an integer, and stores it back.
 | Vector Integer Subtraction | VISUB | | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as an integer, and stores it back.
 | Vector Integer Multiplication | VIMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as an integer, and stores it back.
 | Vector Integer Division | VIDIV | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores it back.
 | Vector Unsigned Integer Division | VIDIVU | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores it back.
-| Vector Integer Modulus | VIMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores the remainder back on the same lane.
+| Vector Integer Modulus | VIMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores the remainder back in the same lane.
 | Vector Unsigned Integer Modulus | VIMODU | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores the remainder back in the same lane.
-| Vector Integer Negation | VINEG | | $VECTOR $LANE | | Stores the negated value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Integer Negation | VINEG | | $VECTOR $LANE | | Stores the negated integer value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Absolute of Integer | VIABS | | $VECTOR $LANE | | Stores the absolute integer value of the $LANE lane of the $VECTOR vector back in the same lane.
 
-6+^| *Advanced Integer Operations*
-| Vector Integer Bulk Addition | VIADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as integers.
-| Vector Integer Bulk Subtraction | VISUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as integers.
-| Vector Integer Bulk Multiplication | VIMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as integers.
-| Vector Integer Bulk Division | VIDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers.
-| Vector Unsigned Integer Bulk Division | VIDIVUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers.
-| Vector Integer Bulk Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers, and stores their respective remainders in the same lanes.
-| Vector Unsigned Integer Bulk Modulus | VIMODUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers, and stores their respective remainders in the same lanes.
+6+^| *Bulk Integer Operations*
+| Vector Bulk Integer Addition | VIADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as integers.
+| Vector Bulk Integer Subtraction | VISUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as integers.
+| Vector Bulk Integer Multiplication | VIMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as integers.
+| Vector Bulk Integer Division | VIDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers.
+| Vector Bulk Unsigned Integer Division | VIDIVUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers.
+| Vector Bulk Integer Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers, and stores their respective remainders in the same lanes.
+| Vector Bulk Unsigned Integer Modulus | VIMODUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers, and stores their respective remainders in the same lanes.
+| Vector Bulk Integer Negation | VINEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as integers.
+| Vector Bulk Absolute of Integers | VIABSB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as integers.
 | Vector Integer Summation | VISUM | | Rx $VECTOR | | Sums all the lanes of the $VECTOR as integers consecutively and stores it in the Rx register.
+| Vector Integer Production | VIPROD | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
+| Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
+
+6+^| *Float Operations*
+| Vector Float Addition | VFADD | | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as a float, and stores it back.
+| Vector Float Subtraction | VFSUB | | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as a float, and stores it back.
+| Vector Float Multiplication | VIMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
+| Vector Float Division | VFDIV | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
+| Vector Float Modulus | VFMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores the remainder back in the same lane.
+| Vector Float Negation | VFNEG | | $VECTOR $LANE | | Stores the negated float value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Absolute of Float | VFABS | | $VECTOR $LANE | | Stores the absolute float value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Square Root of Float | VFSQRT | | $VECTOR $LANE | | Stores the square root value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Ceiling of Float | VFCEIL | | $VECTOR $LANE | | Stores the ceiling value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Floor of Float | VFFLOOR | | $VECTOR $LANE | | Stores the floor value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Truncate Float | VFTRUNC | | $VECTOR $LANE | | Stores the truncated value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Float Rounding | VFROUND | | $VECTOR $LANE | | Stores the rounded value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Float Rounding (arbitrary threshold) | VFROUNDX | | $VECTOR $LANE $1 | | Stores the rounded value of the $LANE lane of the $VECTOR vector, by $2 as the fractional threshold, back in the same lane.
+
+
+6+^| *Advanced Float Operations*
+| Vector Bulk Float Addition | VFADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Float Subtraction | VFSUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Float Multiplication | VFMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as floats.
+| Vector Bulk Float Division | VIDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats.
+| Vector Bulk Float Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats, and stores their respective remainders in the same lanes.
+| Vector Bulk Float Negation | VINEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Absolute of Floats | VFABSB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as floats.
+| Vector Float Summation | VFSUM | | Rx $VECTOR | | Sums all the lanes of the $VECTOR as floats consecutively and stores it in the Rx register.
 | Vector Integer Production | VIPROD | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
 | Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
 |===
