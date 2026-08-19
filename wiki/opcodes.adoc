@@ -12,12 +12,13 @@ Opcodes are used to instruct the VM to perform a certain action.
 . The symbol F\{n} (e.g. Fx, Fy, F1, F2, ...) indicates a function.
 . The symbol T\{n} (e.g. Tx, Ty, T1, T2, ...) indicates a type.
 . The symbol :\{n} (e.g. :x, :y, :1, :2, ...) indicates a label.
-. The symbol <\{n}> (e.g. <x>, <y>, <1>, <2>, ...) indicates an offset. An offset is an integral value that its meaning depends on the memory region it is being applied on. For instance, an offset of 2 in an 8-bit memory region means 16 bits, or an offset of 10 in a 64-bit memory region means 640 bits. An offset itself can be retrieved from a register, a constant or an immediate value. But it must be an integer.
+. The symbol <\{n}> (e.g. <x>, <y>, <1>, <2>, ...) indicates a scaled offset. A scaled offset is an integral value that its meaning depends on the memory region it is being applied on. A scaled offset of _N_ in a memory region of elements with _W_ bits width, refers to an offset of _N*W_ bits. For instance, an offset of 2 in an 8-bit memory region means 16 bits, or an offset of 10 in a 64-bit memory region means 640 bits. An offset itself can be retrieved from a register, a constant or an immediate value. But it must be an integer.
 
-.Basic Integer Arithmetic
+.Integer Arithmetic
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
+5+^| *Basic*
 | IADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two integers and stores the result in a register.
 | ISUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two integers and stores the result in a register.
 | IMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (signed) two integers and stores the result in a register.
@@ -27,24 +28,8 @@ Opcodes are used to instruct the VM to perform a certain action.
 | IMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the (signed) modulus of two integers in a register.
 | IMODU | | Rx $1 $2 | Rx = $1 % $2 | Stores the (unsigned) modulus of two integers in a register.
 | INEG | | Rx $1 | Rx = -$1 | Stores the negated value of an integer in a register.
-|===
 
-.Basic Float Arithmetic
-|===
-| Opcode | Binary | Operands | Semantic | Description
-
-| FADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two floats and stores the result in a register.
-| FSUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two floats and stores the result in a register.
-| FMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two floats and stores the result in a register.
-| FDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides two floats and stores the result in a register.
-| FMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the modulus of two floats in a register.
-| FNEG | | Rx $1 | Rx = -$1 | Stores the negated value of a float in a register.
-|===
-
-.Advanced Integer Arithmetic
-|===
-| Opcode | Binary | Operands | Semantic | Description
-
+5+^| *Advanced*
 | IMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for integers.
 | IMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for integers.
 | IABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for integers.
@@ -52,10 +37,19 @@ Opcodes are used to instruct the VM to perform a certain action.
 | IDEC | | Rx | Rx = Rx - 1 | Decreases the value of Rx by one and stores it back.
 |===
 
-.Advanced Float Arithmetic
+.Float Arithmetic
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
+5+^| *Basic*
+| FADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two floats and stores the result in a register.
+| FSUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two floats and stores the result in a register.
+| FMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two floats and stores the result in a register.
+| FDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides two floats and stores the result in a register.
+| FMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the modulus of two floats in a register.
+| FNEG | | Rx $1 | Rx = -$1 | Stores the negated value of a float in a register.
+
+5+^| *Advanced*
 | FSQRT | | Rx $1 | Rx = sqrt($1) | Stores the square root value of a float in a register.
 | FMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for floats.
 | FMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for floats.
@@ -89,18 +83,23 @@ Opcodes are used to instruct the VM to perform a certain action.
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
+5+^| *Typeless*
 | BEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
 | BNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
 | PEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
 | PNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
 | TEQ | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
 | TNE | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
+
+5+^| *Integers*
 | IEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
 | INE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
 | ILT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the signed less-than test of two integer operands.
 | ILTU | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the unsigned less-than test of two integer operands.
 | ILE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the signed less-than-or-equal test of two integer operands.
 | ILEU | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the unsigned less-than-or-equal test of two integer operands.
+
+5+^| *Floats*
 | FEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two float operands in a register.
 | FNE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
 | FLT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two float operands.
@@ -111,11 +110,16 @@ Opcodes are used to instruct the VM to perform a certain action.
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
+5+^| *Jumps*
 | JMP | | :x | - | Unconditionally jumps to the given label.
 | JMPT | | :x $COND |  | Jumps to the :x label if $COND is true (1).
 | JMPF | | :x $COND |  | Jumps to the :x label if $COND is false (0).
+
+5+^| *Halting*
 | ENOUGH | | |  | Terminates the program.
 | ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
+
+5+^| *Special*
 | NOP | | | | Does nothing and moves to the next instruction.
 |===
 
@@ -131,13 +135,18 @@ Opcodes are used to instruct the VM to perform a certain action.
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
+5+^| *General*
 | COP | | Rx $1 | Rx = $1 | Copy the value of $1 into the Rx register.
 | COPIF | | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
 | SWAP | | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
+
+5+^| *Scaled Memory*
 | LOAD | | Rx $POINTER | Rx = memory[$POINTER] | Copy the value from the memory at the address of $POINTER into the Rx register.
 | LOADO | | Rx $POINTER <x> | Rx = memory[$POINTER + <x>] | Copy the value from the memory at the address of $POINTER plus the <x> offset into the Rx register.
 | STR | | $POINTER $1 | memory[$POINTER] = $1 | Copy the value of $1 into the memory at the address of $POINTER.
 | STRO | | $POINTER $1 <x> | memory[$POINTER + <x>] = $1 | Copy the value of $1 into the memory at the address of $POINTER by an offset of <x>.
+
+5+^| *Unscaled Memory*
 | BLOAD | | Rx $POINTER $1 | Rx = memory[$POINTER] | Copy $1 bytes of data from the memory at the address of $POINTER into the Rx register (used for raw-memory operations).
 | BLOADO | | Rx $POINTER $1 $OFFSET | Rx = memory[$POINTER + $OFFSET] | Copy $1 bytes of data from the memory at the address of $POINTER by an offset of $OFFSET bytes into the Rx register.
 | BSTR | | $POINTER $1 $BYTES | | Copy $BYTES bytes of data from $1 into the memory at the address of $POINTER.

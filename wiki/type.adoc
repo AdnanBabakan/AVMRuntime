@@ -1,0 +1,75 @@
+= Types
+Adnan Babakan <adnanbabakan.personal@hotmail.com>
+v1.0 2026-08-19
+:doctype: book
+:description: This document includes the available types for the data used in the VM.
+:url-repo: https://github.com/AdnanBabakan/AVMRuntime
+
+Data types are used to determine how a value is treated in the VM.
+
+.Integer
+|===
+| Symbol | Binary | Description | Width
+
+4+^| Signed
+| I8 | | Signed 8-bit integer | 1 byte (8 bits)
+| I16 | | Signed 16-bit integer | 2 bytes (16 bits)
+| I32 | | Signed 32-bit integer | 4 bytes (32 bits)
+| I64 | | Signed 64-bit integer | 8 bytes (64 bits)
+| I128 | | Signed 128-bit integer | 16 bytes (128 bits)
+
+4+^| Unsigned
+| I8U | | Unsigned 8-bit integer | 1 byte (8 bits)
+| I16U | | Unsigned 16-bit integer | 2 bytes (16 bits)
+| I32U | | Unsigned 32-bit integer | 4 bytes (32 bits)
+| I64U | | Unsigned 64-bit integer | 8 bytes (64 bits)
+| I128U | | Unsigned 128-bit integer | 16 bytes (128 bits)
+|===
+
+.Float
+|===
+| Symbol | Binary | Description | Width
+
+| F8 | | Signed 8-bit floating point number | 1 byte (8 bits)
+| F16 | | Signed 16-bit floating point number | 2 bytes (16 bits)
+| F32 | | Signed 32-bit floating point number | 4 bytes (32 bits)
+| F64 | | Signed 64-bit floating point number | 8 bytes (64 bits)
+| F128 | | Signed 128-bit floating point number | 16 bytes (128 bits)
+|===
+
+.Vector
+|===
+| Symbol | Binary | Description | Width
+
+| V16L8 | | 16-bit vector with 8-bit lanes (2 lanes) | 2 bytes (16 bits)
+| V32L8 | | 32-bit vector with 8-bit lanes (4 lanes) | 4 bytes (32 bits)
+| V32L16 | | 32-bit vector with 16-bit lanes (2 lanes) | 4 bytes (32 bits)
+| V64L8 | | 64-bit vector with 8-bit lanes (8 lanes) | 8 bytes (64 bits)
+| V64L16 | | 64-bit vector with 16-bit lanes (4 lanes) | 8 bytes (64 bits)
+| V64L32 | | 64-bit vector with 32-bit lanes (2 lanes) | 8 bytes (64 bits)
+| V128L8 | | 128-bit vector with 8-bit lanes (16 lanes) | 16 bytes (128 bits)
+| V128L16 | | 128-bit vector with 16-bit lanes (8 lanes) | 16 bytes (128 bits)
+| V128L32 | | 128-bit vector with 32-bit lanes (4 lanes) | 16 bytes (128 bits)
+| V128L64 | | 128-bit vector with 64-bit lanes (2 lanes) | 16 bytes (128 bits)
+|===
+
+.Boolean
+|===
+| Symbol | Binary | Description | Width
+
+| BOOL | | 1-bit boolean representation | 1 byte (8 bits)
+|===
+
+.Pointer
+|===
+| Symbol | Binary | Description | Width
+
+| POI | | 48-bit pointer referencing a memory address | 8 bytes (64 bits)
+|===
+
+.Specials
+|===
+| Symbol | Binary | Description | Width
+
+| NULL | | A null value | 1 byte (8 bits)
+|===
