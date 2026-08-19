@@ -16,159 +16,194 @@ Opcodes are used to instruct the VM to perform a certain action.
 
 .Integer Arithmetic
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-5+^| *Basic*
-| IADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two integers and stores the result in a register.
-| ISUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two integers and stores the result in a register.
-| IMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (signed) two integers and stores the result in a register.
-| IMULU | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (unsigned) two integers and stores the result in a register.
-| IDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides (signed) two integers and stores the result in a register.
-| IDIVU | | Rx $1 $2 | Rx = $1 / $2 | Divides (unsigned) two integers and stores the result in a register.
-| IMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the (signed) modulus of two integers in a register.
-| IMODU | | Rx $1 $2 | Rx = $1 % $2 | Stores the (unsigned) modulus of two integers in a register.
-| INEG | | Rx $1 | Rx = -$1 | Stores the negated value of an integer in a register.
+6+^| *Basic*
+| Integer Addition | IADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two integers and stores the result in a register.
+| Integer Subtraction | ISUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two integers and stores the result in a register.
+| Integer Multiplication | IMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (signed) two integers and stores the result in a register.
+| Unsigned Integer Multiplication | IMULU | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (unsigned) two integers and stores the result in a register.
+| Integer Division | IDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides (signed) two integers and stores the result in a register.
+| Unsigned Integer Division | IDIVU | | Rx $1 $2 | Rx = $1 / $2 | Divides (unsigned) two integers and stores the result in a register.
+| Integer Modulus | IMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the (signed) modulus of two integers in a register.
+| Unsigned Integer Modulus | IMODU | | Rx $1 $2 | Rx = $1 % $2 | Stores the (unsigned) modulus of two integers in a register.
+| Integer Negation | INEG | | Rx $1 | Rx = -$1 | Stores the negated value of an integer in a register.
 
-5+^| *Advanced*
-| IMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for integers.
-| IMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for integers.
-| IABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for integers.
-| IINC | | Rx | Rx = Rx + 1 | Increases the value of Rx by one and stores it back.
-| IDEC | | Rx | Rx = Rx - 1 | Decreases the value of Rx by one and stores it back.
+6+^| *Advanced*
+| Minimum Integer | IMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for integers.
+| Maximum Integer | IMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for integers.
+| Absolute of Integer | IABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for integers.
+| Increase Integer | IINC | | Rx | Rx = Rx + 1 | Increases the value of Rx by one and stores it back.
+| Decrease Integer | IDEC | | Rx | Rx = Rx - 1 | Decreases the value of Rx by one and stores it back.
 |===
 
 .Float Arithmetic
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-5+^| *Basic*
-| FADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two floats and stores the result in a register.
-| FSUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two floats and stores the result in a register.
-| FMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two floats and stores the result in a register.
-| FDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides two floats and stores the result in a register.
-| FMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the modulus of two floats in a register.
-| FNEG | | Rx $1 | Rx = -$1 | Stores the negated value of a float in a register.
+6+^| *Basic*
+| Float Addition | FADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two floats and stores the result in a register.
+| Float Subtraction | FSUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two floats and stores the result in a register.
+| Float Multiplication | FMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two floats and stores the result in a register.
+| Float Division | FDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides two floats and stores the result in a register.
+| Float Modulus | FMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the modulus of two floats in a register.
+| Float Negation | FNEG | | Rx $1 | Rx = -$1 | Stores the negated value of a float in a register.
 
-5+^| *Advanced*
-| FSQRT | | Rx $1 | Rx = sqrt($1) | Stores the square root value of a float in a register.
-| FMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for floats.
-| FMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for floats.
-| FABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for floats.
-| FCEIL | | Rx $1 | Rx = ceil($1) | Copies the ceiling value of $1 into Rx for floats.
-| FFLOOR | | Rx $1 | Rx = floor($1) | Copies the floor value of $1 into Rx for floats.
-| FTRUNC | | Rx $1 | Rx = truncate($1) | Copies the truncated value of $1 into Rx for floats.
-| FROUND | | Rx $1 | Rx = round($1, 0.5) | Copies the rounded value of $1 by a 0.5 fractional threshold into Rx for floats.
-| FROUNDX | | Rx $1 $2 | Rx = round($1, $2) | Copies the rounded value of $1 by $2 as the fractional threshold into Rx for floats.
+6+^| *Advanced*
+| Square Root of Float | FSQRT | | Rx $1 | Rx = sqrt($1) | Stores the square root value of a float in a register.
+| Minimum Float | FMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for floats.
+| Maximum Float | FMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for floats.
+| Absolute of Float | FABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for floats.
+| Ceiling of Float | FCEIL | | Rx $1 | Rx = ceil($1) | Copies the ceiling value of $1 into Rx for floats.
+| Floor of Float | FFLOOR | | Rx $1 | Rx = floor($1) | Copies the floor value of $1 into Rx for floats.
+| Truncate Float | FTRUNC | | Rx $1 | Rx = truncate($1) | Copies the truncated value of $1 into Rx for floats.
+| Float Rounding | FROUND | | Rx $1 | Rx = round($1, 0.5) | Copies the rounded value of $1 by a 0.5 fractional threshold into Rx for floats.
+| Float Rounding (Arbitrary Threshold) | FROUNDX | | Rx $1 $2 | Rx = round($1, $2) | Copies the rounded value of $1 by $2 as the fractional threshold into Rx for floats.
 |===
 
 .Bitwise
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-| AND | | Rx $1 $2 | Rx = $1 & $2 | Stores the bitwise AND result of two operands in a register.
-| OR | | Rx $1 $2 | Rx = $1 \| $2 | Stores the bitwise OR result of two operands in a register.
-| XOR | | Rx $1 $2 | Rx = $1 ^ $2 | Stores the bitwise XOR result of two operands in a register.
-| NOT | | Rx $1 | Rx = ~$1 | Stores the bitwise NOT result of an operand in a register.
-| LLS | | Rx $1 $2 | Rx = $1 << $2 | Logically shifts $1 by $2 bits to the left and stores the result in a register.
-| LRS | | Rx $1 $2 | Rx = $1 >> $2 | Logically (unsigned) shifts $1 by $2 bits to the right and stores the result in a register.
-| ARS | | Rx $1 $2 | Rx = $1 >>> $2 | Arithmetically (signed) shifts $1 by $2 bits to the right and stores the result in a register.
-| LRO | | Rx $1 $2 | | Rotate $1 to left by $2 bits and store the result in a register.
-| RRO | | Rx $1 $2 | | Rotate $1 to right by $2 bits and store the result in a register.
-| CNTPOP | | Rx $1 | | Count population (the number of bits equal to 1) in $1 and store the result in a register.
-| CLZ | | Rx $1 | | Count leading zeroes in $1 and store the result in a register.
-| CTZ | | Rx $1 | | Count trailing zeroes in $1 and store the result in a register.
+| Bitwise AND | AND | | Rx $1 $2 | Rx = $1 & $2 | Stores the bitwise AND result of two operands in a register.
+| Bitwise OR | OR | | Rx $1 $2 | Rx = $1 \| $2 | Stores the bitwise OR result of two operands in a register.
+| Bitwise XOR (exclusive OR) | XOR | | Rx $1 $2 | Rx = $1 ^ $2 | Stores the bitwise XOR result of two operands in a register.
+| Bitwise NOT | NOT | | Rx $1 | Rx = ~$1 | Stores the bitwise NOT result of an operand in a register.
+| Logical Left Shift | LLS | | Rx $1 $2 | Rx = $1 << $2 | Logically shifts $1 by $2 bits to the left and stores the result in a register.
+| Logical Right Shift | LRS | | Rx $1 $2 | Rx = $1 >> $2 | Logically (unsigned) shifts $1 by $2 bits to the right and stores the result in a register.
+| Arithmetic Right Shift | ARS | | Rx $1 $2 | Rx = $1 >>> $2 | Arithmetically (signed) shifts $1 by $2 bits to the right and stores the result in a register.
+| Left Rotation | LRO | | Rx $1 $2 | | Rotate $1 to left by $2 bits and store the result in a register.
+| Right Rotation | RRO | | Rx $1 $2 | | Rotate $1 to right by $2 bits and store the result in a register.
+| Population Count | CNTPOP | | Rx $1 | | Count population (the number of bits equal to 1) in $1 and store the result in a register.
+| Leading Zeros Count | CLZ | | Rx $1 | | Count leading zeroes in $1 and store the result in a register.
+| Trailing Zeros Count | CTZ | | Rx $1 | | Count trailing zeroes in $1 and store the result in a register.
 |===
 
 .Logical (Comparison)
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-5+^| *Typeless*
-| BEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
-| BNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
-| PEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
-| PNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
-| TEQ | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
-| TNE | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
+6+^| *Typeless*
+| Bit Equality | BEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
+| Bit Inequality | BNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
+| Payload Equality  | PEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
+| Payload Inequality | PNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
+| Tag Equality | TEQ | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
+| Tag Inequality | TNE | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
 
-5+^| *Integers*
-| IEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
-| INE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
-| ILT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the signed less-than test of two integer operands.
-| ILTU | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the unsigned less-than test of two integer operands.
-| ILE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the signed less-than-or-equal test of two integer operands.
-| ILEU | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the unsigned less-than-or-equal test of two integer operands.
+6+^| *Integers*
+| Integer Equality | IEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
+| Integer Inequality | INE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
+| Integer Less-than | ILT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the signed less-than test of two integer operands.
+| Unsigned Integer Less-than | ILTU | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the unsigned less-than test of two integer operands.
+| Integer Less-than-or-equal | ILE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the signed less-than-or-equal test of two integer operands.
+| Unsigned Integer Less-than-or-equal | ILEU | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the unsigned less-than-or-equal test of two integer operands.
 
-5+^| *Floats*
-| FEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two float operands in a register.
-| FNE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
-| FLT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two float operands.
-| FLE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two float operands.
+6+^| *Floats*
+| Float Equality | FEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two float operands in a register.
+| Float Inequality | FNE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
+| Float Less-than | FLT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two float operands.
+| Float Less-than-or-equal | FLE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two float operands.
 |===
 
 .Control Flow
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-5+^| *Jumps*
-| JMP | | :x | - | Unconditionally jumps to the given label.
-| JMPT | | :x $COND |  | Jumps to the :x label if $COND is true (1).
-| JMPF | | :x $COND |  | Jumps to the :x label if $COND is false (0).
+6+^| *Jumps*
+| Unconditional Jump | JMP | | :x | - | Unconditionally jumps to the given label.
+| Conditional Jump (if true) | JMPT | | :x $COND |  | Jumps to the :x label if $COND is true (1).
+| Conditional Jump (if false) | JMPF | | :x $COND |  | Jumps to the :x label if $COND is false (0).
 
-5+^| *Halting*
-| ENOUGH | | |  | Terminates the program.
-| ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
+6+^| *Halting*
+| Termination | ENOUGH | | |  | Terminates the program.
+| Termination (with exit code) | ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
 
-5+^| *Special*
-| NOP | | | | Does nothing and moves to the next instruction.
+6+^| *Special*
+| No-operation | NOP | | | | Does nothing and moves to the next instruction.
 |===
 
 .Functions and Calls
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-| CALL | | Rx F1 R0 | Rx = F1(R0, R1, R2, ...) | Push the return address, jump to the F1 function using the arguments starting from the base register (R0) moving forward to the following registers until the required count of arguments is satisfied for the given function. Then stores the returned value of the function in the Rx register.
-| RET | | $1 | - | Return the value of $1 then pop the return address and jump to it.
+| Function Call | CALL | | Rx F1 R0 | Rx = F1(R0, R1, R2, ...) | Push the return address, jump to the F1 function using the arguments starting from the base register (R0) moving forward to the following registers until the required count of arguments is satisfied for the given function. Then stores the returned value of the function in the Rx register.
+| Function Return | RET | | $1 | - | Return the value of $1 then pop the return address and jump to it.
 |===
 
 .Data Operations
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-5+^| *General*
-| COP | | Rx $1 | Rx = $1 | Copy the value of $1 into the Rx register.
-| COPIF | | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
-| SWAP | | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
+6+^| *General*
+| Copy | COP | | Rx $1 | Rx = $1 | Copy the value of $1 into the Rx register.
+| Conditional Copy | COPIF | | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
+| Swap | SWAP | | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
 
-5+^| *Scaled Memory*
-| LOAD | | Rx $POINTER | Rx = memory[$POINTER] | Copy the value from the memory at the address of $POINTER into the Rx register.
-| LOADO | | Rx $POINTER <x> | Rx = memory[$POINTER + <x>] | Copy the value from the memory at the address of $POINTER plus the <x> offset into the Rx register.
-| STR | | $POINTER $1 | memory[$POINTER] = $1 | Copy the value of $1 into the memory at the address of $POINTER.
-| STRO | | $POINTER $1 <x> | memory[$POINTER + <x>] = $1 | Copy the value of $1 into the memory at the address of $POINTER by an offset of <x>.
+6+^| *Scaled Memory*
+| Load | LOAD | | Rx $POINTER | Rx = memory[$POINTER] | Copy the value from the memory at the address of $POINTER into the Rx register.
+| Load (with offset) | LOADO | | Rx $POINTER <x> | Rx = memory[$POINTER + <x>] | Copy the value from the memory at the address of $POINTER plus the <x> offset into the Rx register.
+| Store | STR | | $POINTER $1 | memory[$POINTER] = $1 | Copy the value of $1 into the memory at the address of $POINTER.
+| Store (with offset) | STRO | | $POINTER $1 <x> | memory[$POINTER + <x>] = $1 | Copy the value of $1 into the memory at the address of $POINTER by an offset of <x>.
 
-5+^| *Unscaled Memory*
-| BLOAD | | Rx $POINTER $1 | Rx = memory[$POINTER] | Copy $1 bytes of data from the memory at the address of $POINTER into the Rx register (used for raw-memory operations).
-| BLOADO | | Rx $POINTER $1 $OFFSET | Rx = memory[$POINTER + $OFFSET] | Copy $1 bytes of data from the memory at the address of $POINTER by an offset of $OFFSET bytes into the Rx register.
-| BSTR | | $POINTER $1 $BYTES | | Copy $BYTES bytes of data from $1 into the memory at the address of $POINTER.
-| BSTRO | | $POINTER $1 $BYTES $POINTER_OFFSET $DATA_OFFSET | | Copy $BYTES bytes of data starting from an offset of $DATA_OFFSET bytes from $1 into the memory at the address of $POINTER by an offset bytes.
+6+^| *Unscaled Memory*
+| Byte Load | BLOAD | | Rx $POINTER $1 | Rx = memory[$POINTER] | Copy $1 bytes of data from the memory at the address of $POINTER into the Rx register (used for raw-memory operations).
+| Byte Load (with offset) | BLOADO | | Rx $POINTER $1 $OFFSET | Rx = memory[$POINTER + $OFFSET] | Copy $1 bytes of data from the memory at the address of $POINTER by an offset of $OFFSET bytes into the Rx register.
+| Byte Store | BSTR | | $POINTER $1 $BYTES | | Copy $BYTES bytes of data from $1 into the memory at the address of $POINTER.
+| Byte Store (with offset) | BSTRO | | $POINTER $1 $BYTES $POINTER_OFFSET $DATA_OFFSET | | Copy $BYTES bytes of data starting from an offset of $DATA_OFFSET bytes from $1 into the memory at the address of $POINTER by an offset bytes.
 |===
 
 .Types and Tags
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-| EXTAG | | Rx $1 | | Extract the tag bits of $1 and store it into the Rx register.
-| EXTVAL | | Rx $1 | | Extract the value bits of $1 and store it into the Rx register.
-| ISTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is of type T1.
-| ISNOTTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is not of type T1.
-| ISFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer references to a value of type T1 (indirect type).
-| ISNOTFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer doesn't reference to a value of type T1 (indirect type).
-| CAST | | Rx $1 T1 | | Cast $1 to the type T1 and store it in the Rx register.
+| Header Extraction | EXHEAD | | Rx $1 | | Extract the header bits of $1 and store it into the Rx register.
+| Tag Extraction | EXTAG | | Rx $1 | | Extract the tag bits of $1 and store it into the Rx register.
+| Payload Extraction | EXTPL | | Rx $1 | | Extract the payload bits of $1 and store it into the Rx register.
+| Type Equality | ISTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is of type T1.
+| Type Inequality | ISNOTTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is not of type T1.
+| Indirect Type Equality | ISFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer references to a value of type T1 (indirect type).
+| Indirect Type Inequality | ISNOTFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer doesn't reference to a value of type T1 (indirect type).
+| Type Cast | CAST | | Rx $1 T1 | | Cast $1 to the type T1 and store it in the Rx register.
 |===
 
 .Pointer Manipulation
 |===
-| Opcode | Binary | Operands | Semantic | Description
+| Name | Opcode | HEX | Operands | Semantic | Description
 
-| PMOV | | Rx $1 <x> | | Move backward/forward from the $1 pointer by an offset of <x> and store the new pointer in the Rx register.
+| Pointer Movement | PMOV | | Rx $1 <x> | | Move backward/forward from the $1 pointer by an offset of <x> and store the new pointer in the Rx register.
+|===
+
+.Vector
+|===
+| Name | Opcode | HEX | Operands | Semantic | Description
+
+6+^| *Initialization and Information Retrieval*
+| Vector Creation | CVEC | | Rx T1 | | Creates a vector of type T1 (the provided type must be one of the available vector types), and stores it in the Rx register.
+| Inline Vector Creation | CVECIL | | Rx T1 [$1 $2 $3 ...] | | Creates a vector of type T1 (the provided type must be one of the available vector types), populates the lanes with the given operands (starting from $1 towards the end), and stores it in the Rx register.
+| Vector Size | VECSIZE | | Rx $1 | | Stores the size of the vector $1 in the Rx register.
+| Vector Lanes Count | VECLANECNT | | Rx $1 | | Stores the count of the available lanes of the vector $1 in the Rx register.
+| Vector Lanes Size | VECLANESIZE | | Rx $1 | | Stores the size of the lanes of the vector $1 in the Rx register.
+
+6+^| *Lanes*
+
+|===
+
+.Array
+|===
+| Name | Opcode | HEX | Operands | Semantic | Description
+
+6+^| *Initialization and Information Retrieval*
+| Array Creation | CARR | | Rx T1 $1 $2 | | Creates an array of type T1, with the size of $1, populated by the value $2, and stores the pointer to the array in the Rx register.
+| Array Size | ARRSIZE | | Rx $ARR_POINTER | | Stores the size of the $ARR_POINTER array into the Rx register.
+| Array Length | ARRLEN | | Rx $ARR_POINTER | | Stores the length of the $ARR_POINTER array into the Rx register.
+| Array Type | ARRTYP | | Rx $ARR_POINTER | | Stores the type of the $ARR_POINTER array into the Rx register.
+
+6+^| *Elements*
+| Set Array Element | SETEL | | $ARR_POINTER $INDEX $VAL | | Sets the item at index $INDEX of the $ARR_POINTER array equal to $VAL.
+| Get Array Element | GETEL | | Rx $ARR_POINTER $INDEX | | Copies the value of the item at index $INDEX of the $ARR_POINTER array into the Rx register.
+| Push Array Element | PUSHEL | | $ARR_POINTER $VAL | | Pushes the value $VAL to the end of the $ARR_POINTER array.
+| Pop Array Element | POPEL | | Rx $ARR_POINTER | | Pops the last element from the $ARR_POINTER array and moves its data into the Rx register.
+| Get Array Header | ARRHEAD | | Rx $ARR_POINTER | | Copies the value of the first element in the $ARR_POINTER array into the Rx register.
+| Get Array Tail | ARRTAIL | | Rx $ARR_POINTER | | Copies the value of the last element in the $ARR_POINTER array into the Rx register.
 |===

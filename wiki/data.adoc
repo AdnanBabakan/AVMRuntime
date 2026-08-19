@@ -15,8 +15,8 @@ The table below represents the structure of a header and its content:
 
 .Header
 |===
-| Type Tag | Array Element Type Tag | Array Length | GC Reserved | Reserved
-| 8 bits | 8 bits | 64 bits | 32 bits | 16 bits
+| Type Tag | Array Element Type Tag | Array Size | Array Length | GC Reserved | Reserved
+| 8 bits | 8 bits | 32 bits | 32 bits | 32 bits | 16 bits
 |===
 
 == Types
@@ -72,6 +72,13 @@ The table below represents the structure of a header and its content:
 | Symbol | HEX | Description | Width
 
 | ARR | 0x1C | An array with variable size. | Variable
+|===
+
+.Struct
+|===
+| Symbol | HEX | Description | Width
+
+| STRUCT | 0x1D | A struct with variable size. | Variable
 |===
 
 .Boolean
