@@ -21,8 +21,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 6+^| *Basic*
 | Integer Addition | IADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two integers and stores the result in a register.
 | Integer Subtraction | ISUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two integers and stores the result in a register.
-| Integer Multiplication | IMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (signed) two integers and stores the result in a register.
-| Unsigned Integer Multiplication | IMULU | | Rx $1 $2 | Rx = $1 * $2 | Multiplies (unsigned) two integers and stores the result in a register.
+| Integer Multiplication | IMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two integers and stores the result in a register.
 | Integer Division | IDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides (signed) two integers and stores the result in a register.
 | Unsigned Integer Division | IDIVU | | Rx $1 $2 | Rx = $1 / $2 | Divides (unsigned) two integers and stores the result in a register.
 | Integer Modulus | IMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the (signed) modulus of two integers in a register.
@@ -179,14 +178,38 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Name | Opcode | HEX | Operands | Semantic | Description
 
 6+^| *Initialization and Information Retrieval*
-| Vector Creation | CVEC | | Rx T1 | | Creates a vector of type T1 (the provided type must be one of the available vector types), and stores it in the Rx register.
-| Inline Vector Creation | CVECIL | | Rx T1 [$1 $2 $3 ...] | | Creates a vector of type T1 (the provided type must be one of the available vector types), populates the lanes with the given operands (starting from $1 towards the end), and stores it in the Rx register.
+| Vector Creation | CVEC | | Rx T1 T2 | | Creates a vector of type T1 (the provided type must be one of the available vector types), with lanes being of type T2, and stores it in the Rx register.
+| Inline Vector Creation | CVECIL | | Rx T1 T2 [$1 $2 $3 ...] | | Creates a vector of type T1 (the provided type must be one of the available vector types), with lanes of type T2, populates the lanes with the given operands (starting from $1 towards the end), and stores it in the Rx register.
 | Vector Size | VECSIZE | | Rx $1 | | Stores the size of the vector $1 in the Rx register.
 | Vector Lanes Count | VECLANECNT | | Rx $1 | | Stores the count of the available lanes of the vector $1 in the Rx register.
-| Vector Lanes Size | VECLANESIZE | | Rx $1 | | Stores the size of the lanes of the vector $1 in the Rx register.
+| Vector Lane Size | VECLANESIZE | | Rx $1 | | Stores the size of the lanes of the vector $1 in the Rx register.
+| Vector Lane Type | VECLANETYP | | Rx $1 | | Stores the lane type of the vector $1 in the Rx register.
 
 6+^| *Lanes*
+| Set Vector Lane | SETLANE | | $VECTOR $LANE $1 | | Set the value of the $LANE lane of the $VECTOR vector to $1.
+| Get Vector Lane | GETLANE | | Rx $VECTOR $LANE | | Copies the value of the $LANE lane of the $VECTOR vector into the Rx register.
 
+6+^| *Basic Integer Operations*
+| Vector Integer Addition | VIADD | | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as an integer, and stores it back.
+| Vector Integer Subtraction | VISUB | | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as an integer, and stores it back.
+| Vector Integer Multiplication | VIMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as an integer, and stores it back.
+| Vector Integer Division | VIDIV | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores it back.
+| Vector Unsigned Integer Division | VIDIVU | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores it back.
+| Vector Integer Modulus | VIMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores the remainder back on the same lane.
+| Vector Unsigned Integer Modulus | VIMODU | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores the remainder back in the same lane.
+| Vector Integer Negation | VINEG | | $VECTOR $LANE | | Stores the negated value of the $LANE lane of the $VECTOR vector back in the same lane.
+
+6+^| *Advanced Integer Operations*
+| Vector Integer Bulk Addition | VIADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as integers.
+| Vector Integer Bulk Subtraction | VISUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as integers.
+| Vector Integer Bulk Multiplication | VIMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as integers.
+| Vector Integer Bulk Division | VIDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers.
+| Vector Unsigned Integer Bulk Division | VIDIVUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers.
+| Vector Integer Bulk Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers, and stores their respective remainders in the same lanes.
+| Vector Unsigned Integer Bulk Modulus | VIMODUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers, and stores their respective remainders in the same lanes.
+| Vector Integer Summation | VISUM | | Rx $VECTOR | | Sums all the lanes of the $VECTOR as integers consecutively and stores it in the Rx register.
+| Vector Integer Production | VIPROD | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
+| Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
 |===
 
 .Array
