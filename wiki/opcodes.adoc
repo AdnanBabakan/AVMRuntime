@@ -11,6 +11,8 @@ Opcodes are used to instruct the VM to perform a certain action.
 . The symbol $\{n} (e.g. $x, $y, $1, $2, ...) indicates an operand that can be either a register, a constant or an immediate value.
 . The symbol F\{n} (e.g. Fx, Fy, F1, F2, ...) indicates a function.
 . The symbol T\{n} (e.g. Tx, Ty, T1, T2, ...) indicates a type.
+. The symbol :\{n} (e.g. :x, :y, :1, :2, ...) indicates a label.
+. The symbol <\{n}> (e.g. <x>, <y>, <1>, <2>, ...) indicates an offset. An offset is an integral value that its meaning depends on the memory region it is being applied on. For instance, an offset of 2 in an 8-bit memory region means 16 bits, or an offset of 10 in a 64-bit memory region means 640 bits. An offset itself can be retrieved from a register, a constant or an immediate value. But it must be an integer.
 
 .Basic Integer Arithmetic
 |===
@@ -76,14 +78,23 @@ Opcodes are used to instruct the VM to perform a certain action.
 | LLS | | Rx $1 $2 | Rx = $1 << $2 | Logically shifts $1 by $2 bits to the left and stores the result in a register.
 | LRS | | Rx $1 $2 | Rx = $1 >> $2 | Logically (unsigned) shifts $1 by $2 bits to the right and stores the result in a register.
 | ARS | | Rx $1 $2 | Rx = $1 >>> $2 | Arithmetically (signed) shifts $1 by $2 bits to the right and stores the result in a register.
+| LRO | | Rx $1 $2 | | Rotate $1 to left by $2 bits and store the result in a register.
+| RRO | | Rx $1 $2 | | Rotate $1 to right by $2 bits and store the result in a register.
+| CNTPOP | | Rx $1 | | Count population (the number of bits equal to 1) in $1 and store the result in a register.
+| CLZ | | Rx $1 | | Count leading zeroes in $1 and store the result in a register.
+| CTZ | | Rx $1 | | Count trailing zeroes in $1 and store the result in a register.
 |===
 
 .Logical (Comparison)
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
-| VEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test on the value bits of two operands in a register.
-| VNE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test on the value bits of two operands in a register.
+| BEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
+| BNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
+| PEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
+| PNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
+| TEQ | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
+| TNE | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
 | IEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
 | INE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
 | ILT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the signed less-than test of two integer operands.
@@ -100,10 +111,9 @@ Opcodes are used to instruct the VM to perform a certain action.
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
-| JMP | | $OFFSET | - | Unconditionally jumps to the given offset.
-| JMPT | | $OFFSET $COND |  | Jumps to the $OFFSET offset if $COND is true (1).
-| JMPF | | $OFFSET $COND |  | Jumps to the $OFFSET offset if $COND is false (0).
-| JMPV | | $OFFSET $COND $SWITCH | | Jumps to the $OFFSET offset based on $COND being true if $SWITCH is true, or $COND being false if $SWITCH is false.
+| JMP | | :x | - | Unconditionally jumps to the given label.
+| JMPT | | :x $COND |  | Jumps to the :x label if $COND is true (1).
+| JMPF | | :x $COND |  | Jumps to the :x label if $COND is false (0).
 | ENOUGH | | |  | Terminates the program.
 | ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
 | NOP | | | | Does nothing and moves to the next instruction.
@@ -113,7 +123,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 |===
 | Opcode | Binary | Operands | Semantic | Description
 
-| CALL | | Rx F1 Ry | Rx = F1([Ry + (64 * 0)], [Ry + (64 * 1)], [Ry + (64 * 2)], ...) | Push the return address, jump to the F1 function using the arguments starting from the base register (Ry) moving forward until the required counts of arguments is satisfied for the given function. Then stores the returned value of the function in the Rx register.
+| CALL | | Rx F1 R0 | Rx = F1(R0, R1, R2, ...) | Push the return address, jump to the F1 function using the arguments starting from the base register (R0) moving forward to the following registers until the required count of arguments is satisfied for the given function. Then stores the returned value of the function in the Rx register.
 | RET | | $1 | - | Return the value of $1 then pop the return address and jump to it.
 |===
 
@@ -124,10 +134,14 @@ Opcodes are used to instruct the VM to perform a certain action.
 | COP | | Rx $1 | Rx = $1 | Copy the value of $1 into the Rx register.
 | COPIF | | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
 | SWAP | | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
-| LOAD | | Rx $ADDR | Rx = memory[$ADDR] | Copy the value from the memory at the address of $ADDR into the Rx register.
-| LOADO | | Rx $ADDR $OFFSET | Rx = memory[$ADDR + $OFFSET] | Copy the value from the memory at the address of $ADDR plus the $OFFSET offset into the Rx register.
-| STR | | $ADDR $1 | memory[$ADDR] = $1 | Copy the value of $1 into the memory at the address of $ADDR.
-| STRO | | $ADDR $1 $OFFSET | memory[$ADDR + $OFFSET] = $1 | Copy the value of $1 into the memory at the address of $ADDR by an offset $OFFSET.
+| LOAD | | Rx $POINTER | Rx = memory[$POINTER] | Copy the value from the memory at the address of $POINTER into the Rx register.
+| LOADO | | Rx $POINTER <x> | Rx = memory[$POINTER + <x>] | Copy the value from the memory at the address of $POINTER plus the <x> offset into the Rx register.
+| STR | | $POINTER $1 | memory[$POINTER] = $1 | Copy the value of $1 into the memory at the address of $POINTER.
+| STRO | | $POINTER $1 <x> | memory[$POINTER + <x>] = $1 | Copy the value of $1 into the memory at the address of $POINTER by an offset of <x>.
+| BLOAD | | Rx $POINTER $1 | Rx = memory[$POINTER] | Copy $1 bytes of data from the memory at the address of $POINTER into the Rx register (used for raw-memory operations).
+| BLOADO | | Rx $POINTER $1 $OFFSET | Rx = memory[$POINTER + $OFFSET] | Copy $1 bytes of data from the memory at the address of $POINTER by an offset of $OFFSET bytes into the Rx register.
+| BSTR | | $POINTER $1 $BYTES | | Copy $BYTES bytes of data from $1 into the memory at the address of $POINTER.
+| BSTRO | | $POINTER $1 $BYTES $POINTER_OFFSET $DATA_OFFSET | | Copy $BYTES bytes of data starting from an offset of $DATA_OFFSET bytes from $1 into the memory at the address of $POINTER by an offset bytes.
 |===
 
 .Types and Tags
@@ -140,8 +154,12 @@ Opcodes are used to instruct the VM to perform a certain action.
 | ISNOTTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is not of type T1.
 | ISFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer references to a value of type T1 (indirect type).
 | ISNOTFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer doesn't reference to a value of type T1 (indirect type).
-| I2F | | Rx $1 | | Convert $1 (int) to float and store it in the Rx register.
-| F2I | | Rx $1 | | Convert $1 (float) to int and store it in the Rx register.
-| I2P | | Rx $1 | | Convert $1 (integer) to a pointer and store it in Rx register.
-| P2I | | Rx $1 | | Convert $1 (pointer) to an integer and store it in the Rx register.
+| CAST | | Rx $1 T1 | | Cast $1 to the type T1 and store it in the Rx register.
+|===
+
+.Pointer Manipulation
+|===
+| Opcode | Binary | Operands | Semantic | Description
+
+| PMOV | | Rx $1 <x> | | Move backward/forward from the $1 pointer by an offset of <x> and store the new pointer in the Rx register.
 |===
