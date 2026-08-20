@@ -236,10 +236,10 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Vector Floor of Float | VFFLOOR | | $VECTOR $LANE | | Stores the floor value of the $LANE lane of the $VECTOR vector back in the same lane.
 | Vector Truncate Float | VFTRUNC | | $VECTOR $LANE | | Stores the truncated value of the $LANE lane of the $VECTOR vector back in the same lane.
 | Vector Float Rounding | VFROUND | | $VECTOR $LANE | | Stores the rounded value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Float Rounding (arbitrary threshold) | VFROUNDX | | $VECTOR $LANE $1 | | Stores the rounded value of the $LANE lane of the $VECTOR vector, by $2 as the fractional threshold, back in the same lane.
+| Vector Float Rounding (arbitrary threshold) | VFROUNDX | | $VECTOR $LANE $1 | | Stores the rounded value of the $LANE lane of the $VECTOR vector, by $1 as the fractional threshold, back in the same lane.
 
 
-6+^| *Advanced Float Operations*
+6+^| *Bulk Float Operations*
 | Vector Bulk Float Addition | VFADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Float Subtraction | VFSUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Float Multiplication | VFMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as floats.
@@ -247,6 +247,12 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Vector Bulk Float Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats, and stores their respective remainders in the same lanes.
 | Vector Bulk Float Negation | VINEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Absolute of Floats | VFABSB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as floats.
+| Vector Bulk Square Root of Floats | VFSQRTB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective square roots as floats.
+| Vector Bulk Ceiling of Floats | VFCEILB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective ceiling values as floats.
+| Vector Bulk Floor of Floats | VFFLOORB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective floor values as floats.
+| Vector Bulk Truncate Floats | VFTRUNCB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective truncated values as floats.
+| Vector Bulk Floats Rounding | VFROUNDB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective rounded values as floats.
+| Vector Bulk Floats Rounding (arbitrary threshold) | VFROUNDXB | | $VECTOR $1 | | Replaces all the lanes of the $VECTOR vector with their respective rounded values, by $1 as the fractional threshold, as floats.
 | Vector Float Summation | VFSUM | | Rx $VECTOR | | Sums all the lanes of the $VECTOR as floats consecutively and stores it in the Rx register.
 | Vector Integer Production | VIPROD | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
 | Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
