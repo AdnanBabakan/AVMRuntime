@@ -343,6 +343,7 @@ All the comparisons made on vectors return a mask. A mask is always a vector of 
 
 6+^| *Initialization and Information Retrieval*
 | Array Creation | CARR | | Rx T1 $1 $2 | | Creates an array of type T1, with the size of $1, populated by the value $2, and stores the pointer to the array in the Rx register.
+| Raw Array Creation | CARRR | | Rx T1 $1 | | Creates an array of type T1, with the size of $1 without population, and stores the pointer to the array in the Rx register.
 | Array Size | ARRSIZE | | Rx $ARR_POINTER | | Stores the size of the $ARR_POINTER array into the Rx register.
 | Array Length | ARRLEN | | Rx $ARR_POINTER | | Stores the length of the $ARR_POINTER array into the Rx register.
 | Array Type | ARRTYP | | Rx $ARR_POINTER | | Stores the type of the $ARR_POINTER array into the Rx register.
