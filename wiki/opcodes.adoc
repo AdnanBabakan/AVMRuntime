@@ -224,7 +224,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 6+^| *Float Operations*
 | Vector Float Addition | VFADD | | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as a float, and stores it back.
 | Vector Float Subtraction | VFSUB | | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as a float, and stores it back.
-| Vector Float Multiplication | VIMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
+| Vector Float Multiplication | VFMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
 | Vector Float Division | VFDIV | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
 | Vector Float Modulus | VFMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores the remainder back in the same lane.
 | Vector Float Negation | VFNEG | | $VECTOR $LANE | | Stores the negated float value of the $LANE lane of the $VECTOR vector back in the same lane.
