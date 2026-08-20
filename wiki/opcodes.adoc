@@ -240,9 +240,9 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Vector Bulk Float Addition | VFADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Float Subtraction | VFSUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Float Multiplication | VFMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as floats.
-| Vector Bulk Float Division | VIDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats.
-| Vector Bulk Float Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats, and stores their respective remainders in the same lanes.
-| Vector Bulk Float Negation | VINEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Float Division | VFDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats.
+| Vector Bulk Float Modulus | VFMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats, and stores their respective remainders in the same lanes.
+| Vector Bulk Float Negation | VFNEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Absolute of Floats | VFABSB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as floats.
 | Vector Bulk Square Root of Floats | VFSQRTB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective square roots as floats.
 | Vector Bulk Ceiling of Floats | VFCEILB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective ceiling values as floats.
@@ -328,7 +328,11 @@ All the comparisons made on vectors return a mask. A mask is always a vector of 
 | Vector-Vector Boolean Inequality | VVBOOLNE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
 
 6+^| *Blending*
-| Vector Blend | VBLEND | | Rx $MASK $VECTOR1 $VECTOR2 | | Generates a vector that its lanes are derived from the $VECTOR1 if the correspondent lane of the $MASK is one-filled and from the $VECTOR2 if the correspondent lane of the $MASK is zero-filled, and stores it in the Rx register.
+| Vector Masked Blend | VBLEND | | Rx $MASK $VECTOR1 $VECTOR2 | | Generates a vector that its lanes are derived from the $VECTOR1 if the correspondent lane of the $MASK is one-filled and from the $VECTOR2 if the correspondent lane of the $MASK is zero-filled, and stores it in the Rx register.
+| Vector Minimum Integer Blend | VIMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Maximum Integer Blend | VIMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Minimum Float Blend | VFMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Maximum Integer Blend | VIMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
 |===
 
 .Array
