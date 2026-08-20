@@ -263,7 +263,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 
 6+^| *Logical (Comparison)*
 6+|
-All the comparisons made on vectors return a mask. A mask is always a vector of the same size with the same count of lanes of the original vector, but the lanes are of the unsigned int type correspondent of the lane size of the original vector. A mask's lane is filled in zeros if the comparison resulted in a falsely value, and in ones if it resulted in a truely value.
+All the comparisons made on vectors return a mask. A mask is always a vector of the same size with the same count of lanes as the original vector, but the lanes are of the unsigned int type correspondent of the lane size of the original vector. A mask's lane is filled in zeros if the comparison resulted in a falsely value, and in ones if it resulted in a truely value.
 
 6+^| *Integer Comparison*
 | Vector Integer Equality | VIEQ | | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
