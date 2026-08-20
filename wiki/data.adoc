@@ -15,7 +15,7 @@ The table below represents the structure of a header and its content:
 
 .Header
 |===
-| Type Tag | Array Element Type Tag | Array Size | Array Length | GC Reserved | Reserved
+| Type Tag | [Array Element]/[Vector Lane] Type Tag | Array Size | Array Length | GC Reserved | Reserved
 | 8 bits | 8 bits | 32 bits | 32 bits | 32 bits | 16 bits
 |===
 
