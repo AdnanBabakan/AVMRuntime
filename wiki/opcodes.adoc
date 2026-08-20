@@ -119,6 +119,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 6+^| *Halting*
 | Termination | ENOUGH | | |  | Terminates the program.
 | Termination (with exit code) | ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
+| Assertion | ASSERT | | $COND $1 | | Terminates the program and exists with the $1 code if $COND is false.
 
 6+^| *Special*
 | No-operation | NOP | | | | Does nothing and moves to the next instruction.
@@ -128,7 +129,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Function Call | CALL | | Rx F1 R0 | Rx = F1(R0, R1, R2, ...) | Push the return address, jump to the F1 function using the arguments starting from the base register (R0) moving forward to the following registers until the required count of arguments is satisfied for the given function. Then stores the returned value of the function in the Rx register.
+| Function Call | CALL | | Rx F1 [$1 $2 $3 ...] | Rx = F1($1, $2, $3, ...) | Push the return address, jump to the F1 function. Then stores the returned value of the function in the Rx register.
 | Function Return | RET | | $1 | - | Return the value of $1 then pop the return address and jump to it.
 |===
 
@@ -166,6 +167,7 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Indirect Type Equality | ISFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer references to a value of type T1 (indirect type).
 | Indirect Type Inequality | ISNOTFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer doesn't reference to a value of type T1 (indirect type).
 | Type Cast | CAST | | Rx $1 T1 | | Cast $1 to the type T1 and store it in the Rx register.
+| Bit Cast | BITCAST | | Rx $1 T1 | | Cast $1 to the type T1 regardless of compatibility, only by changing the data type, and store it in the Rx register.
 |===
 
 .Pointer Manipulation
@@ -352,4 +354,11 @@ All the comparisons made on vectors return a mask. A mask is always a vector of 
 | Pop Array Element | POPEL | | Rx $ARR_POINTER | | Pops the last element from the $ARR_POINTER array and moves its data into the Rx register.
 | Get Array Header | ARRHEAD | | Rx $ARR_POINTER | | Copies the value of the first element in the $ARR_POINTER array into the Rx register.
 | Get Array Tail | ARRTAIL | | Rx $ARR_POINTER | | Copies the value of the last element in the $ARR_POINTER array into the Rx register.
+|===
+
+.Foreign Function Interface (FF)
+|===
+| Name | Opcode | HEX | Operands | Semantic | Description
+
+| Host FFI | HOSTCALL | | Rx $HOST_FUNC [$1 $2 $3 ...] | | Calls the given host function by passing arguments provided then stores the result in the Rx register.
 |===

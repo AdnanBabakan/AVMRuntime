@@ -74,13 +74,6 @@ The table below represents the structure of a header and its content:
 | ARR | 0x1C | An array with variable size. | Variable
 |===
 
-.Struct
-|===
-| Symbol | HEX | Description | Width
-
-| STRUCT | 0x1D | A struct with variable size. | Variable
-|===
-
 .Boolean
 |===
 | Symbol | HEX | Description | Width
@@ -99,5 +92,5 @@ The table below represents the structure of a header and its content:
 |===
 | Symbol | HEX | Description | Width
 
-| NULL | 0x00 | A null value | 1 byte (8 bits)
+| NULL | 0xFF | A null value | 1 byte (8 bits)
 |===
