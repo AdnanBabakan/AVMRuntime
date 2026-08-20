@@ -272,7 +272,26 @@ Opcodes are used to instruct the VM to perform a certain action.
 
 
 6+^| *Bitwise Operations*
-// TODO: add bitwise operations for vectors
+| Vector Bitwise AND | VBWAND | | $VECTOR $LANE $1 | | Stores the result of ANDing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Bitwise OR | VBWOR | | $VECTOR $LANE $1 | | Stores the result of ORing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Bitwise XOR (exclusive OR) | VBWXOR | | $VECTOR $LANE $1 | | Stores the result of XORing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Bitwise NOT | VBWNOT | | $VECTOR $LANE | | Stores the result of bitwise NOT operation on the bits of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Bitwise Logical Left Shift | VBWLLS | | $VECTOR $LANE $1 | | Logically shifts the bits of the $LANE lane of the $VECTOR vector to the left by $1 bits and stores the result back in the same lane.
+| Vector Bitwise Logical Right Shift | VBWLRS | | $VECTOR $LANE $1 | | Logically (unsigned) shifts the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores the result back in the same lane.
+| Vector Bitwise Arithmetic Right Shift | VBWARS | | $VECTOR $LANE $1 | | Arithmetically (signed) shifts the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores the result back in the same lane.
+| Vector Bitwise Left Rotation | VBWLRO | | $VECTOR $LANE $1 | | Rotates the bits of the $LANE lane of the $VECTOR vector to the left by $1 bits and stores it back in the same lane.
+| Vector Bitwise Right Rotation | VBWRRO | | $VECTOR $LANE $1 | | Rotates the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores it back in the same lane.
+
+6+^| *Bulk Bitwise Operations*
+| Vector Bulk Bitwise AND | VBWANDB | | $VECTOR $1 | | Stores the result of the bitwise AND operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
+| Vector Bulk Bitwise OR | VBWORB | | $VECTOR $1 | | Stores the result of the bitwise OR operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
+| Vector Bulk Bitwise XOR (exclusive OR) | VBWXORB | | $VECTOR $1 | | Stores the result of the bitwise XOR operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
+| Vector Bulk Bitwise NOT | VBWNOTB | | $VECTOR $1 | | Stores the result of the bitwise NOT operation on all the lanes of the $VECTOR vector back in the respective lanes.
+| Vector Bulk Bitwise Logical Left Shift | VBWLLSB | | $VECTOR $1 | | Stores the result of logically shifting all the lanes of the $VECTOR vector to the left by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Logical Right Shift | VBWLRSB | | $VECTOR $1 | | Stores the result of logically (unsigned) shifting all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Arithmetic Right Shift | VBWARSB | | $VECTOR $1 | | Stores the result of arithmetically (signed) shifting all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Left Rotation | VBWLROB | | $VECTOR $1 | | Stores the result of rotating all the lanes of the $VECTOR vector to the left by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Right Rotation | VBWRROB | | $VECTOR $1 | | Stores the result of rotating all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
 
 6+^| *Logical (Comparison)*
 6+|
