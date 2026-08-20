@@ -331,8 +331,8 @@ All the comparisons made on vectors return a mask. A mask is always a vector of 
 | Vector Masked Blend | VBLEND | | Rx $MASK $VECTOR1 $VECTOR2 | | Generates a vector that its lanes are derived from the $VECTOR1 if the correspondent lane of the $MASK is one-filled and from the $VECTOR2 if the correspondent lane of the $MASK is zero-filled, and stores it in the Rx register.
 | Vector Minimum Integer Blend | VIMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
 | Vector Maximum Integer Blend | VIMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
-| Vector Minimum Float Blend | VFMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
-| Vector Maximum Integer Blend | VIMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Minimum Float Blend | VFMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum float value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Maximum Float Blend | VFMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum float value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
 |===
 
 .Array
