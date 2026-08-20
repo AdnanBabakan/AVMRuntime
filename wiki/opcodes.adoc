@@ -256,7 +256,20 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
 
 6+^| *Boolean Operations*
-// TODO: add boolean operations for vectors
+| Vector Boolean AND | VBAND | | $VECTOR $LANE $1 | | Stores the result of ANDing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Boolean OR | VBOR | | $VECTOR $LANE $1 | | Stores the result of ORing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Boolean XOR (exclusive OR) | VBXOR | | $VECTOR $LANE $1 | | Stores the result of XORing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Boolean NOT | VBNOT | | $VECTOR $LANE | | Stores opposite boolean of the $LANE lane of the $VECTOR vector back in the same lane.
+
+6+^| *Bulk Boolean Operations*
+| Vector Bulk Boolean AND | VBANDB | | $VECTOR $1 | | Stores the result of ANDing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
+| Vector Bulk Boolean OR | VBORB | | $VECTOR $1 | | Stores the result of ORing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
+| Vector Bulk Boolean XOR (exclusive or) | VBXORB | | $VECTOR $1 | | Stores the result of XORing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
+| Vector Bulk Boolean NOT | VBNOTB | | $VECTOR | | Stores the opposite boolean of all the lanes of the $VECTOR vector back in their respective lanes.
+| Vector Boolean If All (AND) | VBALL | | Rx $VECTOR | | Stores the boolean value resulted from ANDing all the lanes of the $VECTOR vector in the Rx register.
+| Vector Boolean If Any (OR) | VBANY | | Rx $VECTOR | | Stores the boolean value resulted from ORing all the lanes of the $VECTOR vector in the Rx register.
+| Vector Boolean If Only (XOR) | VBONLY | | Rx $VECTOR | | Stores the boolean value resulted from XORing all the lanes of the $VECTOR vector in the Rx register.
+
 
 6+^| *Bitwise Operations*
 // TODO: add bitwise operations for vectors
