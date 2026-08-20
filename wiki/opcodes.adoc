@@ -236,7 +236,6 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Vector Float Rounding | VFROUND | | $VECTOR $LANE | | Stores the rounded value of the $LANE lane of the $VECTOR vector back in the same lane.
 | Vector Float Rounding (arbitrary threshold) | VFROUNDX | | $VECTOR $LANE $1 | | Stores the rounded value of the $LANE lane of the $VECTOR vector, by $1 as the fractional threshold, back in the same lane.
 
-
 6+^| *Bulk Float Operations*
 | Vector Bulk Float Addition | VFADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as floats.
 | Vector Bulk Float Subtraction | VFSUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as floats.
@@ -269,7 +268,6 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Vector Boolean If All (AND) | VBALL | | Rx $VECTOR | | Stores the boolean value resulted from ANDing all the lanes of the $VECTOR vector in the Rx register.
 | Vector Boolean If Any (OR) | VBANY | | Rx $VECTOR | | Stores the boolean value resulted from ORing all the lanes of the $VECTOR vector in the Rx register.
 | Vector Boolean If Only (XOR) | VBONLY | | Rx $VECTOR | | Stores the boolean value resulted from XORing all the lanes of the $VECTOR vector in the Rx register.
-
 
 6+^| *Bitwise Operations*
 | Vector Bitwise AND | VBWAND | | $VECTOR $LANE $1 | | Stores the result of ANDing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
@@ -312,6 +310,25 @@ All the comparisons made on vectors return a mask. A mask is always a vector of 
 6+^| *Boolean Comparison*
 | Vector Boolean Equality | VBOOLEQ | | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
 | Vector Boolean Inequality | VBOOLNE | | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+
+6+^| *Integer Vector Comparison*
+| Vector-Vector Integer Equality | VVIEQ | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Inequality | VVINE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Less-than | VVILT | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Less-than-or-equal | VVILE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than-or-equal test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+
+6+^| *Float Vector Comparison*
+| Vector-Vector Float Equality | VVFEQ | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Inequality | VVFNE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Less-than | VVFLT | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Less-than-or-equal | VVFLE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than-or-equal test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+
+6+^| *Boolean Vector Comparison*
+| Vector-Vector Boolean Equality | VVBOOLEQ | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Boolean Inequality | VVBOOLNE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+
+6+^| *Blending*
+| Vector Blend | VBLEND | | Rx $MASK $VECTOR1 $VECTOR2 | | Generates a vector that its lanes are derived from the $VECTOR1 if the correspondent lane of the $MASK is one-filled and from the $VECTOR2 if the correspondent lane of the $MASK is zero-filled, and stores it in the Rx register.
 |===
 
 .Array
