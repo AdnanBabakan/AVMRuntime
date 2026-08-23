@@ -121,6 +121,13 @@ Opcodes are used to instruct the VM to perform a certain action.
 | Termination (with exit code) | ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
 | Assertion | ASSERT | | $COND $1 | | Terminates the program and exists with the $1 code if $COND is false.
 
+6+^| *Try/Catch*
+| Try-block Start | TRY | | :x | | Defines a try-block that would jump to the :x label if an exception is thrown whilst inside it.
+| Try-block End | ENDTRY | | | | Ends the previously started try-block.
+| Catch-block Start | CATCH | | | | Defines a catch block.
+| Catch-block End | ENDCATCH | | | | Ends the previously started catch-block.
+| Throw | THROW | | $1 | | Throws an exception with the payload of $1.
+
 6+^| *Special*
 | No-operation | NOP | | | | Does nothing and moves to the next instruction.
 |===
