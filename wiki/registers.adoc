@@ -16,7 +16,7 @@ During this document you will encounter a column called RW which stands for Read
 - FT: Read: False | Write: True
 - FF: Read: False | Write: False
 
-Registers, regardless of their categories, are of two types: special-purpose and general-purpose. Special-purpose registers have their type predefined, whilst general-purpose registers don't have a specific type. Thus, all general-purpose registers have a shadow counterpart that stores the header of the data being held in the original register.
+Registers, regardless of their categories, are of two types: special-purpose and general-purpose. Special-purpose registers have their type predefined, whilst general-purpose registers don't have a specific type. Thus, all general-purpose registers have a shadow counterpart that stores the type-tag of the data being held in the original register.
 
 == Global Registers
 
@@ -51,10 +51,10 @@ CAUTION: Using general-purpose global registers is highly discouraged unless abs
 |===
 | Name | Symbol | Type | RW | Purpose
 
-| Global Register 0's Shadow | #GR0 | I128U | TF | Holds the header of the data stored in the GR0 register.
-| Global Register 1's Shadow | #GR1 | I128U | TF | Holds the header of the data stored in the GR1 register.
+| Global Register 0's Shadow | #GR0 | I8U | TF | Holds the type-tag of the data stored in the GR0 register.
+| Global Register 1's Shadow | #GR1 | I8U | TF | Holds the type-tag of the data stored in the GR1 register.
 5+^|...
-| Global Register 15's Shadow | #GR15 | I128U | TF | Holds the header of the data stored in the GR15 register.
+| Global Register 15's Shadow | #GR15 | I8U | TF | Holds the type-tag of the data stored in the GR15 register.
 |===
 
 == Thread Registers
@@ -91,10 +91,10 @@ CAUTION: Using general-purpose thread registers is highly discouraged unless abs
 |===
 | Name | Symbol | Type | RW | Purpose
 
-| Thread Register 0's Shadow | #TR0 | I128U | TF | Holds the header of the data stored in the TR0 register.
-| Thread Register 1's Shadow | #TR1 | I128U | TF | Holds the header of the data stored in the TR1 register.
+| Thread Register 0's Shadow | #TR0 | I8U | TF | Holds the type-tag of the data stored in the TR0 register.
+| Thread Register 1's Shadow | #TR1 | I8U | TF | Holds the type-tag of the data stored in the TR1 register.
 5+^|...
-| Thread Register 15's Shadow | #TR15 | I128U | TF | Holds the header of the data stored in the TR15 register.
+| Thread Register 15's Shadow | #TR15 | I8U | TF | Holds the type-tag of the data stored in the TR15 register.
 |===
 
 == Context-Frame Registers
@@ -126,8 +126,8 @@ Context-frame registers are only accessible inside the frame itself.
 |===
 | Name | Symbol | Type | RW | Purpose
 
-| Register 0's Shadow | #R0 | I128U | TF | Holds the header of the data stored in the R0 register.
-| Register 1's Shadow | #R1 | I128U | TF | Holds the header of the data stored in the R1 register.
+| Register 0's Shadow | #R0 | I8U | TF | Holds the type-tag of the data stored in the R0 register.
+| Register 1's Shadow | #R1 | I8U | TF | Holds the type-tag of the data stored in the R1 register.
 5+^|...
-| Register 63's Shadow | #R63 | I128U | TF | Holds the header of the data stored in the R63 register.
+| Register 63's Shadow | #R63 | I8U | TF | Holds the type-tag of the data stored in the R63 register.
 |===
