@@ -4,6 +4,8 @@ v1.0 2026-08-19
 :doctype: book
 :description: This document includes information about the data and their corresponding headers, types and additional info needed regarding data handling in this VM.
 :url-repo: https://github.com/AdnanBabakan/AVMRuntime
+:sectnums:
+:toc:
 
 Data types are used to determine how a value is treated in the VM.
 

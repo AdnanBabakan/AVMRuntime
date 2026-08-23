@@ -1,0 +1,124 @@
+= Registers
+Adnan Babakan <adnanbabakan.personal@hotmail.com>
+v1.0 2026-08-24
+:doctype: book
+:description: This document describes the register design of the VM.
+:url-repo: https://github.com/AdnanBabakan/AVMRuntime
+:sectnums:
+:toc:
+
+Registers are data slots in the VM. This VM's registers are 128 bits long.
+
+During this document you will encounter a column called RW which stands for Read-Write. This column indicates whether a register can be read or written, and its value are as below:
+
+- TT: Read: True | Write: True
+- TF: Read: True | Write: False
+- FT: Read: False | Write: True
+- FF: Read: False | Write: False
+
+Registers, regardless of their categories, are of two types: special-purpose and general-purpose. Special-purpose registers have their type predefined, whilst general-purpose registers don't have a specific type. Thus, all general-purpose registers have a shadow counterpart that stores the header of the data being held in the original register.
+
+== Global Registers
+
+Global registers are globally accessible in a running program and are nor thread-based nor context-frame-based.
+
+=== Special-Purpose Global Registers
+
+.Special-Purpose Global Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Program ID | PID | I128U | TF | Holds the ID of the current program being executed. This ID is randomly generated when the program is booted on the VM.
+| Boot Timestamp | BTS | I128U | TF | Holds the timestamp of when the program was booted on the VM.
+| Zero Register | ZR | I128U | TT | Will always yield a 128-bit long zero filled I128U. Any data written to it will be discarded.
+|===
+
+=== General-Purpose Global Registers
+
+CAUTION: Using general-purpose global registers is highly discouraged unless absolutely necessary or when knowing what should be done properly.
+
+.General-Purpose Global Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Global Register 0 | GR0 | Variable | TT | General-purpose
+| Global Register 1 | GR1 | Variable | TT | General-purpose
+5+^|...
+| Global Register 15 | GR15 | Variable | TT | General-purpose
+|===
+
+.General-Purpose Shadow Global Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Global Register 0's Shadow | #GR0 | I128U | TF | Holds the header of the data stored in the GR0 register.
+| Global Register 1's Shadow | #GR1 | I128U | TF | Holds the header of the data stored in the GR1 register.
+5+^|...
+| Global Register 15's Shadow | #GR15 | I128U | TF | Holds the header of the data stored in the GR15 register.
+|===
+
+== Thread Registers
+
+Thread registers are only accessible inside of a thread itself. Since a context-frame is architecturally inside a thread, a context-frame can as well access its parent thread's registers.
+
+=== Special-Purpose Global Registers
+
+.Special-Purpose Global Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Thread ID | TID | I128U | TF | Holds the ID of the current thread. This ID is randomly generated when a thread is spawned.
+| Thread Timestamp | TTS | I128U | TF | Holds the timestamp of when the thread is spawned.
+| Instruction Pointer | IP | I128U | TF | Holds the pointer referencing the current instruction being executed in the thread.
+|===
+
+=== General-Purpose Thread Registers
+
+CAUTION: Using general-purpose thread registers is highly discouraged unless absolutely necessary or when knowing what should be done properly.
+
+.General-Purpose Thread Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Thread Register 0 | TR0 | Variable | TT | General-purpose
+| Thread Register 1 | TR1 | Variable | TT | General-purpose
+5+^|...
+| Thread Register 15 | TR15 | Variable | TT | General-purpose
+|===
+
+
+.General-Purpose Shadow Thread Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Thread Register 0's Shadow | #TR0 | I128U | TF | Holds the header of the data stored in the TR0 register.
+| Thread Register 1's Shadow | #TR1 | I128U | TF | Holds the header of the data stored in the TR1 register.
+5+^|...
+| Thread Register 15's Shadow | #TR15 | I128U | TF | Holds the header of the data stored in the TR15 register.
+|===
+
+== Context-Frame Registers
+
+Context-frame registers are only accessible inside the frame itself.
+
+=== General-Purpose Context-Frame Registers
+
+.General-Purpose Context-Frame Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Register 0 | R0 | Variable | TT | General-purpose
+| Register 1 | R1 | Variable | TT | General-purpose
+5+^|...
+| Register 65 | R65 | Variable | TT | General-purpose
+|===
+
+.General-Purpose Shadow Context-Frame Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+
+| Register 0's Shadow | #R0 | I128U | TF | Holds the header of the data stored in the R0 register.
+| Register 1's Shadow | #R1 | I128U | TF | Holds the header of the data stored in the R1 register.
+5+^|...
+| Register 65's Shadow | #R65 | I128U | TF | Holds the header of the data stored in the R65 register.
+|===
