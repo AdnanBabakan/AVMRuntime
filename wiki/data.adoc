@@ -11,7 +11,7 @@ Data types are used to determine how a value is treated in the VM.
 
 == Header
 
-Each data in AVM comes along with a header including metadata needed to handle the value properly. A header is a 128-bit long data regardless of the size of the value itself.
+Each data stored inside the memory comes along with a header. A header includes necessary information about the data being accessed.
 
 The table below represents the structure of a header and its content:
 
@@ -23,18 +23,31 @@ The table below represents the structure of a header and its content:
 
 == Types
 
-.Integer
+Each data being handled in the VM is of one of the types listed below.
+
+=== Integers
+
+An integer is a number without a fraction. Examples: -10, 28, 5, -3, 0, 121, ...
+
+=== Signed Integers
+
+.Signed Integer Types
 |===
 | Symbol | HEX | Description | Width
 
-4+^| Signed
 | I8 | 0x03 | Signed 8-bit integer | 1 byte (8 bits)
 | I16 | 0x04 | Signed 16-bit integer | 2 bytes (16 bits)
 | I32 | 0x05 | Signed 32-bit integer | 4 bytes (32 bits)
 | I64 | 0x06 | Signed 64-bit integer | 8 bytes (64 bits)
 | I128 | 0x07 | Signed 128-bit integer | 16 bytes (128 bits)
+|===
 
-4+^| Unsigned
+=== Unsigned Integers
+
+.Unsigned Integer Types
+|===
+| Symbol | HEX | Description | Width
+
 | I8U | 0x08 | Unsigned 8-bit integer | 1 byte (8 bits)
 | I16U | 0x09 | Unsigned 16-bit integer | 2 bytes (16 bits)
 | I32U | 0x0A | Unsigned 32-bit integer | 4 bytes (32 bits)
@@ -42,7 +55,11 @@ The table below represents the structure of a header and its content:
 | I128U | 0x0C | Unsigned 128-bit integer | 16 bytes (128 bits)
 |===
 
-.Float
+=== Floats
+
+A float is a number including a fraction point. Examples: 76.22, 8.912, -23.7, 100.2, -20.0, ...
+
+.Float Types
 |===
 | Symbol | HEX | Description | Width
 
@@ -53,7 +70,11 @@ The table below represents the structure of a header and its content:
 | F128 | 0x11 | Signed 128-bit floating point number | 16 bytes (128 bits)
 |===
 
-.Vector
+=== Vectors
+
+Vectors are flat data with multiple lanes, which each holds a meaningful data.
+
+.Vector Types
 |===
 | Symbol | HEX | Description | Width
 
@@ -69,28 +90,44 @@ The table below represents the structure of a header and its content:
 | V128L64 | 0x1B | 128-bit vector with 64-bit lanes (2 lanes) | 16 bytes (128 bits)
 |===
 
-.Array
+=== Array
+
+An array is a contiguous part of memory holding data of same size consecutively.
+
+.Array Types
 |===
 | Symbol | HEX | Description | Width
 
 | ARR | 0x1C | An array with variable size. | Variable
 |===
 
-.Boolean
+=== Boolean
+
+A boolean is a value representing a logical true (1) or a logical false (0).
+
+.Boolean Types
 |===
 | Symbol | HEX | Description | Width
 
 | BOOL | 0x02 | 1-bit boolean representation | 1 byte (8 bits)
 |===
 
-.Pointer
+=== Pointer
+
+A pointer is simply an integer referencing an address of the memory.
+
+.Pointer Types
 |===
 | Symbol | HEX | Description | Width
 
 | POI | 0x01 | 48-bit pointer referencing a memory address | 8 bytes (64 bits)
 |===
 
-.Specials
+=== Specials
+
+Special types are used for specific purposes.
+
+.Special Types
 |===
 | Symbol | HEX | Description | Width
 

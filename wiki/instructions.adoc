@@ -1,0 +1,9 @@
+= Instructions
+Adnan Babakan <adnanbabakan.personal@hotmail.com>
+v1.0 2026-08-24
+:doctype: book
+:description: This document explains how an instruction is packed into raw binary words and other necessary information regarding instructions themselves.
+:url-repo: https://github.com/AdnanBabakan/AVMRuntime
+:sectnums:
+:toc:
+
