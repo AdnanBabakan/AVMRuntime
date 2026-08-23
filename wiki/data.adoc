@@ -15,7 +15,7 @@ Each data stored inside the memory comes along with a header. A header includes 
 
 The table below represents the structure of a header and its content:
 
-.Header
+.Header Architecture
 |===
 | Type Tag | [Array Element]/[Vector Lane] Type Tag | Array Size | Array Length | GC Reserved | Reserved
 | 8 bits | 8 bits | 32 bits | 32 bits | 32 bits | 16 bits

@@ -32,25 +32,25 @@ IMPORTANT: The arithmetic opcodes related to integers are polymorphic. Meaning t
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Integer Addition | IADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two integers and stores the result in a register.
-| Integer Subtraction | ISUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two integers and stores the result in a register.
-| Integer Multiplication | IMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two integers and stores the result in a register.
-| Integer Division | IDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides (signed) two integers and stores the result in a register.
-| Unsigned Integer Division | IDIVU | | Rx $1 $2 | Rx = $1 / $2 | Divides (unsigned) two integers and stores the result in a register.
-| Integer Modulus | IMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the (signed) modulus of two integers in a register.
-| Unsigned Integer Modulus | IMODU | | Rx $1 $2 | Rx = $1 % $2 | Stores the (unsigned) modulus of two integers in a register.
-| Integer Negation | INEG | | Rx $1 | Rx = -$1 | Stores the negated value of an integer in a register.
+| Integer Addition | IADD | 0x25 | Rx $1 $2 | Rx = $1 + $2 | Adds two integers and stores the result in a register.
+| Integer Subtraction | ISUB | 0x26 | Rx $1 $2 | Rx = $1 - $2 | Subtracts two integers and stores the result in a register.
+| Integer Multiplication | IMUL | 0x27 | Rx $1 $2 | Rx = $1 * $2 | Multiplies two integers and stores the result in a register.
+| Integer Division | IDIV | 0x28 | Rx $1 $2 | Rx = $1 / $2 | Divides (signed) two integers and stores the result in a register.
+| Unsigned Integer Division | IDIVU | 0x29 | Rx $1 $2 | Rx = $1 / $2 | Divides (unsigned) two integers and stores the result in a register.
+| Integer Modulus | IMOD | 0x2A | Rx $1 $2 | Rx = $1 % $2 | Stores the (signed) modulus of two integers in a register.
+| Unsigned Integer Modulus | IMODU | 0x2B | Rx $1 $2 | Rx = $1 % $2 | Stores the (unsigned) modulus of two integers in a register.
+| Integer Negation | INEG | 0x2C | Rx $1 | Rx = -$1 | Stores the negated value of an integer in a register.
 |===
 
 .Advanced Integer Arithmetic Opcodes
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Minimum Integer | IMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for integers.
-| Maximum Integer | IMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for integers.
-| Absolute of Integer | IABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for integers.
-| Increase Integer | IINC | | Rx | Rx = Rx + 1 | Increases the value of Rx by one and stores it back.
-| Decrease Integer | IDEC | | Rx | Rx = Rx - 1 | Decreases the value of Rx by one and stores it back.
+| Minimum Integer | IMIN | 0x2D | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for integers.
+| Maximum Integer | IMAX | 0x2E | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for integers.
+| Absolute of Integer | IABS | 0x2F | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for integers.
+| Increase Integer | IINC | 0x30 | Rx | Rx = Rx + 1 | Increases the value of Rx by one and stores it back.
+| Decrease Integer | IDEC | 0x31 | Rx | Rx = Rx - 1 | Decreases the value of Rx by one and stores it back.
 |===
 
 === Float Arithmetic
@@ -59,27 +59,27 @@ IMPORTANT: The arithmetic opcodes related to integers are polymorphic. Meaning t
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Float Addition | FADD | | Rx $1 $2 | Rx = $1 + $2 | Adds two floats and stores the result in a register.
-| Float Subtraction | FSUB | | Rx $1 $2 | Rx = $1 - $2 | Subtracts two floats and stores the result in a register.
-| Float Multiplication | FMUL | | Rx $1 $2 | Rx = $1 * $2 | Multiplies two floats and stores the result in a register.
-| Float Division | FDIV | | Rx $1 $2 | Rx = $1 / $2 | Divides two floats and stores the result in a register.
-| Float Modulus | FMOD | | Rx $1 $2 | Rx = $1 % $2 | Stores the modulus of two floats in a register.
-| Float Negation | FNEG | | Rx $1 | Rx = -$1 | Stores the negated value of a float in a register.
+| Float Addition | FADD | 0x32 | Rx $1 $2 | Rx = $1 + $2 | Adds two floats and stores the result in a register.
+| Float Subtraction | FSUB | 0x33 | Rx $1 $2 | Rx = $1 - $2 | Subtracts two floats and stores the result in a register.
+| Float Multiplication | FMUL | 0x34 | Rx $1 $2 | Rx = $1 * $2 | Multiplies two floats and stores the result in a register.
+| Float Division | FDIV | 0x35 | Rx $1 $2 | Rx = $1 / $2 | Divides two floats and stores the result in a register.
+| Float Modulus | FMOD | 0x36 | Rx $1 $2 | Rx = $1 % $2 | Stores the modulus of two floats in a register.
+| Float Negation | FNEG | 0x37 | Rx $1 | Rx = -$1 | Stores the negated value of a float in a register.
 |===
 
 .Advanced Float Arithmetic Opcodes
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Square Root of Float | FSQRT | | Rx $1 | Rx = sqrt($1) | Stores the square root value of a float in a register.
-| Minimum Float | FMIN | | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for floats.
-| Maximum Float | FMAX | | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for floats.
-| Absolute of Float | FABS | | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for floats.
-| Ceiling of Float | FCEIL | | Rx $1 | Rx = ceil($1) | Copies the ceiling value of $1 into Rx for floats.
-| Floor of Float | FFLOOR | | Rx $1 | Rx = floor($1) | Copies the floor value of $1 into Rx for floats.
-| Truncate Float | FTRUNC | | Rx $1 | Rx = truncate($1) | Copies the truncated value of $1 into Rx for floats.
-| Float Rounding | FROUND | | Rx $1 | Rx = round($1, 0.5) | Copies the rounded value of $1 by a 0.5 fractional threshold into Rx for floats.
-| Float Rounding (arbitrary threshold) | FROUNDX | | Rx $1 $2 | Rx = round($1, $2) | Copies the rounded value of $1 by $2 as the fractional threshold into Rx for floats.
+| Square Root of Float | FSQRT | 0x38 | Rx $1 | Rx = sqrt($1) | Stores the square root value of a float in a register.
+| Minimum Float | FMIN | 0x39 | Rx $1 $2 | Rx = $1 < $2 ? $1 : $2 | Copies the value of the lesser value between $1 and $2 into Rx for floats.
+| Maximum Float | FMAX | 0x3A | Rx $1 $2 | Rx = $1 > $2 ? $1 : $2 | Copies the value of the larger value between $1 and $2 into Rx for floats.
+| Absolute of Float | FABS | 0x3B | Rx $1 | Rx = \|$1\| | Copies the absolute value of $1 into Rx for floats.
+| Ceiling of Float | FCEIL | 0x3C | Rx $1 | Rx = ceil($1) | Copies the ceiling value of $1 into Rx for floats.
+| Floor of Float | FFLOOR | 0x3D | Rx $1 | Rx = floor($1) | Copies the floor value of $1 into Rx for floats.
+| Truncate Float | FTRUNC | 0x3E | Rx $1 | Rx = truncate($1) | Copies the truncated value of $1 into Rx for floats.
+| Float Rounding | FROUND | 0x3F | Rx $1 | Rx = round($1, 0.5) | Copies the rounded value of $1 by a 0.5 fractional threshold into Rx for floats.
+| Float Rounding (arbitrary threshold) | FROUNDX | 0x40 | Rx $1 $2 | Rx = round($1, $2) | Copies the rounded value of $1 by $2 as the fractional threshold into Rx for floats.
 |===
 
 == Bitwise
@@ -93,18 +93,18 @@ CAUTION: Using bitwise operators on data might alter their payload's meaning whi
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Bitwise AND | AND | | Rx $1 $2 | Rx = $1 & $2 | Stores the bitwise AND result of two operands in a register.
-| Bitwise OR | OR | | Rx $1 $2 | Rx = $1 \| $2 | Stores the bitwise OR result of two operands in a register.
-| Bitwise XOR (exclusive OR) | XOR | | Rx $1 $2 | Rx = $1 ^ $2 | Stores the bitwise XOR result of two operands in a register.
-| Bitwise NOT | NOT | | Rx $1 | Rx = ~$1 | Stores the bitwise NOT result of an operand in a register.
-| Logical Left Shift | LLS | | Rx $1 $2 | Rx = $1 << $2 | Logically shifts $1 by $2 bits to the left and stores the result in a register.
-| Logical Right Shift | LRS | | Rx $1 $2 | Rx = $1 >> $2 | Logically (unsigned) shifts $1 by $2 bits to the right and stores the result in a register.
-| Arithmetic Right Shift | ARS | | Rx $1 $2 | Rx = $1 >>> $2 | Arithmetically (signed) shifts $1 by $2 bits to the right and stores the result in a register.
-| Left Rotation | LRO | | Rx $1 $2 | | Rotate $1 to left by $2 bits and store the result in a register.
-| Right Rotation | RRO | | Rx $1 $2 | | Rotate $1 to right by $2 bits and store the result in a register.
-| Population Count | CNTPOP | | Rx $1 | | Count population (the number of bits equal to 1) in $1 and store the result in a register.
-| Leading Zeros Count | CLZ | | Rx $1 | | Count leading zeroes in $1 and store the result in a register.
-| Trailing Zeros Count | CTZ | | Rx $1 | | Count trailing zeroes in $1 and store the result in a register.
+| Bitwise AND | AND | 0x41 | Rx $1 $2 | Rx = $1 & $2 | Stores the bitwise AND result of two operands in a register.
+| Bitwise OR | OR | 0x42 | Rx $1 $2 | Rx = $1 \| $2 | Stores the bitwise OR result of two operands in a register.
+| Bitwise XOR (exclusive OR) | XOR | 0x43 | Rx $1 $2 | Rx = $1 ^ $2 | Stores the bitwise XOR result of two operands in a register.
+| Bitwise NOT | NOT | 0x44 | Rx $1 | Rx = ~$1 | Stores the bitwise NOT result of an operand in a register.
+| Logical Left Shift | LLS | 0x45 | Rx $1 $2 | Rx = $1 << $2 | Logically shifts $1 by $2 bits to the left and stores the result in a register.
+| Logical Right Shift | LRS | 0x46 | Rx $1 $2 | Rx = $1 >> $2 | Logically (unsigned) shifts $1 by $2 bits to the right and stores the result in a register.
+| Arithmetic Right Shift | ARS | 0x47 | Rx $1 $2 | Rx = $1 >>> $2 | Arithmetically (signed) shifts $1 by $2 bits to the right and stores the result in a register.
+| Left Rotation | LRO | 0x48 | Rx $1 $2 | | Rotate $1 to left by $2 bits and store the result in a register.
+| Right Rotation | RRO | 0x49 | Rx $1 $2 | | Rotate $1 to right by $2 bits and store the result in a register.
+| Population Count | CNTPOP | 0x4A | Rx $1 | | Count population (the number of bits equal to 1) in $1 and store the result in a register.
+| Leading Zeros Count | CLZ | 0x4B | Rx $1 | | Count leading zeroes in $1 and store the result in a register.
+| Trailing Zeros Count | CTZ | 0x4C | Rx $1 | | Count trailing zeroes in $1 and store the result in a register.
 |===
 
 == Logical (Comparison)
@@ -119,12 +119,12 @@ Typeless logical opcodes are unaware of the data type of the operand(s) passed t
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Bit Equality | BEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
-| Bit Inequality | BNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
-| Payload Equality  | PEQ | | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
-| Payload Inequality | PNE | | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
-| Tag Equality | TEQ | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
-| Tag Inequality | TNE | | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
+| Bit Equality | BEQ | 0x4D | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
+| Bit Inequality | BNE | 0x4E | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
+| Payload Equality  | PEQ | 0x4F | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
+| Payload Inequality | PNE | 0x50 | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
+| Tag Equality | TEQ | 0x51 | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
+| Tag Inequality | TNE | 0x52 | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
 |===
 
 === Integer
@@ -137,10 +137,10 @@ IMPORTANT: Integer comparison opcodes are polymorphic. The state of the opcode b
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Integer Equality | IEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
-| Integer Inequality | INE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
-| Integer Less-than | ILT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two integer operands.
-| Integer Less-than-or-equal | ILE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two integer operands.
+| Integer Equality | IEQ | 0x53 | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two integer operands in a register.
+| Integer Inequality | INE | 0x54 | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two integers operands in a register.
+| Integer Less-than | ILT | 0x55 | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two integer operands.
+| Integer Less-than-or-equal | ILE | 0x56 | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two integer operands.
 |===
 
 === Float
@@ -151,10 +151,10 @@ Float logical opcodes compare floats based on their values.
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Float Equality | FEQ | | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two float operands in a register.
-| Float Inequality | FNE | | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
-| Float Less-than | FLT | | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two float operands.
-| Float Less-than-or-equal | FLE | | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two float operands.
+| Float Equality | FEQ | 0x57 | Rx $1 $2 | Rx = $1 == $2 | Stores the boolean value resulted from the equality test of two float operands in a register.
+| Float Inequality | FNE | 0x58 | Rx $1 $2 | Rx = $1 != $2 | Stores the boolean value resulted from the inequality test of two float operands in a register.
+| Float Less-than | FLT | 0x59 | Rx $1 $2 | Rx = $1 < $2 | Stores the boolean value resulted from the less-than test of two float operands.
+| Float Less-than-or-equal | FLE | 0x5A | Rx $1 $2 | Rx = $1 \<= $2 | Stores the boolean value resulted from the less-than-or-equal test of two float operands.
 |===
 
 == Control Flow
@@ -168,9 +168,9 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Unconditional Jump | JMP | | :x | - | Unconditionally jumps to the given label.
-| Conditional Jump (if true) | JMPT | | :x $COND |  | Jumps to the :x label if $COND is true (1).
-| Conditional Jump (if false) | JMPF | | :x $COND |  | Jumps to the :x label if $COND is false (0).
+| Unconditional Jump | JMP | 0x16 | :x | - | Unconditionally jumps to the given label.
+| Conditional Jump (if true) | JMPT | 0x17 | :x $COND |  | Jumps to the :x label if $COND is true (1).
+| Conditional Jump (if false) | JMPF | 0x18 | :x $COND |  | Jumps to the :x label if $COND is false (0).
 |===
 
 === Halt
@@ -179,9 +179,9 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Termination | ENOUGH | | |  | Terminates the program.
-| Termination (with exit code) | ENOUGHX | | $1 | | Terminates the program and exits with the $1 code.
-| Assertion | ASSERT | | $COND $1 | | Terminates the program and exists with the $1 code if $COND is false.
+| Termination | ENOUGH | 0x19 | |  | Terminates the program.
+| Termination (with exit code) | ENOUGHX | 0x1A | $1 | | Terminates the program and exits with the $1 code.
+| Assertion | ASSERT | 0x1B | $COND $1 | | Terminates the program and exists with the $1 code if $COND is false.
 |===
 
 === Try/Catch
@@ -190,11 +190,11 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Try-block Start | TRY | | :x | | Defines a try-block that would jump to the :x label if an exception is thrown whilst inside it.
-| Try-block End | ENDTRY | | | | Ends the previously started try-block.
-| Catch-block Start | CATCH | | | | Defines a catch block.
-| Catch-block End | ENDCATCH | | | | Ends the previously started catch-block.
-| Throw | THROW | | $1 | | Throws an exception with the payload of $1.
+| Try-block Start | TRY | 0x1C | :x | | Defines a try-block that would jump to the :x label if an exception is thrown whilst inside it.
+| Try-block End | ENDTRY | 0x1D | | | Ends the previously started try-block.
+| Catch-block Start | CATCH | 0x1E | | | Defines a catch block.
+| Catch-block End | ENDCATCH | 0x1F | | | Ends the previously started catch-block.
+| Throw | THROW | 0x20 | $1 | | Throws an exception with the payload of $1.
 |===
 
 === Special
@@ -203,7 +203,7 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| No-operation | NOP | | | | Does nothing and moves to the next instruction.
+| No-operation | NOP | 0x21 | | | Does nothing and moves to the next instruction.
 |===
 
 == Function and Call
@@ -214,8 +214,8 @@ Function and call opcodes are used to call functions and retrieve their returned
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Function Call | CALL | | Rx F1 [$1 $2 $3 ...] | Rx = F1($1, $2, $3, ...) | Push the return address, jump to the F1 function. Then stores the returned value of the function in the Rx register.
-| Function Return | RET | | $1 | - | Return the value of $1 then pop the return address and jump to it.
+| Function Call | CALL | 0x22 | Rx F1 [$1 $2 $3 ...] | Rx = F1($1, $2, $3, ...) | Push the return address, jump to the F1 function. Then stores the returned value of the function in the Rx register.
+| Function Return | RET | 0x23 | $1 | - | Return the value of $1 then pop the return address and jump to it.
 |===
 
 == Data Operation
@@ -228,9 +228,9 @@ Data operation opcodes are used for moving (copying), storing or loading data. S
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Copy | COP | | Rx $1 | Rx = $1 | Copy the value of $1 into the Rx register.
-| Conditional Copy | COPIF | | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
-| Swap | SWAP | | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
+| Copy | COP | 0x00 | Rx $1 | Rx = $1 | Copy the value of $1 into the Rx register.
+| Conditional Copy | COPIF | 0x01 | Rx $COND $1 $2 | Rx = $COND ? $1 : $2 | Conditionally sets Rx equal to $1 if $COND is true (1) or $2 if otherwise.
+| Swap | SWAP | 0x02 | Rx Ry | temp = Rx; Rx = Ry; Ry = temp; | Swaps the values of the Rx and the Ry registers.
 |===
 
 === Scaled Memory
@@ -243,10 +243,10 @@ NOTE: The symbol <\{n}> (e.g. <x>, <y>, <1>, <2>, ...) indicates a scaled offset
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Load | LOAD | | Rx $POINTER | Rx = memory[$POINTER] | Copy the value from the memory at the address of $POINTER into the Rx register.
-| Load (with offset) | LOADO | | Rx $POINTER <x> | Rx = memory[$POINTER + <x>] | Copy the value from the memory at the address of $POINTER plus the <x> offset into the Rx register.
-| Store | STR | | $POINTER $1 | memory[$POINTER] = $1 | Copy the value of $1 into the memory at the address of $POINTER.
-| Store (with offset) | STRO | | $POINTER $1 <x> | memory[$POINTER + <x>] = $1 | Copy the value of $1 into the memory at the address of $POINTER by an offset of <x>.
+| Load | LOAD | 0x03 | Rx $POINTER | Rx = memory[$POINTER] | Copy the value from the memory at the address of $POINTER into the Rx register.
+| Load (with offset) | LOADO | 0x04 | Rx $POINTER <x> | Rx = memory[$POINTER + <x>] | Copy the value from the memory at the address of $POINTER plus the <x> offset into the Rx register.
+| Store | STR | 0x05 | $POINTER $1 | memory[$POINTER] = $1 | Copy the value of $1 into the memory at the address of $POINTER.
+| Store (with offset) | STRO | 0x06 | $POINTER $1 <x> | memory[$POINTER + <x>] = $1 | Copy the value of $1 into the memory at the address of $POINTER by an offset of <x>.
 |===
 
 === Unscaled Memory
@@ -257,10 +257,10 @@ Unscaled memory data operations are to be performed on the regions of the memory
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Byte Load | BLOAD | | Rx $POINTER $1 | Rx = memory[$POINTER] | Copy $1 bytes of data from the memory at the address of $POINTER into the Rx register (used for raw-memory operations).
-| Byte Load (with offset) | BLOADO | | Rx $POINTER $1 $OFFSET | Rx = memory[$POINTER + $OFFSET] | Copy $1 bytes of data from the memory at the address of $POINTER by an offset of $OFFSET bytes into the Rx register.
-| Byte Store | BSTR | | $POINTER $1 $BYTES | | Copy $BYTES bytes of data from $1 into the memory at the address of $POINTER.
-| Byte Store (with offset) | BSTRO | | $POINTER $1 $BYTES $POINTER_OFFSET $DATA_OFFSET | | Copy $BYTES bytes of data starting from an offset of $DATA_OFFSET bytes from $1 into the memory at the address of $POINTER by an offset bytes.
+| Byte Load | BLOAD | 0x07 | Rx $POINTER $1 | Rx = memory[$POINTER] | Copy $1 bytes of data from the memory at the address of $POINTER into the Rx register (used for raw-memory operations).
+| Byte Load (with offset) | BLOADO | 0x08 | Rx $POINTER $1 $OFFSET | Rx = memory[$POINTER + $OFFSET] | Copy $1 bytes of data from the memory at the address of $POINTER by an offset of $OFFSET bytes into the Rx register.
+| Byte Store | BSTR | 0x09 | $POINTER $1 $BYTES | | Copy $BYTES bytes of data from $1 into the memory at the address of $POINTER.
+| Byte Store (with offset) | BSTRO | 0x0A | $POINTER $1 $BYTES $POINTER_OFFSET $DATA_OFFSET | | Copy $BYTES bytes of data starting from an offset of $DATA_OFFSET bytes from $1 into the memory at the address of $POINTER by an offset bytes.
 |===
 
 == Types and Tags
@@ -275,9 +275,9 @@ NOTE: Extracting a header, tag or a payload will return the bits of the desired 
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Header Extraction | EXHEAD | | Rx $1 | | Extract the header bits of $1 and store it into the Rx register.
-| Tag Extraction | EXTAG | | Rx $1 | | Extract the tag bits of $1 and store it into the Rx register.
-| Payload Extraction | EXTPL | | Rx $1 | | Extract the payload bits of $1 and store it into the Rx register.
+| Header Extraction | EXHEAD | 0x0B | Rx $1 | | Extract the header bits of $1 and store it into the Rx register.
+| Tag Extraction | EXTAG | 0x0C | Rx $1 | | Extract the tag bits of $1 and store it into the Rx register.
+| Payload Extraction | EXTPL | 0x0D | Rx $1 | | Extract the payload bits of $1 and store it into the Rx register.
 |===
 
 === Comparison
@@ -286,10 +286,10 @@ NOTE: Extracting a header, tag or a payload will return the bits of the desired 
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Type Equality | ISTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is of type T1.
-| Type Inequality | ISNOTTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 is not of type T1.
-| Indirect Type Equality | ISFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer references to a value of type T1 (indirect type).
-| Indirect Type Inequality | ISNOTFARTYPE | | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer doesn't reference to a value of type T1 (indirect type).
+| Type Equality | ISTYPE | 0x0E | Rx $1 T1 | | Set Rx to true (1) if $1 is of type T1.
+| Type Inequality | ISNOTTYPE | 0x0F | Rx $1 T1 | | Set Rx to true (1) if $1 is not of type T1.
+| Indirect Type Equality | ISFARTYPE | 0x10 | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer references to a value of type T1 (indirect type).
+| Indirect Type Inequality | ISNOTFARTYPE | 0x11 | Rx $1 T1 | | Set Rx to true (1) if $1 as a pointer doesn't reference to a value of type T1 (indirect type).
 |===
 
 === Casting
@@ -301,8 +301,8 @@ WARNING: Not all data types can be cast to each other. Further information can b
 | Name | Opcode | HEX | Operands | Semantic | Description
 
 
-| Type Cast | CAST | | Rx $1 T1 | | Cast $1 to the type T1 and store it in the Rx register.
-| Bit Cast | BITCAST | | Rx $1 T1 | | Cast $1 to the type T1 regardless of compatibility, only by changing the data type, and store it in the Rx register.
+| Type Cast | CAST | 0x12 | Rx $1 T1 | | Cast $1 to the type T1 and store it in the Rx register.
+| Bit Cast | BITCAST | 0x13 | Rx $1 T1 | | Cast $1 to the type T1 regardless of compatibility, only by changing the data type, and store it in the Rx register.
 |===
 
 == Pointer
@@ -311,8 +311,8 @@ WARNING: Not all data types can be cast to each other. Further information can b
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Pointer Movement (Scaled) | PMOV | | Rx $1 <x> | | Move backward/forward from the $1 pointer by an offset of <x> and store the new pointer in the Rx register.
-| Pointer Movement (Unscaled) | PMOVX | | Rx $1 $2 | | Move backward/forward from the $1 pointer by an offset of $2 bytes and store the new pointer in the Rx register.
+| Pointer Movement (Scaled) | PMOV | 0x14 | Rx $1 <x> | | Move backward/forward from the $1 pointer by an offset of <x> and store the new pointer in the Rx register.
+| Pointer Movement (Unscaled) | PMOVX | 0x15 | Rx $1 $2 | | Move backward/forward from the $1 pointer by an offset of $2 bytes and store the new pointer in the Rx register.
 |===
 
 == Vector
@@ -325,12 +325,12 @@ Vector opcodes are used for dealing with vector data.
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Creation | CVEC | | Rx T1 T2 | | Creates a vector of type T1 (the provided type must be one of the available vector types), with lanes being of type T2, and stores it in the Rx register.
-| Inline Vector Creation | CVECIL | | Rx T1 T2 [$1 $2 $3 ...] | | Creates a vector of type T1 (the provided type must be one of the available vector types), with lanes of type T2, populates the lanes with the given operands (starting from $1 towards the end), and stores it in the Rx register.
-| Vector Size | VECSIZE | | Rx $1 | | Stores the size of the vector $1 in the Rx register.
-| Vector Lanes Count | VECLANECNT | | Rx $1 | | Stores the count of the available lanes of the vector $1 in the Rx register.
-| Vector Lane Size | VECLANESIZE | | Rx $1 | | Stores the size of the lanes of the vector $1 in the Rx register.
-| Vector Lane Type | VECLANETYP | | Rx $1 | | Stores the lane type of the vector $1 in the Rx register.
+| Vector Creation | CVEC | 0x5B | Rx T1 T2 | | Creates a vector of type T1 (the provided type must be one of the available vector types), with lanes being of type T2, and stores it in the Rx register.
+| Inline Vector Creation | CVECIL | 0x5C | Rx T1 T2 [$1 $2 $3 ...] | | Creates a vector of type T1 (the provided type must be one of the available vector types), with lanes of type T2, populates the lanes with the given operands (starting from $1 towards the end), and stores it in the Rx register.
+| Vector Size | VECSIZE | 0x5D | Rx $1 | | Stores the size of the vector $1 in the Rx register.
+| Vector Lanes Count | VECLANECNT | 0x5E | Rx $1 | | Stores the count of the available lanes of the vector $1 in the Rx register.
+| Vector Lane Size | VECLANESIZE | 0x5F | Rx $1 | | Stores the size of the lanes of the vector $1 in the Rx register.
+| Vector Lane Type | VECLANETYP | 0x60 | Rx $1 | | Stores the lane type of the vector $1 in the Rx register.
 |===
 
 === Lanes
@@ -339,13 +339,13 @@ Vector opcodes are used for dealing with vector data.
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Set Vector Lane | SETLANE | | $VECTOR $LANE $1 | | Set the value of the $LANE lane of the $VECTOR vector to $1.
-| Get Vector Lane | GETLANE | | Rx $VECTOR $LANE | | Copies the value of the $LANE lane of the $VECTOR vector into the Rx register.
-| Inline Set Vector Lanes | SETLANEIN | | $VECTOR [$1 $2 $3 ...] | | Sets the lanes of the $VECTOR vector equal to the passed values (starting from $1 towards the end) respectively.
-| Vector Broadcast | VBC | | $VECTOR $1 | | Sets all the lanes of the $VECTOR vector equal to $1.
-| Vector Left Rotation | VLRO | | $VECTOR $1 | | Rotates the vector to the left $1 times.
-| Vector Right Rotation | VRRO | | $VECTOR $1 | | Rotates the vector to the right $1 times.
-| Vector Shuffle | VSHUF | | $VECTOR | | Shuffles the vector.
+| Set Vector Lane | SETLANE | 0x61 | $VECTOR $LANE $1 | | Set the value of the $LANE lane of the $VECTOR vector to $1.
+| Get Vector Lane | GETLANE | 0x62 | Rx $VECTOR $LANE | | Copies the value of the $LANE lane of the $VECTOR vector into the Rx register.
+| Inline Set Vector Lanes | SETLANEIN | 0x63 | $VECTOR [$1 $2 $3 ...] | | Sets the lanes of the $VECTOR vector equal to the passed values (starting from $1 towards the end) respectively.
+| Vector Broadcast | VBC | 0x64 | $VECTOR $1 | | Sets all the lanes of the $VECTOR vector equal to $1.
+| Vector Left Rotation | VLRO | 0x65 | $VECTOR $1 | | Rotates the vector to the left $1 times.
+| Vector Right Rotation | VRRO | 0x66 | $VECTOR $1 | | Rotates the vector to the right $1 times.
+| Vector Shuffle | VSHUF | 0x67 | $VECTOR | | Shuffles the vector.
 |===
 
 === Integer Operations
@@ -358,15 +358,15 @@ IMPORTANT: Vector integer operation opcodes are polymorphic and them being signe
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Integer Addition | VIADD | | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as an integer, and stores it back.
-| Vector Integer Subtraction | VISUB | | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as an integer, and stores it back.
-| Vector Integer Multiplication | VIMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as an integer, and stores it back.
-| Vector Integer Division | VIDIV | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores it back.
-| Vector Unsigned Integer Division | VIDIVU | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores it back.
-| Vector Integer Modulus | VIMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores the remainder back in the same lane.
-| Vector Unsigned Integer Modulus | VIMODU | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores the remainder back in the same lane.
-| Vector Integer Negation | VINEG | | $VECTOR $LANE | | Stores the negated integer value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Absolute of Integer | VIABS | | $VECTOR $LANE | | Stores the absolute integer value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Integer Addition | VIADD | 0x68 | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as an integer, and stores it back.
+| Vector Integer Subtraction | VISUB | 0x69 | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as an integer, and stores it back.
+| Vector Integer Multiplication | VIMUL | 0x6A | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as an integer, and stores it back.
+| Vector Integer Division | VIDIV | 0x6B | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores it back.
+| Vector Unsigned Integer Division | VIDIVU | 0x6C | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores it back.
+| Vector Integer Modulus | VIMOD | 0x6D | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a signed integer, and stores the remainder back in the same lane.
+| Vector Unsigned Integer Modulus | VIMODU | 0x6E | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as an unsigned integer, and stores the remainder back in the same lane.
+| Vector Integer Negation | VINEG | 0x6F | $VECTOR $LANE | | Stores the negated integer value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Absolute of Integer | VIABS | 0x70 | $VECTOR $LANE | | Stores the absolute integer value of the $LANE lane of the $VECTOR vector back in the same lane.
 |===
 
 ==== Bulk Integer Operations
@@ -375,18 +375,18 @@ IMPORTANT: Vector integer operation opcodes are polymorphic and them being signe
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Bulk Integer Addition | VIADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as integers.
-| Vector Bulk Integer Subtraction | VISUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as integers.
-| Vector Bulk Integer Multiplication | VIMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as integers.
-| Vector Bulk Integer Division | VIDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers.
-| Vector Bulk Unsigned Integer Division | VIDIVUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers.
-| Vector Bulk Integer Modulus | VIMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers, and stores their respective remainders in the same lanes.
-| Vector Bulk Unsigned Integer Modulus | VIMODUB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers, and stores their respective remainders in the same lanes.
-| Vector Bulk Integer Negation | VINEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as integers.
-| Vector Bulk Absolute of Integers | VIABSB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as integers.
-| Vector Integer Summation | VISUM | | Rx $VECTOR | | Sums all the lanes of the $VECTOR as integers consecutively and stores it in the Rx register.
-| Vector Integer Production | VIPROD | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
-| Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
+| Vector Bulk Integer Addition | VIADDB | 0x71 | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as integers.
+| Vector Bulk Integer Subtraction | VISUBB | 0x72 | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as integers.
+| Vector Bulk Integer Multiplication | VIMULB | 0x73 | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as integers.
+| Vector Bulk Integer Division | VIDIVB | 0x74 | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers.
+| Vector Bulk Unsigned Integer Division | VIDIVUB | 0x75 | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers.
+| Vector Bulk Integer Modulus | VIMODB | 0x76 | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as signed integers, and stores their respective remainders in the same lanes.
+| Vector Bulk Unsigned Integer Modulus | VIMODUB | 0x77 | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as unsigned integers, and stores their respective remainders in the same lanes.
+| Vector Bulk Integer Negation | VINEGB | 0x78 | $VECTOR | | Negates all the lanes of the $VECTOR vector as integers.
+| Vector Bulk Absolute of Integers | VIABSB | 0x79 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as integers.
+| Vector Integer Summation | VISUM | 0x7A | Rx $VECTOR | | Sums all the lanes of the $VECTOR as integers consecutively and stores it in the Rx register.
+| Vector Integer Production | VIPROD | 0x7B | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
+| Vector Unsigned Integer Production | VIPRODU | 0x7C | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
 |===
 
 === Float Operations
@@ -397,19 +397,19 @@ IMPORTANT: Vector integer operation opcodes are polymorphic and them being signe
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Float Addition | VFADD | | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as a float, and stores it back.
-| Vector Float Subtraction | VFSUB | | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as a float, and stores it back.
-| Vector Float Multiplication | VFMUL | | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
-| Vector Float Division | VFDIV | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
-| Vector Float Modulus | VFMOD | | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores the remainder back in the same lane.
-| Vector Float Negation | VFNEG | | $VECTOR $LANE | | Stores the negated float value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Absolute of Float | VFABS | | $VECTOR $LANE | | Stores the absolute float value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Square Root of Float | VFSQRT | | $VECTOR $LANE | | Stores the square root value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Ceiling of Float | VFCEIL | | $VECTOR $LANE | | Stores the ceiling value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Floor of Float | VFFLOOR | | $VECTOR $LANE | | Stores the floor value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Truncate Float | VFTRUNC | | $VECTOR $LANE | | Stores the truncated value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Float Rounding | VFROUND | | $VECTOR $LANE | | Stores the rounded value of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Float Rounding (arbitrary threshold) | VFROUNDX | | $VECTOR $LANE $1 | | Stores the rounded value of the $LANE lane of the $VECTOR vector, by $1 as the fractional threshold, back in the same lane.
+| Vector Float Addition | VFADD | 0x7D | $VECTOR $LANE $1 | | Adds $1 to the $LANE lane of the $VECTOR vector as a float, and stores it back.
+| Vector Float Subtraction | VFSUB | 0x7E | $VECTOR $LANE $1 | | Subtracts $1 from the $LANE lane of the $VECTOR vector as a float, and stores it back.
+| Vector Float Multiplication | VFMUL | 0x7F | $VECTOR $LANE $1 | | Multiplies the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
+| Vector Float Division | VFDIV | 0x80 | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores it back.
+| Vector Float Modulus | VFMOD | 0x81 | $VECTOR $LANE $1 | | Divides the $LANE lane of the $VECTOR vector by $1 as a float, and stores the remainder back in the same lane.
+| Vector Float Negation | VFNEG | 0x82 | $VECTOR $LANE | | Stores the negated float value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Absolute of Float | VFABS | 0x83 | $VECTOR $LANE | | Stores the absolute float value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Square Root of Float | VFSQRT | 0x84 | $VECTOR $LANE | | Stores the square root value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Ceiling of Float | VFCEIL | 0x85 | $VECTOR $LANE | | Stores the ceiling value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Floor of Float | VFFLOOR | 0x86 | $VECTOR $LANE | | Stores the floor value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Truncate Float | VFTRUNC | 0x87 | $VECTOR $LANE | | Stores the truncated value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Float Rounding | VFROUND | 0x88 | $VECTOR $LANE | | Stores the rounded value of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Float Rounding (arbitrary threshold) | VFROUNDX | 0x89 | $VECTOR $LANE $1 | | Stores the rounded value of the $LANE lane of the $VECTOR vector, by $1 as the fractional threshold, back in the same lane.
 |===
 
 ==== Bulk Float Operations
@@ -418,22 +418,22 @@ IMPORTANT: Vector integer operation opcodes are polymorphic and them being signe
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Bulk Float Addition | VFADDB | | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as floats.
-| Vector Bulk Float Subtraction | VFSUBB | | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as floats.
-| Vector Bulk Float Multiplication | VFMULB | | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as floats.
-| Vector Bulk Float Division | VFDIVB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats.
-| Vector Bulk Float Modulus | VFMODB | | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats, and stores their respective remainders in the same lanes.
-| Vector Bulk Float Negation | VFNEGB | | $VECTOR | | Negates all the lanes of the $VECTOR vector as floats.
-| Vector Bulk Absolute of Floats | VFABSB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as floats.
-| Vector Bulk Square Root of Floats | VFSQRTB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective square roots as floats.
-| Vector Bulk Ceiling of Floats | VFCEILB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective ceiling values as floats.
-| Vector Bulk Floor of Floats | VFFLOORB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective floor values as floats.
-| Vector Bulk Truncate Floats | VFTRUNCB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective truncated values as floats.
-| Vector Bulk Floats Rounding | VFROUNDB | | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective rounded values as floats.
-| Vector Bulk Floats Rounding (arbitrary threshold) | VFROUNDXB | | $VECTOR $1 | | Replaces all the lanes of the $VECTOR vector with their respective rounded values, by $1 as the fractional threshold, as floats.
-| Vector Float Summation | VFSUM | | Rx $VECTOR | | Sums all the lanes of the $VECTOR as floats consecutively and stores it in the Rx register.
-| Vector Integer Production | VIPROD | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
-| Vector Unsigned Integer Production | VIPRODU | | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
+| Vector Bulk Float Addition | VFADDB | 0x8A | $VECTOR $1 | | Adds $1 to all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Float Subtraction | VFSUBB | 0x8B | $VECTOR $1 | | Subtracts $1 from all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Float Multiplication | VFMULB | 0x8C | $VECTOR $1 | | Multiplies all the lanes of the $VECTOR vector by $1 as floats.
+| Vector Bulk Float Division | VFDIVB | 0x8D | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats.
+| Vector Bulk Float Modulus | VFMODB | 0x8E | $VECTOR $1 | | Divides all the lanes of the $VECTOR vector by $1 as floats, and stores their respective remainders in the same lanes.
+| Vector Bulk Float Negation | VFNEGB | 0x8F | $VECTOR | | Negates all the lanes of the $VECTOR vector as floats.
+| Vector Bulk Absolute of Floats | VFABSB | 0x90 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective absolute values as floats.
+| Vector Bulk Square Root of Floats | VFSQRTB | 0x91 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective square roots as floats.
+| Vector Bulk Ceiling of Floats | VFCEILB | 0x92 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective ceiling values as floats.
+| Vector Bulk Floor of Floats | VFFLOORB | 0x93 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective floor values as floats.
+| Vector Bulk Truncate Floats | VFTRUNCB | 0x94 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective truncated values as floats.
+| Vector Bulk Floats Rounding | VFROUNDB | 0x95 | $VECTOR | | Replaces all the lanes of the $VECTOR vector with their respective rounded values as floats.
+| Vector Bulk Floats Rounding (arbitrary threshold) | VFROUNDXB | 0x96 | $VECTOR $1 | | Replaces all the lanes of the $VECTOR vector with their respective rounded values, by $1 as the fractional threshold, as floats.
+| Vector Float Summation | VFSUM | 0x97 | Rx $VECTOR | | Sums all the lanes of the $VECTOR as floats consecutively and stores it in the Rx register.
+| Vector Integer Production | VIPROD | 0x98 | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as signed integers consecutively and stores it in the Rx register.
+| Vector Unsigned Integer Production | VIPRODU | 0x99 | Rx $VECTOR | | Multiplies all the lanes of the $VECTOR as unsigned integers consecutively and stores it in the Rx register.
 |===
 
 === Boolean Operations
@@ -444,10 +444,10 @@ IMPORTANT: Vector integer operation opcodes are polymorphic and them being signe
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Boolean AND | VBAND | | $VECTOR $LANE $1 | | Stores the result of ANDing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
-| Vector Boolean OR | VBOR | | $VECTOR $LANE $1 | | Stores the result of ORing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
-| Vector Boolean XOR (exclusive OR) | VBXOR | | $VECTOR $LANE $1 | | Stores the result of XORing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
-| Vector Boolean NOT | VBNOT | | $VECTOR $LANE | | Stores opposite boolean of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Boolean AND | VBAND | 0x9A | $VECTOR $LANE $1 | | Stores the result of ANDing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Boolean OR | VBOR | 0x9B | $VECTOR $LANE $1 | | Stores the result of ORing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Boolean XOR (exclusive OR) | VBXOR | 0x9C | $VECTOR $LANE $1 | | Stores the result of XORing the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Boolean NOT | VBNOT | 0x9D | $VECTOR $LANE | | Stores opposite boolean of the $LANE lane of the $VECTOR vector back in the same lane.
 |===
 
 ==== Bulk Boolean Operations
@@ -456,13 +456,13 @@ IMPORTANT: Vector integer operation opcodes are polymorphic and them being signe
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Bulk Boolean AND | VBANDB | | $VECTOR $1 | | Stores the result of ANDing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
-| Vector Bulk Boolean OR | VBORB | | $VECTOR $1 | | Stores the result of ORing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
-| Vector Bulk Boolean XOR (exclusive or) | VBXORB | | $VECTOR $1 | | Stores the result of XORing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
-| Vector Bulk Boolean NOT | VBNOTB | | $VECTOR | | Stores the opposite boolean of all the lanes of the $VECTOR vector back in their respective lanes.
-| Vector Boolean If All (AND) | VBALL | | Rx $VECTOR | | Stores the boolean value resulted from ANDing all the lanes of the $VECTOR vector in the Rx register.
-| Vector Boolean If Any (OR) | VBANY | | Rx $VECTOR | | Stores the boolean value resulted from ORing all the lanes of the $VECTOR vector in the Rx register.
-| Vector Boolean If Only (XOR) | VBONLY | | Rx $VECTOR | | Stores the boolean value resulted from XORing all the lanes of the $VECTOR vector in the Rx register.
+| Vector Bulk Boolean AND | VBANDB | 0x9E | $VECTOR $1 | | Stores the result of ANDing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
+| Vector Bulk Boolean OR | VBORB | 0x9F | $VECTOR $1 | | Stores the result of ORing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
+| Vector Bulk Boolean XOR (exclusive or) | VBXORB | 0xA0 | $VECTOR $1 | | Stores the result of XORing all the lanes of the $VECTOR vector and $1 back in their respective lanes.
+| Vector Bulk Boolean NOT | VBNOTB | 0xA1 | $VECTOR | | Stores the opposite boolean of all the lanes of the $VECTOR vector back in their respective lanes.
+| Vector Boolean If All (AND) | VBALL | 0xA2 | Rx $VECTOR | | Stores the boolean value resulted from ANDing all the lanes of the $VECTOR vector in the Rx register.
+| Vector Boolean If Any (OR) | VBANY | 0xA3 | Rx $VECTOR | | Stores the boolean value resulted from ORing all the lanes of the $VECTOR vector in the Rx register.
+| Vector Boolean If Only (XOR) | VBONLY | 0xA4 | Rx $VECTOR | | Stores the boolean value resulted from XORing all the lanes of the $VECTOR vector in the Rx register.
 |===
 
 === Bitwise Operations
@@ -475,15 +475,15 @@ CAUTION: Using bitwise operators on data might alter their payload's meaning whi
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Bitwise AND | VBWAND | | $VECTOR $LANE $1 | | Stores the result of ANDing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
-| Vector Bitwise OR | VBWOR | | $VECTOR $LANE $1 | | Stores the result of ORing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
-| Vector Bitwise XOR (exclusive OR) | VBWXOR | | $VECTOR $LANE $1 | | Stores the result of XORing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
-| Vector Bitwise NOT | VBWNOT | | $VECTOR $LANE | | Stores the result of bitwise NOT operation on the bits of the $LANE lane of the $VECTOR vector back in the same lane.
-| Vector Bitwise Logical Left Shift | VBWLLS | | $VECTOR $LANE $1 | | Logically shifts the bits of the $LANE lane of the $VECTOR vector to the left by $1 bits and stores the result back in the same lane.
-| Vector Bitwise Logical Right Shift | VBWLRS | | $VECTOR $LANE $1 | | Logically (unsigned) shifts the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores the result back in the same lane.
-| Vector Bitwise Arithmetic Right Shift | VBWARS | | $VECTOR $LANE $1 | | Arithmetically (signed) shifts the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores the result back in the same lane.
-| Vector Bitwise Left Rotation | VBWLRO | | $VECTOR $LANE $1 | | Rotates the bits of the $LANE lane of the $VECTOR vector to the left by $1 bits and stores it back in the same lane.
-| Vector Bitwise Right Rotation | VBWRRO | | $VECTOR $LANE $1 | | Rotates the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores it back in the same lane.
+| Vector Bitwise AND | VBWAND | 0xA5 | $VECTOR $LANE $1 | | Stores the result of ANDing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Bitwise OR | VBWOR | 0xA6 | $VECTOR $LANE $1 | | Stores the result of ORing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Bitwise XOR (exclusive OR) | VBWXOR | 0xA7 | $VECTOR $LANE $1 | | Stores the result of XORing the bits of the $LANE lane of the $VECTOR vector and $1 back in the same lane.
+| Vector Bitwise NOT | VBWNOT | 0xA8 | $VECTOR $LANE | | Stores the result of bitwise NOT operation on the bits of the $LANE lane of the $VECTOR vector back in the same lane.
+| Vector Bitwise Logical Left Shift | VBWLLS | 0xA9 | $VECTOR $LANE $1 | | Logically shifts the bits of the $LANE lane of the $VECTOR vector to the left by $1 bits and stores the result back in the same lane.
+| Vector Bitwise Logical Right Shift | VBWLRS | 0xAA | $VECTOR $LANE $1 | | Logically (unsigned) shifts the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores the result back in the same lane.
+| Vector Bitwise Arithmetic Right Shift | VBWARS | 0xAB | $VECTOR $LANE $1 | | Arithmetically (signed) shifts the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores the result back in the same lane.
+| Vector Bitwise Left Rotation | VBWLRO | 0xAC | $VECTOR $LANE $1 | | Rotates the bits of the $LANE lane of the $VECTOR vector to the left by $1 bits and stores it back in the same lane.
+| Vector Bitwise Right Rotation | VBWRRO | 0xAD | $VECTOR $LANE $1 | | Rotates the bits of the $LANE lane of the $VECTOR vector to the right by $1 bits and stores it back in the same lane.
 |===
 
 ==== Bulk Bitwise Operations
@@ -492,15 +492,15 @@ CAUTION: Using bitwise operators on data might alter their payload's meaning whi
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Bulk Bitwise AND | VBWANDB | | $VECTOR $1 | | Stores the result of the bitwise AND operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
-| Vector Bulk Bitwise OR | VBWORB | | $VECTOR $1 | | Stores the result of the bitwise OR operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
-| Vector Bulk Bitwise XOR (exclusive OR) | VBWXORB | | $VECTOR $1 | | Stores the result of the bitwise XOR operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
-| Vector Bulk Bitwise NOT | VBWNOTB | | $VECTOR $1 | | Stores the result of the bitwise NOT operation on all the lanes of the $VECTOR vector back in the respective lanes.
-| Vector Bulk Bitwise Logical Left Shift | VBWLLSB | | $VECTOR $1 | | Stores the result of logically shifting all the lanes of the $VECTOR vector to the left by $1 bits back in the respective lanes.
-| Vector Bulk Bitwise Logical Right Shift | VBWLRSB | | $VECTOR $1 | | Stores the result of logically (unsigned) shifting all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
-| Vector Bulk Bitwise Arithmetic Right Shift | VBWARSB | | $VECTOR $1 | | Stores the result of arithmetically (signed) shifting all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
-| Vector Bulk Bitwise Left Rotation | VBWLROB | | $VECTOR $1 | | Stores the result of rotating all the lanes of the $VECTOR vector to the left by $1 bits back in the respective lanes.
-| Vector Bulk Bitwise Right Rotation | VBWRROB | | $VECTOR $1 | | Stores the result of rotating all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise AND | VBWANDB | 0xAE | $VECTOR $1 | | Stores the result of the bitwise AND operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
+| Vector Bulk Bitwise OR | VBWORB | 0xAF | $VECTOR $1 | | Stores the result of the bitwise OR operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
+| Vector Bulk Bitwise XOR (exclusive OR) | VBWXORB | 0xB0 | $VECTOR $1 | | Stores the result of the bitwise XOR operation on all the lanes of the $VECTOR vector and $1 back in the respective lanes.
+| Vector Bulk Bitwise NOT | VBWNOTB | 0xB1 | $VECTOR $1 | | Stores the result of the bitwise NOT operation on all the lanes of the $VECTOR vector back in the respective lanes.
+| Vector Bulk Bitwise Logical Left Shift | VBWLLSB | 0xB2 | $VECTOR $1 | | Stores the result of logically shifting all the lanes of the $VECTOR vector to the left by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Logical Right Shift | VBWLRSB | 0xB3 | $VECTOR $1 | | Stores the result of logically (unsigned) shifting all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Arithmetic Right Shift | VBWARSB | 0xB4 | $VECTOR $1 | | Stores the result of arithmetically (signed) shifting all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Left Rotation | VBWLROB | 0xB5 | $VECTOR $1 | | Stores the result of rotating all the lanes of the $VECTOR vector to the left by $1 bits back in the respective lanes.
+| Vector Bulk Bitwise Right Rotation | VBWRROB | 0xB6 | $VECTOR $1 | | Stores the result of rotating all the lanes of the $VECTOR vector to the right by $1 bits back in the respective lanes.
 |===
 
 === Logical (Comparison)
@@ -515,10 +515,10 @@ IMPORTANT: Vector integer comparison opcodes are polymorphic. The state of the o
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Integer Equality | VIEQ | | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Integer Inequality | VINE | | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Integer Less-than | VILT | | Rx $VECTOR $1 | | Generates a mask as a result of the less-than test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Integer Less-than-or-equal | VILE | | Rx $VECTOR $1 | | Generates a mask as a result of the less-than-or-equal test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Integer Equality | VIEQ | 0xB7 | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Integer Inequality | VINE | 0xB8 | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Integer Less-than | VILT | 0xB9 | Rx $VECTOR $1 | | Generates a mask as a result of the less-than test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Integer Less-than-or-equal | VILE | 0xBA | Rx $VECTOR $1 | | Generates a mask as a result of the less-than-or-equal test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
 |===
 
 ==== Float Comparison
@@ -527,10 +527,10 @@ IMPORTANT: Vector integer comparison opcodes are polymorphic. The state of the o
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Float Equality | VFEQ | | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Float Inequality | VFNE | | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Float Less-than | VFLT | | Rx $VECTOR $1 | | Generates a mask as a result of the less-than test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Float Less-than-or-equal | VFLE | | Rx $VECTOR $1 | | Generates a mask as a result of the less-than-or-equal test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Float Equality | VFEQ | 0xBB | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Float Inequality | VFNE | 0xBC | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Float Less-than | VFLT | 0xBD | Rx $VECTOR $1 | | Generates a mask as a result of the less-than test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Float Less-than-or-equal | VFLE | 0xBE | Rx $VECTOR $1 | | Generates a mask as a result of the less-than-or-equal test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
 |===
 
 ==== Boolean Comparison
@@ -539,8 +539,8 @@ IMPORTANT: Vector integer comparison opcodes are polymorphic. The state of the o
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector Boolean Equality | VBOOLEQ | | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
-| Vector Boolean Inequality | VBOOLNE | | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Boolean Equality | VBOOLEQ | 0xBF | Rx $VECTOR $1 | | Generates a mask as a result of the equality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
+| Vector Boolean Inequality | VBOOLNE | 0xC0 | Rx $VECTOR $1 | | Generates a mask as a result of the inequality test on all the lanes of the $VECTOR vector against $1 and stores it in the Rx register.
 |===
 
 ==== Integer Vector Comparison
@@ -551,10 +551,10 @@ IMPORTANT: Integer vector comparison opcodes are polymorphic. The state of the o
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector-Vector Integer Equality | VVIEQ | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Integer Inequality | VVINE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Integer Less-than | VVILT | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Integer Less-than-or-equal | VVILE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than-or-equal test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Equality | VVIEQ | 0xC1 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Inequality | VVINE | 0xC2 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Less-than | VVILT | 0xC3 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Integer Less-than-or-equal | VVILE | 0xC4 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than-or-equal test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
 |===
 
 ==== Float Vector Comparison
@@ -563,10 +563,10 @@ IMPORTANT: Integer vector comparison opcodes are polymorphic. The state of the o
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector-Vector Float Equality | VVFEQ | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Float Inequality | VVFNE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Float Less-than | VVFLT | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Float Less-than-or-equal | VVFLE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than-or-equal test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Equality | VVFEQ | 0xC5 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Inequality | VVFNE | 0xC6 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Less-than | VVFLT | 0xC7 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Float Less-than-or-equal | VVFLE | 0xC8 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the less-than-or-equal test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
 |===
 
 ==== Boolean Vector Comparison
@@ -575,8 +575,8 @@ IMPORTANT: Integer vector comparison opcodes are polymorphic. The state of the o
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Vector-Vector Boolean Equality | VVBOOLEQ | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
-| Vector-Vector Boolean Inequality | VVBOOLNE | | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Boolean Equality | VVBOOLEQ | 0xC9 | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the equality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
+| Vector-Vector Boolean Inequality | VVBOOLNE | 0xCA | Rx $VECTOR1 $VECTOR2 | | Generates a mask as a result of the inequality test on the lanes of the $VECTOR1 and the $VECTOR2 vectors against each other in an ordered manner and stores it in the Rx register.
 |===
 
 === Blending
@@ -584,11 +584,11 @@ IMPORTANT: Integer vector comparison opcodes are polymorphic. The state of the o
 .Vector Blending Opcodes
 |===
 
-| Vector Masked Blend | VBLEND | | Rx $MASK $VECTOR1 $VECTOR2 | | Generates a vector that its lanes are derived from the $VECTOR1 if the correspondent lane of the $MASK is one-filled and from the $VECTOR2 if the correspondent lane of the $MASK is zero-filled, and stores it in the Rx register.
-| Vector Minimum Integer Blend | VIMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
-| Vector Maximum Integer Blend | VIMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
-| Vector Minimum Float Blend | VFMINBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum float value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
-| Vector Maximum Float Blend | VFMAXBLEND | | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum float value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Masked Blend | VBLEND | 0xCB | Rx $MASK $VECTOR1 $VECTOR2 | | Generates a vector that its lanes are derived from the $VECTOR1 if the correspondent lane of the $MASK is one-filled and from the $VECTOR2 if the correspondent lane of the $MASK is zero-filled, and stores it in the Rx register.
+| Vector Minimum Integer Blend | VIMINBLEND | 0xCC | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Maximum Integer Blend | VIMAXBLEND | 0xCD | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum integer value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Minimum Float Blend | VFMINBLEND | 0xCE | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the minimum float value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
+| Vector Maximum Float Blend | VFMAXBLEND | 0xCF | Rx $VECTOR1 $VECTOR2 | | Generates a vector by the lanes derived from the $VECTOR1 and the $VECTOR2 vectors corresponding to the maximum float value between the lanes of the two vectors in an ordered manner, and stores it in the Rx register.
 |===
 
 == Array
@@ -601,11 +601,11 @@ Array opcodes perform operations on data of type array.
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Array Creation | CARR | | Rx T1 $1 $2 | | Creates an array of type T1, with the size of $1, populated by the value $2, and stores the pointer to the array in the Rx register.
-| Raw Array Creation | CARRR | | Rx T1 $1 | | Creates an array of type T1, with the size of $1 without population, and stores the pointer to the array in the Rx register.
-| Array Size | ARRSIZE | | Rx $ARR_POINTER | | Stores the size of the $ARR_POINTER array into the Rx register.
-| Array Length | ARRLEN | | Rx $ARR_POINTER | | Stores the length of the $ARR_POINTER array into the Rx register.
-| Array Type | ARRTYP | | Rx $ARR_POINTER | | Stores the type of the $ARR_POINTER array into the Rx register.
+| Array Creation | CARR | 0xD0 | Rx T1 $1 $2 | | Creates an array of type T1, with the size of $1, populated by the value $2, and stores the pointer to the array in the Rx register.
+| Raw Array Creation | CARRR | 0xD1 | Rx T1 $1 | | Creates an array of type T1, with the size of $1 without population, and stores the pointer to the array in the Rx register.
+| Array Size | ARRSIZE | 0xD2 | Rx $ARR_POINTER | | Stores the size of the $ARR_POINTER array into the Rx register.
+| Array Length | ARRLEN | 0xD3 | Rx $ARR_POINTER | | Stores the length of the $ARR_POINTER array into the Rx register.
+| Array Type | ARRTYP | 0xD4 | Rx $ARR_POINTER | | Stores the type of the $ARR_POINTER array into the Rx register.
 |===
 
 === Elements
@@ -614,12 +614,12 @@ Array opcodes perform operations on data of type array.
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Set Array Element | SETEL | | $ARR_POINTER $INDEX $VAL | | Sets the item at index $INDEX of the $ARR_POINTER array equal to $VAL.
-| Get Array Element | GETEL | | Rx $ARR_POINTER $INDEX | | Copies the value of the item at index $INDEX of the $ARR_POINTER array into the Rx register.
-| Push Array Element | PUSHEL | | $ARR_POINTER $VAL | | Pushes the value $VAL to the end of the $ARR_POINTER array.
-| Pop Array Element | POPEL | | Rx $ARR_POINTER | | Pops the last element from the $ARR_POINTER array and moves its data into the Rx register.
-| Get Array Header | ARRHEAD | | Rx $ARR_POINTER | | Copies the value of the first element in the $ARR_POINTER array into the Rx register.
-| Get Array Tail | ARRTAIL | | Rx $ARR_POINTER | | Copies the value of the last element in the $ARR_POINTER array into the Rx register.
+| Set Array Element | SETEL | 0xD5 | $ARR_POINTER $INDEX $VAL | | Sets the item at index $INDEX of the $ARR_POINTER array equal to $VAL.
+| Get Array Element | GETEL | 0xD6 | Rx $ARR_POINTER $INDEX | | Copies the value of the item at index $INDEX of the $ARR_POINTER array into the Rx register.
+| Push Array Element | PUSHEL | 0xD7 | $ARR_POINTER $VAL | | Pushes the value $VAL to the end of the $ARR_POINTER array.
+| Pop Array Element | POPEL | 0xD8 | Rx $ARR_POINTER | | Pops the last element from the $ARR_POINTER array and moves its data into the Rx register.
+| Get Array Header | ARRHEAD | 0xD9 | Rx $ARR_POINTER | | Copies the value of the first element in the $ARR_POINTER array into the Rx register.
+| Get Array Tail | ARRTAIL | 0xDA | Rx $ARR_POINTER | | Copies the value of the last element in the $ARR_POINTER array into the Rx register.
 |===
 
 == Foreign Function Interface (FFI)
@@ -630,7 +630,7 @@ FFI opcodes are used to call various functions from the underlying host platform
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Host FFI | HOSTCALL | | Rx $HOST_FUNC [$1 $2 $3 ...] | | Calls the given host function by passing arguments provided then stores the result in the Rx register.
+| Host FFI | HOSTCALL | 0x24 | Rx $HOST_FUNC [$1 $2 $3 ...] | | Calls the given host function by passing arguments provided then stores the result in the Rx register.
 |===
 
 == Extension Groups
@@ -642,12 +642,12 @@ Extension groups are reserved opcodes for future implementations and have no use
 | Name | Opcode | HEX | Operands | Semantic | Description
 
 6+| Extension groups are reserved opcodes for future implementations.
-| Extension Group 1 | EG1 | | | | Reserved for future.
-| Extension Group 2 | EG2 | | | | Reserved for future.
-| Extension Group 3 | EG3 | | | | Reserved for future.
-| Extension Group 4 | EG4 | | | | Reserved for future.
-| Extension Group 5 | EG5 | | | | Reserved for future.
-| Extension Group 6 | EG6 | | | | Reserved for future.
-| Extension Group 7 | EG7 | | | | Reserved for future.
-| Extension Group 8 | EG8 | | | | Reserved for future.
+| Extension Group 1 | EG1 | 0xF8 | | | Reserved for future.
+| Extension Group 2 | EG2 | 0xF9 | | | Reserved for future.
+| Extension Group 3 | EG3 | 0xFA | | | Reserved for future.
+| Extension Group 4 | EG4 | 0xFB | | | Reserved for future.
+| Extension Group 5 | EG5 | 0xFC | | | Reserved for future.
+| Extension Group 6 | EG6 | 0xFD | | | Reserved for future.
+| Extension Group 7 | EG7 | 0xFE | | | Reserved for future.
+| Extension Group 8 | EG8 | 0xFF | | | Reserved for future.
 |===

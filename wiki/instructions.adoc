@@ -7,3 +7,15 @@ v1.0 2026-08-24
 :sectnums:
 :toc:
 
+== Anatomy
+
+Instructions in AVM are variably-lenghted, meaning that different instructions might have different sizes.
+
+Here is a representation of how an instruction is represented in raw binary structurally:
+
+.Instruction Architecture
+|===
+| Opcode | Operands Count | Operands Descriptors | Operands
+| 8 bits | 8 bits | (8 * (operands count)) bits | (8 * Variable) bits
+|===
+
