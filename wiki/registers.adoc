@@ -101,6 +101,15 @@ CAUTION: Using general-purpose thread registers is highly discouraged unless abs
 
 Context-frame registers are only accessible inside the frame itself.
 
+=== Special-Purpose Context-Frame Registers
+
+.Special-Purpose Context-Frame Registers
+|===
+| Name | Symbol | Type | RW | Purpose
+| Catch-block Pointer | CBP | I128U | TF | Holds the pointer referencing the catch-block that should catch a thrown error in case of it ever happening.
+| Exception Register | EXR | I128U | TF | Holds the exception operand thrown by a child context-frame to be read by the catch-block of the current context-frame.
+|===
+
 === General-Purpose Context-Frame Registers
 
 .General-Purpose Context-Frame Registers
@@ -110,7 +119,7 @@ Context-frame registers are only accessible inside the frame itself.
 | Register 0 | R0 | Variable | TT | General-purpose
 | Register 1 | R1 | Variable | TT | General-purpose
 5+^|...
-| Register 65 | R65 | Variable | TT | General-purpose
+| Register 63 | R63 | Variable | TT | General-purpose
 |===
 
 .General-Purpose Shadow Context-Frame Registers
@@ -120,5 +129,5 @@ Context-frame registers are only accessible inside the frame itself.
 | Register 0's Shadow | #R0 | I128U | TF | Holds the header of the data stored in the R0 register.
 | Register 1's Shadow | #R1 | I128U | TF | Holds the header of the data stored in the R1 register.
 5+^|...
-| Register 65's Shadow | #R65 | I128U | TF | Holds the header of the data stored in the R65 register.
+| Register 63's Shadow | #R63 | I128U | TF | Holds the header of the data stored in the R63 register.
 |===
