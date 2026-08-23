@@ -106,12 +106,12 @@ Context-frame registers are only accessible inside the frame itself.
 .Special-Purpose Context-Frame Registers
 |===
 | Name | Symbol | Type | RW | Purpose
-| Return Pointer | RP | I128U | Holds the pointer of where the parent context-frame was left off.
+| Return Pointer | RP | I128U | TF | Holds the pointer of where the parent context-frame was left off.
 | Catch-block Pointer | CBP | I128U | TF | Holds the pointer referencing the catch-block that should catch a thrown error in case of it ever happening.
 | Exception Register | EXR | I128U | TF | Holds the exception operand thrown by a child context-frame to be read by the catch-block of the current context-frame.
-| Overflow Flag | OF | BOOL | Indicates whether the most recent signed arithmetic operation had an overflow.
-| Carry Flag | CF | BOOL | Indicates whether the most recent unsigned arithmetic operation wrapped around.
-| Zero Denominator Flag | ZDF | Indicates whether the most recent division has had a zero denominator.
+| Overflow Flag | OF | BOOL | TF | Indicates whether the most recent signed arithmetic operation had an overflow.
+| Carry Flag | CF | BOOL | TF | Indicates whether the most recent unsigned arithmetic operation wrapped around.
+| Zero Denominator Flag | ZDF | TF | Indicates whether the most recent division has had a zero denominator.
 |===
 
 === General-Purpose Context-Frame Registers
