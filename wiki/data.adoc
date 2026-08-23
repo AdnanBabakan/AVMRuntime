@@ -94,5 +94,6 @@ The table below represents the structure of a header and its content:
 |===
 | Symbol | HEX | Description | Width
 
+| NAN | 0xFE | A Nan-Value | 1 byte (8 bits)
 | NULL | 0xFF | A null value | 1 byte (8 bits)
 |===
