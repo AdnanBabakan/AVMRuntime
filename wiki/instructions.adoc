@@ -6,6 +6,7 @@ v1.0 2026-08-24
 :url-repo: https://github.com/AdnanBabakan/AVMRuntime
 :sectnums:
 :toc:
+:toclevels: 5
 
 == Anatomy
 
@@ -16,6 +17,92 @@ Here is a representation of how an instruction is represented in raw binary stru
 .Instruction Architecture
 |===
 | Opcode | Operands Count | Operands Descriptors | Operands
-| 8 bits | 8 bits | (8 * (operands count)) bits | (8 * Variable) bits
+| 8 bits | 8 bits | (8 * (operands count)) bits | (8x) bits
 |===
+
+=== Words
+
+==== Opcode
+
+An opcode is represented in 8 bits at the beginning an instruction. The opcode specifies the operation intended to be done.
+
+List of opcodes can be found at xref:opcodes.adoc[Opcodes Documentation].
+
+==== Operands Count
+
+Number of operands is represented in 8 bits making a total of 255 possible operands to be included in a single instruction.
+
+==== Operands Descriptors
+
+For each operand, which their count is defined by the <<_operands_count>>, there will be an 8 bit representation of that operand's type. Refer to xref:data.adoc#_types[Data Documentation] to see the list of available types.
+
+==== Operands
+
+Following the operand descriptors, the operands start immediately. Each operand might take a different size based on its type. This size is determined by the respective <<_operands_descriptors>>.
+
+=== Examples
+
+==== Example 1
+
+Here is an assembly code which moves an immediate integer of type I8U to a register:
+
+[source,language=asm]
+----
+COP R0 I8U/123
+----
+
+This instruction gets translated to (in hex):
+
+[source,language=hexadecimal]
+----
+[00] [02] [FD] [08] [7F] [7B]
+----
+
+==== Example 2
+
+In this example, the assembly first sets two registers equal to two I32 numbers, then adds them using their registers as operands and stores the result in a third register:
+
+[source,language=asm]
+----
+COP R0 I32/672148211
+COP R1 I32/3
+IADD R2 R0 R1
+----
+
+Here is the hexadecimal representation of the code above:
+
+[source,language=hexadecimal]
+----
+[00] [02] [FD] [05] [7F] [28 10 2A F3]
+[00] [02] [FD] [05] [80] [00 00 00 03]
+[25] [03] [FD] [FD] [FD] [81] [7F] [80]
+----
+
+==== Example 3
+
+The example below stores three boolean values in the registers R0, R1 and R2. Then asserts that all these boolean values must be true:
+
+[source,language=asm]
+----
+COP R0 /T
+COP R1 /F
+COP R2 /T
+AND R3 R0 R1
+AND R3 R3 R2
+CAST R3 R3 BOOL
+ASSERT R3 /1
+----
+
+Here is the hexadecimal evaluation of the code above:
+
+[source,language=hexadecimal]
+----
+[00] [02] [FD] [02] [7F] [01]
+[00] [02] [FD] [02] [80] [00]
+[00] [02] [FD] [02] [81] [01]
+[41] [03] [FD] [FD] [FD] [82] [7F] [80]
+[41] [03] [FD] [FD] [FD] [82] [82] [81]
+[12] [03] [FD] [FD] [FC] [82] [82] [02]
+[1B] [02] [FD] [08] [82] [01]
+----
 

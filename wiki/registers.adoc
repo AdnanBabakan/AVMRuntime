@@ -6,6 +6,7 @@ v1.0 2026-08-24
 :url-repo: https://github.com/AdnanBabakan/AVMRuntime
 :sectnums:
 :toc:
+:toclevels: 5
 
 Registers are data slots in the VM. This VM's registers are 128 bits long.
 

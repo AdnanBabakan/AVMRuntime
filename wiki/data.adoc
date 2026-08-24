@@ -6,6 +6,7 @@ v1.0 2026-08-19
 :url-repo: https://github.com/AdnanBabakan/AVMRuntime
 :sectnums:
 :toc:
+:toclevels: 5
 
 Data types are used to determine how a value is treated in the VM.
 
@@ -131,6 +132,8 @@ Special types are used for specific purposes.
 |===
 | Symbol | HEX | Description | Width
 
+| TYP | 0xFC | A type-tag value | 1 byte (8 bits)
+| REG | 0xFD | A register address | 1 byte (bits)
 | NAN | 0xFE | A Nan-Value | 1 byte (8 bits)
 | NULL | 0xFF | A null value | 1 byte (8 bits)
 |===

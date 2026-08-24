@@ -6,6 +6,7 @@ v1.0 2026-08-14
 :url-repo: https://github.com/AdnanBabakan/AVMRuntime
 :sectnums:
 :toc:
+:toclevels: 5
 
 Opcodes are used to instruct the VM to perform a certain action.
 
@@ -26,7 +27,7 @@ Arithmetic opcodes are used for performing various mathematical operations on da
 
 === Integer Arithmetic
 
-IMPORTANT: The arithmetic opcodes related to integers are polymorphic. Meaning that the VM decides the appropriate operation to perform on the passed operands based on them being a signed or an unsigned integer. The operation being signed or unsigned is decided by the type of the first operand passed to it.
+IMPORTANT: The arithmetic opcodes related to integers are polymorphic. Meaning that the VM decides the appropriate operation to perform on the passed operands based on them being a signed or an unsigned integer. If at least one of the operands is signed the operation is performed as a signed one.
 
 .Basic Integer Arithmetic Opcodes
 |===
@@ -121,7 +122,7 @@ Typeless logical opcodes are unaware of the data type of the operand(s) passed t
 
 | Bit Equality | BEQ | 0x4D | Rx $1 $2 | | Stores the boolean value resulted from the equality test on all the bits of two operands in a register.
 | Bit Inequality | BNE | 0x4E | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on all the bits of two operands in a register.
-| Payload Equality  | PEQ | 0x4F | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
+| Payload Equality | PEQ | 0x4F | Rx $1 $2 | | Stores the boolean value resulted from the equality test on the payload bits of two operands in a register.
 | Payload Inequality | PNE | 0x50 | Rx $1 $2 | | Stores the boolean value resulted from the inequality test on the payload bits of two operands in a register.
 | Tag Equality | TEQ | 0x51 | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 match.
 | Tag Inequality | TNE | 0x52 | Rx $1 $2 | | Sets Rx to true (1) if the types of $1 and $2 don't match.
@@ -131,7 +132,7 @@ Typeless logical opcodes are unaware of the data type of the operand(s) passed t
 
 Integer logical opcodes compare integers based on their values.
 
-IMPORTANT: Integer comparison opcodes are polymorphic. The state of the opcode being signed or unsigned is decided by the type of the first operand passed to it.
+IMPORTANT: Integer comparison opcodes are polymorphic. If at least one operand is operand is signed, the opcode converts all other unsigned operands to a signed representation and only then performs the comparison.
 
 .Integer Logical Opcodes
 |===
@@ -181,7 +182,7 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 
 | Termination | ENOUGH | 0x19 | |  | Terminates the program.
 | Termination (with exit code) | ENOUGHX | 0x1A | $1 | | Terminates the program and exits with the $1 code.
-| Assertion | ASSERT | 0x1B | $COND $1 | | Terminates the program and exists with the $1 code if $COND is false.
+| Assertion | ASSERT | 0x1B | $COND $1 | | Terminates the program and exits with the code $1 if $COND is false.
 |===
 
 === Try/Catch
