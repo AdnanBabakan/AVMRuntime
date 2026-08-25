@@ -61,7 +61,6 @@
 
         COP .J .I
         IINC .J
-        IINC .I
 
         :inner_loop
         ILT .CONTINUE_INNER_LOOP .J .LEN
@@ -81,6 +80,7 @@
 
         :outer_loop_end
         CALL .ZR /NULL swap_array_elements %a .I .MIN_INDEX
+        IINC .I
         JMP :outer_loop
 
         :ret
@@ -92,6 +92,7 @@
             LEN             R0
             INVALID_RANGE   R1
             TMP_1           R2
+            TMP_2           R3
         }
 
         ARRLEN .LEN %a
@@ -99,8 +100,10 @@
         ILT .INVALID_RANGE %i /0
         JMPT :invalid_range_exception .INVALID_RANGE
 
-        ILE .INVALID_RANGE .LEN $j
+        ILE .INVALID_RANGE .LEN %j
         JMPT :invalid_range_exception .INVALID_RANGE
+
+        ILT .INVALID_RANGE %j /0
 
         GETEL .TMP_1 %a %i
         GETEL .TMP_2 %a %j
