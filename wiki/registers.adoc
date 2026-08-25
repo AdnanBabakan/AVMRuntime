@@ -108,6 +108,8 @@ Context-frame registers are only accessible inside the frame itself.
 |===
 | Name | Symbol | Type | RW | Purpose
 | Return Pointer | RP | I128U | TF | Holds the pointer of where the parent context-frame was left off.
+| Return Type | RT | I8U | TF | Holds the type of the returned payload.
+| Return Register | RR | Variable | TF | Holds the payload of a return from a function.
 | Catch-block Pointer | CBP | I128U | TF | Holds the pointer referencing the catch-block that should catch a thrown error in case of it ever happening.
 | Exception Flag | EXF | BOOL | TF | Holds a boolean indicating whether an exception has been thrown.
 | Exception Register | EXR | I128U | TF | Holds the exception operand thrown by a child context-frame to be read by the catch-block of the current context-frame.

@@ -1,0 +1,81 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            NUM_ARR R0
+        }
+
+        CARRR .NUM_ARR TYP/I32 /8
+        PUSHEL .NUM_ARR /9
+        PUSHEL .NUM_ARR /1
+        PUSHEL .NUM_ARR /-4
+        PUSHEL .NUM_ARR /53
+        PUSHEL .NUM_ARR /-78
+        PUSHEL .NUM_ARR /17
+        PUSHEL .NUM_ARR /12
+        PUSHEL .NUM_ARR /-8
+    }
+
+    selection_sort ARR%a {
+
+    }
+
+    array_min_from_to ARR%a I32U%from I32U%to {
+        !reg_aliases {
+            ZERO_EL         R0
+            INVALID_RANGE   R1
+            MAX_INDEX       R2
+            MIN             R3
+            LEN             R4
+            I               R5
+            CONTINUE        R6
+            TMP             R7
+            CHECK           R8
+        }
+
+        ARRLEN .LEN %a
+
+        IEQ .ZERO_EL .LEN /0
+        JMPT :empty_array .ZERO_EL
+        JMP :non_empty_array
+
+        ILT .INVALID_RANGE %from /0
+        JMPT :invalid_range_exception .INVALID_RANGE
+
+        ISUB .MAX_INDEX .LEN /1
+
+        ILT .INVALID_RANGE .MAX_INDEX %from
+        JMPT :invalid_range_exception .INVALID_RANGE
+
+        ILE .INVALID_RANGE %to %from
+        JMPT :invalid_range_exception .INVALID_RANGE
+
+        ILT .INVALID_RANGE .MAX_INDEX %to
+        JMPT :invalid_range_exception .INVALID_RANGE
+
+        :empty_array
+        THROW /0
+
+        :invalid_range_exception
+        THROW /1
+
+        :non_empty_array
+    }
+}
