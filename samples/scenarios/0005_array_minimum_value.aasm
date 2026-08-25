@@ -1,0 +1,85 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            NUM_ARR R0
+            RESULT  R1
+        }
+
+        CARRR .NUM_ARR TYP/I32 /6
+        PUSHEL .NUM_ARR /-2
+        PUSHEL .NUM_ARR /23
+        PUSHEL .NUM_ARR /12
+        PUSHEL .NUM_ARR /-7
+        PUSHEL .NUM_ARR /81
+        PUSHEL .NUM_ARR /4
+
+        TRY :zero_elements_catch
+            CALL .RESULT array_min .NUM_ARR
+            HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+        ENDTRY
+
+        :zero_elements_catch
+        CATCH
+            HOSTCALL .ZR /NULL adnan.stdio.println "Empty array provided"
+        ENDCATCH
+    }
+
+    array_min ARR%a {
+        !reg_aliases {
+            ZERO_EL     R0
+            MIN         R1
+            LEN         R2
+            I           R3
+            CONTINUE    R4
+            TMP         R5
+            CHECK       R6
+        }
+
+        ARRLEN .LEN %a
+
+        IEQ .ZERO_EL .LEN /0
+        JMPT :empty_array .ZERO_EL
+        JMP :non_empty_array
+
+        :empty_array
+        THROW /0
+
+        :non_empty_array
+        GETEL .MIN %a /0
+        COP .I /1
+
+        :loop
+        ILT .CONTINUE .I .LEN
+        JMPF :ret .CONTINUE
+
+        GETEL .TMP %a .I
+        IINC .I
+
+        ILT .CHECK .TMP .MIN
+        JMPF :loop .CHECK
+
+        COP .MIN .TMP
+        JMP :loop
+
+        :ret
+        RET .MIN
+    }
+}
