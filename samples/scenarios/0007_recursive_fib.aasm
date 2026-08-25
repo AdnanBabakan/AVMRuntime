@@ -1,0 +1,69 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            INPUT   R0
+            RESULT  R1
+        }
+
+        HOSTCALL .INPUT TYP/I16 adnan.stdio.readline
+
+        TRY
+            CALL .RESULT fib .INPUT
+            HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+        ENDTRY
+
+        :invalid_argument_exception
+        CATCH
+            HOSTCALL .ZR /NULL adnan.stdio.println "Invalid argument provided"
+        ENDCATCH
+    }
+
+    fib I16%n {
+        !reg_aliases {
+            CHECK       R0
+            TMP         R1
+            FIB_N_M_1   R2
+            FIB_N_M_2   R3
+            RESULT      R4
+        }
+
+        ILT .CHECK %n /1
+        JMPT :invalid_argument_exception .CHECK
+
+        ILE .CHECK %n /2
+        JMPT :base_case .CHECK
+
+        ISUB .TMP %n /1
+        CALL .FIB_N_M_1 fib .TMP
+
+        IDEC .TMP
+        CALL .FIB_N_M_2 fib .TMP
+
+        IADD .RESULT .FIB_N_M_1 .FIB_N_M_2
+        RET .RESULT
+
+        :base_case
+        RET /1
+
+        :invalid_argument_exception
+        THROW /0
+    }
+}
