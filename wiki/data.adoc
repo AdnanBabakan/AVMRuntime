@@ -132,6 +132,9 @@ Special types are used for specific purposes.
 |===
 | Symbol | HEX | Description | Width
 
+| LBL | 0xF9 | A label reference | 2 bytes (16 bits)
+| FUNC | 0xFA | A function reference | 2 bytes (16 bits)
+| CONST | 0xFB | A value from a constant | 2 bytes (16 bits)
 | TYP | 0xFC | A type-tag value | 1 byte (8 bits)
 | REG | 0xFD | A register address | 1 byte (bits)
 | NAN | 0xFE | A Nan-Value | 1 byte (8 bits)

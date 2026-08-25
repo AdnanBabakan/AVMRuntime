@@ -1,0 +1,117 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace adnan
+!entry main
+
+!capabilities {
+    network
+    fs
+    stdio
+}
+
+!batteries {
+    adnan.math
+    adnan.stdio
+} ; built-in modules - the name derived from the term "batteries included"
+
+!deps {
+    package_1
+    package_2
+    package_3
+} ; dependencies required by the program
+
+!include {
+    ./file_a.aasm {
+        namespace self ; defaults to the namespace defined in the included file itself - this line can be omitted
+        imports {
+            reg_aliases { * } ; imports all the reg_aliases - this line can be omitted
+            type_aliases {
+                TYPE1
+                TYPE2
+            } ; imports only the defined aliases
+            constants { * } ; imports all the constants exported - this line can be omitted
+            macros { * } ; imports all the macros exported - this line can be omitted
+            functions { * } ; imports all the functions exported - this line can be omitted
+        }
+    }
+
+    ./file_b.aasm {
+        namespace foo ; a different namespace than the one defined in the included file itself
+        imports { * } ; imports every export - this line can be omitted
+    }
+
+    ./file_c.aasm ; imports everything with default settings
+}
+
+!reg_aliases {
+    PRIMARY     R0
+    SECONDARY   R1
+    SPARE       R2
+}
+
+!type_aliases {
+    FLOAT       F32
+    INT         I32U
+    BOOLEAN     BOOL
+}
+
+!constants {
+    PI  F32 3.14
+    E   F32 2.71828
+}
+
+!macros {
+    SET $value $1 $2 $3 $4 {
+        COP $1 $value
+        COP $2 $value
+        COP $3 $value
+        COP $4 $value
+    }
+}
+
+!code {
+    main {
+        ; This is a comment
+        COP .R0 /T
+        COP .R1 /F
+        COP .R2 /T
+        AND .R3 .R0 .R1
+        AND .R3 .R3 .R2
+        CAST .R3 .R3 TYP/BOOL
+        ASSERT .R3 /1
+    }
+
+    sum I32U%a I32U%b {
+        IADD R0 %a %b
+        RET R0
+    }
+
+    sub I32U%a I32U%b {
+        ISUB R0 %a %b
+        RET R0
+    }
+}
+
+!exports {
+    reg_aliases { * } ; exports all reg_aliases defined in this file
+
+    type_aliases {
+        FLOAT
+    } ; exports only the defined type_aliases
+
+    constants { * } ; exports all the constants defined in this file
+
+    macros {
+        SET
+    } ; exports only the defined macros
+
+    functions {
+        sum ; exports with the same name
+        sub as another_name ; exports with a different name
+    }
+}

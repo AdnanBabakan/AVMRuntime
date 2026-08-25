@@ -1,0 +1,13 @@
+= Assembly Language
+Adnan Babakan <adnanbabakan.personal@hotmail.com>
+v1.0 2026-08-24
+:doctype: book
+:description: This document includes the assembly language specifications and syntax used for this VM.
+:url-repo: https://github.com/AdnanBabakan/AVMRuntime
+:sectnums:
+:toc:
+:toclevels: 5
+
+== Instructions
+
+AVM uses the Intel-style syntax for instruction. Meaning that it the instructions which accept a destination (like COP, COPIF, etc.) are destination-first.
