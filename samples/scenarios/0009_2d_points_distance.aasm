@@ -28,7 +28,7 @@
         CVECIL .POINT_2 TYP/V128L64 TYP/F64 23.78 74.02
 
         CALL .RESULT TYP/F64 points_distance .POINT_1 .POINT_2
-        HOSTCALL .ZR TYPE/NULL adnan.stdio.println .RESULT
+        HOSTCALL .ZR TYP/NULL adnan.stdio.println .RESULT
     }
 
     points_distance V128L64%v1 V128L64%v2 {
@@ -52,10 +52,8 @@
         GETLANE .Y_2 %v2 /1
 
         FSUB .X_LEN .X_1 .X_2
-        FABS .X_LEN .X_LEN
 
         FSUB .Y_LEN .Y_1 .Y_2
-        FABS .Y_LEN .Y_LEN
 
         FMUL .X_LEN_SQ .X_LEN .X_LEN
         FMUL .Y_LEN_SQ .Y_LEN .Y_LEN
