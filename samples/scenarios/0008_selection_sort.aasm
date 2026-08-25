@@ -31,51 +31,89 @@
         PUSHEL .NUM_ARR /17
         PUSHEL .NUM_ARR /12
         PUSHEL .NUM_ARR /-8
+
+        CALL .ZR /NULL selection_sort .NUM_ARR
     }
 
     selection_sort ARR%a {
-
-    }
-
-    array_min_from_to ARR%a I32U%from I32U%to {
         !reg_aliases {
-            ZERO_EL         R0
-            INVALID_RANGE   R1
-            MAX_INDEX       R2
-            MIN             R3
-            LEN             R4
-            I               R5
-            CONTINUE        R6
-            TMP             R7
-            CHECK           R8
+            LEN                 R0
+            I                   R1
+            J                   R2
+            CONTINUE_OUTER_LOOP R3
+            CONTINUE_INNER_LOOP R4
+            MIN_INDEX           R5
+            MIN_VALUE           R6
+            MIN_CHECK_TEMP      R7
+            NEW_MIN_FOUND       R8
         }
 
         ARRLEN .LEN %a
 
-        IEQ .ZERO_EL .LEN /0
-        JMPT :empty_array .ZERO_EL
-        JMP :non_empty_array
+        COP .I /0
 
-        ILT .INVALID_RANGE %from /0
+        :outer_loop
+        ILT .CONTINUE_OUTER_LOOP .I .LEN
+        JMPF :ret .CONTINUE_OUTER_LOOP
+
+        COP .MIN_INDEX .I
+        GETEL .MIN_VALUE %a .I
+
+        COP .J .I
+        IINC .J
+        IINC .I
+
+        :inner_loop
+        ILT .CONTINUE_INNER_LOOP .J .LEN
+        JMPF :outer_loop_end .CONTINUE_INNER_LOOP
+
+        GETEL .MIN_CHECK_TEMP %a .J
+
+        ILT .NEW_MIN_FOUND .MIN_CHECK_TEMP .MIN_VALUE
+        JMPF :inner_loop_end .NEW_MIN_FOUND
+
+        COP .MIN_INDEX .J
+        COP .MIN_VALUE .MIN_CHECK_TEMP
+
+        :inner_loop_end
+        IINC .J
+        JMP :inner_loop
+
+        :outer_loop_end
+        CALL .ZR /NULL swap_array_elements %a .I .MIN_INDEX
+        JMP :outer_loop
+
+        :ret
+        RET /NULL
+    }
+
+    swap_array_elements ARR%a %i %j {
+        !reg_aliases {
+            LEN             R0
+            INVALID_RANGE   R1
+            TMP_1           R2
+        }
+
+        ARRLEN .LEN %a
+
+        ILT .INVALID_RANGE %i /0
         JMPT :invalid_range_exception .INVALID_RANGE
 
-        ISUB .MAX_INDEX .LEN /1
-
-        ILT .INVALID_RANGE .MAX_INDEX %from
+        ILE .INVALID_RANGE .LEN $j
         JMPT :invalid_range_exception .INVALID_RANGE
 
-        ILE .INVALID_RANGE %to %from
-        JMPT :invalid_range_exception .INVALID_RANGE
+        GETEL .TMP_1 %a %i
+        GETEL .TMP_2 %a %j
 
-        ILT .INVALID_RANGE .MAX_INDEX %to
-        JMPT :invalid_range_exception .INVALID_RANGE
+        SETEL %a %i .TMP_2
+        SETEL %a %j .TMP_1
 
-        :empty_array
-        THROW /0
+        JMP :ret
 
         :invalid_range_exception
-        THROW /1
+        THROW /0
 
-        :non_empty_array
+        :ret
+        RET
     }
 }
