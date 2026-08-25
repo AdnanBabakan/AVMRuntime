@@ -1,0 +1,85 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            INPUT       R0
+            IS_PRIME    R1
+        }
+
+        HOSTCALL .INPUT TYP/I64 adnan.stdio.readline
+        CALL .IS_PRIME is_prime .INPUT
+        JMPT :is_prime .IS_PRIME
+
+        :is_not_prime
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is not prime"
+        JMP :end
+
+        :is_prime
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is prime"
+
+        :end
+        ENOUGHX /0
+    }
+
+    is_prime I64%n {
+        !reg_aliases {
+            EARLY_CHECK R0
+            MOD         R1
+            IS_TWO      R2
+            FLOAT_N     R3
+            SQRT        R4
+            DENOM       R5
+            CONTINUE    R6
+        }
+
+        ILE .EARLY_CHECK %n /1
+        JMPT :is_not_prime .EARLY_CHECK
+
+        IEQ .IS_TWO %n /2
+        JMPT :is_prime .IS_TWO
+
+        IMOD .MOD %n /2
+        IEQ .EARLY_CHECK .MOD /0
+        JMPT :is_not_prime .EARLY_CHECK
+
+        CAST .FLOAT_N %n TYP/F128
+        FSQRT .SQRT .FLOAT_N
+        CAST .SQRT .SQRT TYP/I64
+
+        COP .DENOM /3
+
+        :loop
+        ILE .CONTINUE .DENOM .SQRT
+        JMPF :is_prime .CONTINUE
+
+        IMOD .MOD %n .DENOM
+        INE .CONTINUE .MOD /0
+        JMPF :is_not_prime .CONTINUE
+
+        IADD .DENOM .DENOM /2
+        JMP :loop
+
+        :is_prime
+        RET /T
+
+        :is_not_prime
+        RET /F
+    }
+}
