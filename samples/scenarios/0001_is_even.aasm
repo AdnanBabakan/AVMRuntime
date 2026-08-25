@@ -1,0 +1,51 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!reg_aliases {
+    INPUT   R0
+    RESULT  R1
+}
+
+!code {
+    main {
+        HOSTCALL .INPUT TYP/I64 adnan.stdio.readline
+        CALL .RESULT is_even .INPUT
+        JMPF :is_not_even .RESULT
+
+        :is_even
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is even"
+        JMP :end
+
+        :is_not_even
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is not even"
+
+        :end
+        ENOUGHX /0
+    }
+
+    is_even I64%a {
+        !reg_aliases {
+            MOD     R0
+            RESULT  R1
+        }
+
+        IMOD .MOD %a /2
+        IEQ .RESULT .MOD /0
+        RET .RESULT
+    }
+}

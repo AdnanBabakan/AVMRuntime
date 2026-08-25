@@ -1,0 +1,71 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            INPUT   R0
+            RESULT  R1
+            TMP     R2
+        }
+
+        HOSTCALL .INPUT TYP/I64 adnan.stdio.readline
+        CALL .RESULT sign .INPUT
+
+        IEQ .TMP .RESULT /0
+        JMPT :is_zero .TMP
+
+        ILT .TMP /0 .RESULT
+        JMPT :is_positive .TMP
+
+        :is_negative
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is negative"
+        JMP :end
+
+        :is_zero
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is zero"
+        JMP :end
+
+        :is_positive
+        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is positive"
+
+        :end
+        ENOUGHX /0
+    }
+
+    sign I64%a {
+        !reg_aliases {
+            TMP R0
+        }
+
+        IEQ .TMP %a /0
+        JMPT :is_zero
+
+        ILT .TMP /0 %a
+        JMPT :is_positive
+
+        :is_negative
+        RET I8/-1
+
+        :is_zero
+        RET I8/0
+
+        :is_positive
+        RET I8/1
+    }
+}

@@ -631,7 +631,7 @@ FFI opcodes are used to call various functions from the underlying host platform
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
 
-| Host FFI | HOSTCALL | 0x24 | Rx $HOST_FUNC [$1 $2 $3 ...] | | Calls the given host function by passing arguments provided then stores the result in the Rx register.
+| Host FFI | HOSTCALL | 0x24 | Rx T1 $HOST_FUNC [$1 $2 $3 ...] | | Calls the given host function by passing arguments provided then stores the result in the Rx register with a type of T1.
 |===
 
 == Extension Groups

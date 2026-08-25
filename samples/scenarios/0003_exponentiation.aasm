@@ -1,0 +1,54 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            NUM   R0
+            POW     R1
+            RESULT  R2
+        }
+
+        HOSTCALL .NUM TYP/I32 adnan.stdio.readline
+        HOSTCALL .POW TYP/I8U adnan.stdio.readline
+        CALL .RESULT pow .NUM .POW
+        HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+    }
+
+    pow I32%n I8U%e {
+        !reg_aliases {
+            I   R0
+            TMP R1
+            CMP R2
+        }
+
+        COP .I /0
+        COP .TMP /1
+
+        :loop
+        ILE .CMP %e .I
+        JMPT :ret .CMP
+
+        IMUL .TMP .TMP %n
+        IINC .I
+        JMP :loop
+
+        :ret
+        RET .TMP
+    }
+}

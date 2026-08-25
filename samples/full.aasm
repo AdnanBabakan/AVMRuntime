@@ -6,7 +6,7 @@
 }
 
 !namespace adnan
-!entry main
+!entry main ; would default to "main" if omitted
 
 !capabilities {
     network
@@ -48,6 +48,11 @@
     ./file_c.aasm ; imports everything with default settings
 }
 
+!constants {
+    PI  F32 3.14
+    E   F32 2.71828
+} ; global constants
+
 !reg_aliases {
     PRIMARY     R0
     SECONDARY   R1
@@ -58,11 +63,6 @@
     FLOAT       F32
     INT         I32U
     BOOLEAN     BOOL
-}
-
-!constants {
-    PI  F32 3.14
-    E   F32 2.71828
 }
 
 !macros {
@@ -76,6 +76,11 @@
 
 !code {
     main {
+        !reg_aliases {
+
+        } ; defines local reg_aliases for this function only
+        ; overrides global reg_aliases for this function's scope, in case
+
         ; This is a comment
         COP .R0 /T
         COP .R1 /F
@@ -87,6 +92,11 @@
     }
 
     sum I32U%a I32U%b {
+        !reg_aliases {
+
+        } ; defines local reg_aliases for this function only
+        ; overrides global reg_aliases for this function's scope, in case
+
         IADD R0 %a %b
         RET R0
     }
