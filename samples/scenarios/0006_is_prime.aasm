@@ -28,11 +28,11 @@
         JMPT :is_prime .IS_PRIME
 
         :is_not_prime
-        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is not prime"
+        HOSTCALL .ZR TYP/NULL adnan.stdio.println "The given number is not prime"
         JMP :end
 
         :is_prime
-        HOSTCALL .ZR /NULL adnan.stdio.println "The given number is prime"
+        HOSTCALL .ZR TYP/NULL adnan.stdio.println "The given number is prime"
 
         :end
         ENOUGHX /0

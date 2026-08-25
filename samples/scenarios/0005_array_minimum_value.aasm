@@ -33,12 +33,12 @@
 
         TRY :zero_elements_catch
             CALL .RESULT array_min .NUM_ARR
-            HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+            HOSTCALL .ZR TYP/NULL adnan.stdio.println .RESULT
         ENDTRY
 
         :zero_elements_catch
         CATCH
-            HOSTCALL .ZR /NULL adnan.stdio.println "Empty array provided"
+            HOSTCALL .ZR TYP/NULL adnan.stdio.println "Empty array provided"
         ENDCATCH
     }
 

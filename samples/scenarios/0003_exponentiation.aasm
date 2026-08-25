@@ -27,7 +27,7 @@
         HOSTCALL .NUM TYP/I32 adnan.stdio.readline
         HOSTCALL .POW TYP/I8U adnan.stdio.readline
         CALL .RESULT pow .NUM .POW
-        HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+        HOSTCALL .ZR TYP/NULL adnan.stdio.println .RESULT
     }
 
     pow I32%n I8U%e {

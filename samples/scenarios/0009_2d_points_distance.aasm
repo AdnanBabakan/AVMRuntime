@@ -1,0 +1,69 @@
+!AASM 1.0.0
+
+!target {
+    vm      ^1.0.0
+    isa     ^1.0.0
+}
+
+!namespace avm_sample
+!entry main
+
+!capabilities {
+    stdio
+}
+
+!batteries {
+    adnan.stdio
+}
+
+!code {
+    main {
+        !reg_aliases {
+            POINT_1 R0
+            POINT_2 R1
+            RESULT  R2
+        }
+
+        CVECIL .POINT_1 TYP/V128L64 TYP/F64 10.59 45.22
+        CVECIL .POINT_2 TYP/V128L64 TYP/F64 23.78 74.02
+
+        CALL .RESULT TYP/F64 points_distance .POINT_1 .POINT_2
+        HOSTCALL .ZR TYPE/NULL adnan.stdio.println .RESULT
+    }
+
+    points_distance V128L64%v1 V128L64%v2 {
+        !reg_aliases {
+            X_1         R0
+            Y_1         R1
+            X_2         R2
+            Y_2         R3
+            X_LEN       R4
+            Y_LEN       R5
+            X_LEN_SQ    R6
+            Y_LEN_SQ    R7
+            Z_LEN_SQ    R8
+            Z_LEN_SQRT  R9
+        }
+
+        GETLANE .X_1 %v1 /0
+        GETLANE .Y_1 %v1 /1
+
+        GETLANE .X_2 %v2 /0
+        GETLANE .Y_2 %v2 /1
+
+        FSUB .X_LEN .X_1 .X_2
+        FABS .X_LEN .X_LEN
+
+        FSUB .Y_LEN .Y_1 .Y_2
+        FABS .Y_LEN .Y_LEN
+
+        FMUL .X_LEN_SQ .X_LEN .X_LEN
+        FMUL .Y_LEN_SQ .Y_LEN .Y_LEN
+
+        FADD .Z_LEN_SQ .X_LEN_SQ .Y_LEN_SQ
+
+        FSQRT .Z_LEN_SQRT .Z_LEN_SQ
+
+        RET .Z_LEN_SQRT
+    }
+}

@@ -27,12 +27,12 @@
 
         TRY
             CALL .RESULT fib .INPUT
-            HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+            HOSTCALL .ZR TYP/NULL adnan.stdio.println .RESULT
         ENDTRY
 
         :invalid_argument_exception
         CATCH
-            HOSTCALL .ZR /NULL adnan.stdio.println "Invalid argument provided"
+            HOSTCALL .ZR TYP/NULL adnan.stdio.println "Invalid argument provided"
         ENDCATCH
     }
 

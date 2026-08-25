@@ -30,7 +30,7 @@
         PUSHEL .NUM_ARR /-2
 
         CALL .RESULT array_sum .NUM_ARR
-        HOSTCALL .ZR /NULL adnan.stdio.println .RESULT
+        HOSTCALL .ZR TYP/NULL adnan.stdio.println .RESULT
     }
 
     array_sum ARR%a {

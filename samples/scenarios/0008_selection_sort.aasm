@@ -32,7 +32,7 @@
         PUSHEL .NUM_ARR /12
         PUSHEL .NUM_ARR /-8
 
-        CALL .ZR /NULL selection_sort .NUM_ARR
+        CALL .ZR TYP/NULL selection_sort .NUM_ARR
     }
 
     selection_sort ARR%a {
