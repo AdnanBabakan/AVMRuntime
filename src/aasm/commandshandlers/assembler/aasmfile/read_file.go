@@ -1,4 +1,4 @@
-package assembler
+package aasmfile
 
 import (
 	"os"

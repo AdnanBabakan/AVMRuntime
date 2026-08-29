@@ -20,6 +20,8 @@ func StringToVersion(str string) (*Version, error) {
 
 	if len(versionAndFlag) == 2 {
 		result.Flag = versionAndFlag[1]
+	} else {
+		result.Flag = "stable"
 	}
 
 	versionParts := strings.Split(versionAndFlag[0], ".")

@@ -1,13 +1,13 @@
 package main
 
 import (
-	"AVMRuntime/src/aasm/cli_structs"
+	"AVMRuntime/src/aasm/clistructs"
 
 	"github.com/alecthomas/kong"
 )
 
 func main() {
-	var cli cli_structs.AASMCLI
+	var cli clistructs.AASMCLI
 
 	ctx := kong.Parse(&cli)
 	err := ctx.Run()
