@@ -45,7 +45,13 @@ func (cmd *AssembleCommand) Run() error {
 		return firstLevelSectionsError
 	}
 
-	fmt.Printf("%v\n", firstLevelSections)
+	fmt.Println("Compiling sections tree...")
+
+	sectionsTree, sectionsTreeError := aasmfile.CompileToSectionsTree(firstLevelSections)
+
+	if sectionsTreeError != nil {
+		return sectionsTreeError
+	}
 
 	return nil
 }

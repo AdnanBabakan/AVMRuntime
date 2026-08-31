@@ -12,6 +12,80 @@ type Section struct {
 	Content string
 }
 
+type SectionsTree map[string]string
+
+type SectionPolicy struct {
+	Required  bool
+	Singleton bool
+}
+
+var SectionsPolicy = map[string]SectionPolicy{
+	"target": {
+		Required:  true,
+		Singleton: true,
+	},
+	"namespace": {
+		Required:  true,
+		Singleton: true,
+	},
+	"entry": {
+		Required:  false,
+		Singleton: true,
+	},
+	"capabilities": {
+		Required:  false,
+		Singleton: false,
+	},
+	"batteries": {
+		Required:  false,
+		Singleton: false,
+	},
+	"deps": {
+		Required:  false,
+		Singleton: false,
+	},
+	"include": {
+		Required:  false,
+		Singleton: false,
+	},
+	"exports": {
+		Required:  false,
+		Singleton: false,
+	},
+	"constants": {
+		Required:  false,
+		Singleton: false,
+	},
+	"reg_aliases": {
+		Required:  false,
+		Singleton: false,
+	},
+	"type_aliases": {
+		Required:  false,
+		Singleton: false,
+	},
+	"macros": {
+		Required:  false,
+		Singleton: false,
+	},
+	"code": {
+		Required:  true,
+		Singleton: false,
+	},
+}
+
+func RequiredSections() []string {
+	var requiredSections []string
+
+	for sectionName, section := range SectionsPolicy {
+		if section.Required {
+			requiredSections = append(requiredSections, sectionName)
+		}
+	}
+
+	return requiredSections
+}
+
 func StringToFirstLevelSections(content string, lineOffset int) ([]Section, error) {
 	lineSplit := strings.Split(content, "\n")
 
@@ -88,4 +162,42 @@ func StringToFirstLevelSections(content string, lineOffset int) ([]Section, erro
 	}
 
 	return sections, nil
+}
+
+func CompileToSectionsTree(sections []Section) (*SectionsTree, error) {
+	tree := &SectionsTree{}
+
+	for _, section := range sections {
+		policy, policyExists := SectionsPolicy[section.Name]
+
+		if !policyExists {
+			return nil, fmt.Errorf("section %s is not a valid section", section.Name)
+		}
+
+		record, recordExists := (*tree)[section.Name]
+
+		if recordExists {
+
+			if policy.Singleton {
+				return nil, fmt.Errorf("section %s is a singleton section and cannot be duplicated", section.Name)
+			}
+
+			(*tree)[section.Name] = fmt.Sprintf("%s\n%s", record, section.Content)
+
+		} else {
+			(*tree)[section.Name] = section.Content
+		}
+	}
+
+	requiredSections := RequiredSections()
+
+	for _, requiredSection := range requiredSections {
+		_, sectionExists := (*tree)[requiredSection]
+
+		if !sectionExists {
+			return nil, fmt.Errorf("section %s is required but not defined", requiredSection)
+		}
+	}
+
+	return tree, nil
 }
