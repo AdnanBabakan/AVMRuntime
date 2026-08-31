@@ -13,8 +13,8 @@ import (
 func RequiredSections() []string {
 	var requiredSections []string
 
-	for sectionName, section := range sections.Policy {
-		if section.Required {
+	for sectionName, policy := range sections.Policies {
+		if policy.Required {
 			requiredSections = append(requiredSections, sectionName)
 		}
 	}
@@ -104,7 +104,7 @@ func CompileToSectionsTree(sectionsList []sections.Section) (*sections.Tree, err
 	tree := &sections.Tree{}
 
 	for _, section := range sectionsList {
-		policy, policyExists := sections.Policy[section.Name]
+		policy, policyExists := sections.Policies[section.Name]
 
 		if !policyExists {
 			return nil, fmt.Errorf("section '%s' is not a valid section", section.Name)

@@ -12,7 +12,7 @@ type SectionPolicy struct {
 	Singleton bool
 }
 
-var Policy = map[string]SectionPolicy{
+var Policies = map[string]SectionPolicy{
 	"target": {
 		Required:  true,
 		Singleton: true,
