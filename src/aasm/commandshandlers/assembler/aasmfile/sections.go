@@ -65,6 +65,7 @@ func StringToFirstLevelSections(content string, lineOffset int) ([]Section, erro
 
 				if innerLine == "}" {
 					blockOpeningsCount--
+					continue
 				}
 
 				if strings.Contains(innerLine, "{") {
@@ -78,6 +79,8 @@ func StringToFirstLevelSections(content string, lineOffset int) ([]Section, erro
 
 			i += j
 		}
+
+		currentSection.Content = sectionContent
 
 		sections = append(sections, currentSection)
 
