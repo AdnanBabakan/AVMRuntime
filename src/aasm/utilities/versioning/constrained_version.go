@@ -3,72 +3,7 @@ package versioning
 import (
 	"AVMRuntime/src/aasm/utilities/stringsandchars"
 	"fmt"
-	"strconv"
-	"strings"
 )
-
-type Version struct {
-	Major int
-	Minor int
-	Patch int
-	Flag  string
-}
-
-func StringToVersion(str string) (*Version, error) {
-	versionAndFlag := strings.Split(str, "-")
-
-	result := &Version{}
-
-	if len(versionAndFlag) == 2 {
-		result.Flag = versionAndFlag[1]
-	} else {
-		result.Flag = "stable"
-	}
-
-	versionParts := strings.Split(versionAndFlag[0], ".")
-
-	if len(versionParts) != 3 {
-		return nil, fmt.Errorf("invalid version format: %s", versionAndFlag[0])
-	}
-
-	result.Major, _ = strconv.Atoi(versionParts[0])
-	result.Minor, _ = strconv.Atoi(versionParts[1])
-	result.Patch, _ = strconv.Atoi(versionParts[2])
-
-	return result, nil
-}
-
-func (version *Version) String() string {
-	return fmt.Sprintf("%d.%d.%d-%s", version.Major, version.Minor, version.Patch, version.Flag)
-}
-
-func (version *Version) SetMajor(major int) {
-	version.Major = major
-}
-
-func (version *Version) ApplyToMajor(offset int) {
-	version.Major += offset
-}
-
-func (version *Version) SetMinor(minor int) {
-	version.Minor = minor
-}
-
-func (version *Version) ApplyToMinor(offset int) {
-	version.Minor += offset
-}
-
-func (version *Version) SetPatch(patch int) {
-	version.Patch = patch
-}
-
-func (version *Version) ApplyToPatch(offset int) {
-	version.Patch += offset
-}
-
-func (version *Version) SetFlags(flag string) {
-	version.Flag = flag
-}
 
 type VersionConstraint int
 
