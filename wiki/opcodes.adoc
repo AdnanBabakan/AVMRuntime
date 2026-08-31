@@ -8,6 +8,8 @@ v1.0 2026-08-14
 :toc:
 :toclevels: 5
 
+// Last opcode HEX: 0xC6
+
 Opcodes are used to instruct the VM to perform a certain action.
 
 == Symbols
@@ -164,7 +166,6 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 
 === Jump
 
-
 .Jump Opcodes
 |===
 | Name | Opcode | HEX | Operands | Semantic | Description
@@ -205,6 +206,8 @@ Control flow opcodes are to manipulate the order of execution of the instruction
 | Name | Opcode | HEX | Operands | Semantic | Description
 
 | No-operation | NOP | 0x21 | | | Does nothing and moves to the next instruction.
+| Sleep (ms) | SLEEPMS | 0xC5 | $1 | | Sleeps the program for $1 milliseconds.
+| Sleep (s) | SLEEPS | 0xC6 | $1 | | Sleeps the program for $1 seconds.
 |===
 
 == Function and Call

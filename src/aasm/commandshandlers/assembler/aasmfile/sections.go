@@ -1,83 +1,19 @@
 package aasmfile
 
 import (
+	"AVMRuntime/src/aasm/commandshandlers/assembler/aasmfile/sections"
 	"AVMRuntime/src/aasm/utilities/file"
 	"fmt"
 	"regexp"
 	"strings"
 )
 
-type Section struct {
-	Name    string
-	Content string
-}
-
-type SectionsTree map[string]string
-
-type SectionPolicy struct {
-	Required  bool
-	Singleton bool
-}
-
-var SectionsPolicy = map[string]SectionPolicy{
-	"target": {
-		Required:  true,
-		Singleton: true,
-	},
-	"namespace": {
-		Required:  true,
-		Singleton: true,
-	},
-	"entry": {
-		Required:  false,
-		Singleton: true,
-	},
-	"capabilities": {
-		Required:  false,
-		Singleton: false,
-	},
-	"batteries": {
-		Required:  false,
-		Singleton: false,
-	},
-	"deps": {
-		Required:  false,
-		Singleton: false,
-	},
-	"include": {
-		Required:  false,
-		Singleton: false,
-	},
-	"exports": {
-		Required:  false,
-		Singleton: false,
-	},
-	"constants": {
-		Required:  false,
-		Singleton: false,
-	},
-	"reg_aliases": {
-		Required:  false,
-		Singleton: false,
-	},
-	"type_aliases": {
-		Required:  false,
-		Singleton: false,
-	},
-	"macros": {
-		Required:  false,
-		Singleton: false,
-	},
-	"code": {
-		Required:  true,
-		Singleton: false,
-	},
-}
+// raw sections
 
 func RequiredSections() []string {
 	var requiredSections []string
 
-	for sectionName, section := range SectionsPolicy {
+	for sectionName, section := range sections.Policy {
 		if section.Required {
 			requiredSections = append(requiredSections, sectionName)
 		}
@@ -86,12 +22,12 @@ func RequiredSections() []string {
 	return requiredSections
 }
 
-func StringToFirstLevelSections(content string, lineOffset int) ([]Section, error) {
+func StringToFirstLevelSections(content string, lineOffset int) ([]sections.Section, error) {
 	lineSplit := strings.Split(content, "\n")
 
 	sectionNameRe := regexp.MustCompile(`!([0-9a-zA-Z]*)\s`)
 
-	var sections = make([]Section, 0)
+	var sectionsSlice = make([]sections.Section, 0)
 
 	for i := 0; i < len(lineSplit); {
 		line := file.SanitizeLine(lineSplit[i])
@@ -106,7 +42,7 @@ func StringToFirstLevelSections(content string, lineOffset int) ([]Section, erro
 			return nil, fmt.Errorf("illegal section definition at line %d: %s", physicalLineIndex, line)
 		}
 
-		currentSection := Section{}
+		currentSection := sections.Section{}
 
 		sectionName := strings.Replace(strings.TrimSpace(sectionNameRe.FindString(line)), "!", "", 1)
 
@@ -156,22 +92,22 @@ func StringToFirstLevelSections(content string, lineOffset int) ([]Section, erro
 
 		currentSection.Content = sectionContent
 
-		sections = append(sections, currentSection)
+		sectionsSlice = append(sectionsSlice, currentSection)
 
 		i++
 	}
 
-	return sections, nil
+	return sectionsSlice, nil
 }
 
-func CompileToSectionsTree(sections []Section) (*SectionsTree, error) {
-	tree := &SectionsTree{}
+func CompileToSectionsTree(sectionsList []sections.Section) (*sections.Tree, error) {
+	tree := &sections.Tree{}
 
-	for _, section := range sections {
-		policy, policyExists := SectionsPolicy[section.Name]
+	for _, section := range sectionsList {
+		policy, policyExists := sections.Policy[section.Name]
 
 		if !policyExists {
-			return nil, fmt.Errorf("section %s is not a valid section", section.Name)
+			return nil, fmt.Errorf("section '%s' is not a valid section", section.Name)
 		}
 
 		record, recordExists := (*tree)[section.Name]
@@ -179,7 +115,7 @@ func CompileToSectionsTree(sections []Section) (*SectionsTree, error) {
 		if recordExists {
 
 			if policy.Singleton {
-				return nil, fmt.Errorf("section %s is a singleton section and cannot be duplicated", section.Name)
+				return nil, fmt.Errorf("section '%s' is a singleton section and cannot be duplicated", section.Name)
 			}
 
 			(*tree)[section.Name] = fmt.Sprintf("%s\n%s", record, section.Content)
@@ -195,9 +131,31 @@ func CompileToSectionsTree(sections []Section) (*SectionsTree, error) {
 		_, sectionExists := (*tree)[requiredSection]
 
 		if !sectionExists {
-			return nil, fmt.Errorf("section %s is required but not defined", requiredSection)
+			return nil, fmt.Errorf("section '%s' is required but not defined", requiredSection)
 		}
 	}
 
 	return tree, nil
+}
+
+// full sections
+
+func CompileToFullSectionsTree(sectionsList *sections.Tree) (*sections.FullTree, error) {
+
+	tree := &sections.FullTree{}
+
+	for sectionName, sectionContent := range *sectionsList {
+		switch sectionName {
+		case "target":
+			section, sectionError := sections.ToTargetSection(sectionContent)
+
+			if sectionError != nil {
+				return nil, sectionError
+			}
+
+			tree.Target = section
+		}
+	}
+
+	return nil, nil
 }

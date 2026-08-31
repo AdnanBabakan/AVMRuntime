@@ -1,0 +1,17 @@
+!AASM 1.0.0
+; This is a comment
+!target { ; another comment
+    vm      ^1.0.0 ; yet another comment
+    isa     ^1.0.0
+}
+
+!namespace adnan
+!entry main
+
+!code {
+    main {
+        COP .R0 /10
+        COP .R1 /20
+        IADD .R2 .R0 .R1
+    }
+}

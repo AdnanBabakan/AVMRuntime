@@ -11,14 +11,14 @@ type AssembleCommand struct {
 }
 
 func (cmd *AssembleCommand) Run() error {
-	fmt.Println("Assembling aasmfile: ", cmd.Input)
+	fmt.Println("Assembling AASM file: ", cmd.Input)
 
 	fmt.Println("Checking the first line...")
 
 	fileData, fileDataError := aasmfile.ReadFile(cmd.Input)
 
 	if fileDataError != nil {
-		return fmt.Errorf("couldn't read input aasmfile '%s': %s", cmd.Input, fileDataError)
+		return fmt.Errorf("couldn't read input AASM file '%s': %s", cmd.Input, fileDataError)
 	}
 
 	fileDatString := string(fileData)
@@ -52,6 +52,16 @@ func (cmd *AssembleCommand) Run() error {
 	if sectionsTreeError != nil {
 		return sectionsTreeError
 	}
+
+	fmt.Println("Compiling full sections tree...")
+
+	fullSectionsTree, fullSectionsTreeError := aasmfile.CompileToFullSectionsTree(sectionsTree)
+
+	if fullSectionsTreeError != nil {
+		return fullSectionsTreeError
+	}
+
+	_ = fullSectionsTree
 
 	return nil
 }
